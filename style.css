@@ -1,0 +1,29 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    background: #4ec0ca; /* Background color */
+}
+
+#game {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#bird {
+    position: absolute;
+    width: 34px; /* Width of the bird */
+    height: 24px; /* Height of the bird */
+    background: url('yellowbird-upflap.png');
+    background-size: cover;
+}
+
+.pipe {
+    position: absolute;
+    bottom: 0;
+    width: 52px; /* Width of the pipe */
+    height: 200px; /* Initial height, will be changed by JS */
+    background: url('pipe-green.png');
+    background-size: cover;
+}

@@ -1,0 +1,45 @@
+*{
+    padding: 0;
+    margin: 0;
+    background-color: #4ec0ca;
+}
+#game{
+    width: 400px;
+    height: 500px;
+    border: 1px solid black;
+    margin: auto;
+    overflow: hidden;
+    background: #4ec0ca;
+}
+#block{
+    width: 50px;
+    height: 500px;
+    /*background-color: black;*/
+    background-image: url('pipe-green.png');
+    position: relative;
+    left: 400px;
+    animation: block 2s infinite linear;
+}
+@keyframes block{
+    0%{left:400px}
+    100%{left:-50px}
+}
+#hole{
+    width: 50px;
+    height: 200px;
+    background-image: url('Untitled.png');
+    position: relative;
+    left: 400px;
+    top: -500px;
+    animation: block 2s infinite linear;
+}
+#character {
+    width: 25px; /* Adjust the width as needed */
+    height: 20px; /* Adjust the height as needed */
+    position: absolute;
+    top: 100px;
+    middle: 50px;
+    background-image: url('yellowbird-upflap.png'); /* Path to your character image */
+    background-size: cover; /* Ensure the image covers the entire element */
+    border-radius: 50%;
+}

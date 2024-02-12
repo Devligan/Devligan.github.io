@@ -1,10 +1,45 @@
+<!--Used ChatGPT to make this ui nicer-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #4ec0ca;
+        }
+        .container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .game-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .play-button {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+        }
+        .image{
+            padding: 10px 20px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-
+<div class="container">
+    <div class="text-center">
+        <h1 class="game-title">Flappy Bird</h1>
+        <img src="yellowbird-upflap.png" alt="toilet" class = "image">
+        <button type="button" class="btn btn-primary play-button" onclick="window.location.href='game.html'">Play</button>
+        <p>Press space or left click to jump</p>
+    </div>
+</div>
 </body>
 </html>
