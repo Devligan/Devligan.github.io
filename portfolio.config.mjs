@@ -31,8 +31,8 @@ export default {
       'Everything here syncs from my GitHub every hour, so it never goes stale. Have a look around.',
     ],
     // Optional. Leave '' to hide. These are public once deployed.
-    email: '',
-    linkedin: '',
+    email: 'sriharshachallangi@gmail.com',
+    linkedin: 'https://www.linkedin.com/in/sriharsha-challangi/',
     resume: '', // e.g. '/resume.pdf' (drop the file in /public)
     location: '',
   },
