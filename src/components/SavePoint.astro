@@ -6,7 +6,7 @@ import { data, hero, shortDate } from '../lib/view.mjs';
 const links = [
   { label: 'GitHub', value: `@${hero.handle}`, href: `https://github.com/${hero.handle}` },
   hero.email && { label: 'Email', value: hero.email, href: `mailto:${hero.email}` },
-  hero.linkedin && { label: 'LinkedIn', value: hero.linkedin.replace(/^https?:\/\/(www\.)?/, ''), href: hero.linkedin },
+  hero.linkedin && { label: 'LinkedIn', value: hero.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''), href: hero.linkedin },
   hero.resume && { label: 'Résumé', value: 'PDF', href: hero.resume },
 ].filter(Boolean) as { label: string; value: string; href: string }[];
 ---
