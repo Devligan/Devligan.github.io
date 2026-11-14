@@ -1,0 +1,35 @@
+---
+// The save crystal. Same pixels as the favicon.
+interface Props {
+  scale?: number;
+}
+const { scale = 8 } = Astro.props;
+
+const MAP = [
+  '.....kk.....',
+  '....kLLk....',
+  '...kLLlCk...',
+  '..kLLlCCCk..',
+  '.kLLlCCCCDk.',
+  'kLLlCCCCCDDk',
+  'kLlCCCCCCDDk',
+  'kLlCCCCCDDDk',
+  '.kLCCCCCDDk.',
+  '..kCCCCDDk..',
+  '...kCCDDk...',
+  '....kCDk....',
+  '.....kk.....',
+];
+const COLORS: Record<string, string> = {
+  k: '#0b2a3a',
+  L: '#e9fffb',
+  l: '#a8f5ea',
+  C: '#5ee6d0',
+  D: '#2a9d9a',
+};
+const rects = MAP.flatMap((row, y) => [...row].flatMap((ch, x) => (COLORS[ch] ? [{ x, y, fill: COLORS[ch] }] : [])));
+---
+
+<svg class="crystal" viewBox="0 0 12 13" width={12 * scale} height={13 * scale} shape-rendering="crispEdges" aria-hidden="true">
+  {rects.map((r) => <rect x={r.x} y={r.y} width="1" height="1" fill={r.fill} />)}
+</svg>

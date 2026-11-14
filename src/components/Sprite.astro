@@ -1,0 +1,86 @@
+---
+// The hero, drawn one pixel at a time. 16×20, gold scarf, looking up.
+interface Props {
+  scale?: number;
+  class?: string;
+  label?: string;
+  // When nested inside another SVG, place it in that SVG's units instead.
+  x?: number;
+  y?: number;
+}
+const { scale = 6, class: className = '', label, x, y } = Astro.props;
+const nested = x !== undefined;
+
+const MAP = [
+  '....kkkkkkkk....',
+  '...khhhhhhhhk...',
+  '..khhhhhhhhhhk..',
+  '..khhhhhhhhhhk..',
+  '..khhssssssshk..',
+  '..khssessesshk..',
+  '..kssrssssrssk..',
+  '...ksssmmsssk...',
+  '....kkSSSSkk....',
+  '..kffffffffffk..',
+  '.kbbffffffffbbk.',
+  'kbbbbbbffbbbbbbk',
+  'kbbBbbbffbbbBbbk',
+  'ksbBbbbbfbbbBbsk',
+  '..kBBBBggBBBBk..',
+  '..kppppppppppk..',
+  '..kpppkkkkpppk..',
+  '..kpppk..kpppk..',
+  '..koook..koook..',
+  '..kkkkk..kkkkk..',
+];
+
+const COLORS: Record<string, string> = {
+  k: '#140e2b',
+  h: '#2e2257',
+  s: '#e3a97e',
+  S: '#b97a52',
+  e: '#140e2b',
+  r: '#ec8f8f',
+  m: '#9a4b4b',
+  f: '#ffcf5a',
+  b: '#4b3fb5',
+  B: '#352a8a',
+  g: '#ffcf5a',
+  p: '#2b2758',
+  o: '#6b4630',
+};
+
+const rects = MAP.flatMap((row, y) =>
+  [...row].flatMap((ch, x) => (COLORS[ch] ? [{ x, y, fill: COLORS[ch], eye: ch === 'e' }] : [])),
+);
+---
+
+<svg
+  class={`sprite ${className}`}
+  viewBox="0 0 16 20"
+  x={x}
+  y={y}
+  width={nested ? 16 : 16 * scale}
+  height={nested ? 20 : 20 * scale}
+  shape-rendering="crispEdges"
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+>
+  {rects.map((r) => <rect x={r.x} y={r.y} width="1" height="1" fill={r.fill} class={r.eye ? 'eye' : undefined} />)}
+</svg>
+
+<style>
+  .sprite {
+    image-rendering: pixelated;
+    filter: drop-shadow(0 4px 0 rgba(3, 2, 13, 0.5));
+  }
+  .eye {
+    animation: blink 5s steps(1) infinite;
+  }
+  @keyframes blink {
+    96% {
+      fill: #e3a97e;
+    }
+  }
+</style>

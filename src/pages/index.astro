@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import TitleScreen from '../components/TitleScreen.astro';
+import Quests from '../components/Quests.astro';
+import Status from '../components/Status.astro';
+import QuestLog from '../components/QuestLog.astro';
+import Journey from '../components/Journey.astro';
+import SavePoint from '../components/SavePoint.astro';
+---
+
+<Base>
+  <TitleScreen />
+  <main>
+    <Quests />
+    <Status />
+    <QuestLog />
+    <Journey />
+    <SavePoint />
+  </main>
+  <div class="win toast" role="status" aria-live="polite" data-toast></div>
+  <script>
+    import '../scripts/main.js';
+  </script>
+</Base>

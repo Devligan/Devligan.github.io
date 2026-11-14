@@ -1,0 +1,423 @@
+---
+import Banner from './Banner.astro';
+import Sprite from './Sprite.astro';
+import { ago, config, data, element, hero, nowQuesting } from '../lib/view.mjs';
+
+const expPct = ((hero.exp - hero.levelFloor) / (hero.nextLevelAt - hero.levelFloor)) * 100;
+const toNext = hero.nextLevelAt - hero.exp;
+const journey = `${hero.journeyYears}y ${hero.journeyMonths}mo`;
+
+const stats = [
+  { label: 'Commits', note: 'lifetime, public repos', value: data.stats.totalCommits },
+  { label: 'Contributions', note: 'last 12 months', value: data.calendar?.total },
+  { label: 'Public repos', note: 'quests on file', value: data.stats.repos },
+  { label: 'Streak', note: `longest ${data.calendar?.longest ?? 0} days`, value: data.calendar ? `${data.calendar.current}d` : null },
+  { label: 'Problems solved', note: config.training?.label, value: data.training?.solved, href: data.training?.url },
+  { label: 'On GitHub', note: 'since ' + new Date(data.user.createdAt).getUTCFullYear(), value: journey },
+].filter((s) => s.value !== undefined && s.value !== null);
+
+const languages = data.languages.slice(0, 7);
+---
+
+<section class="chapter" id="status" aria-labelledby="status-title">
+  <div class="wrap">
+    <Banner kicker="Chapter II" title="Status" subtitle="About me. The numbers are live from GitHub." id="status-title" />
+
+    <div class="status-grid">
+      <article class="win card-hero reveal">
+        <span class="win-title">Party</span>
+        <div class="pedestal">
+          <Sprite scale={7} label={`Pixel-art portrait of ${hero.name}`} />
+        </div>
+        <h3 class="hero-name">{hero.name}</h3>
+        <p class="hero-class pixel">{hero.class} <span>/ {hero.subclass}</span></p>
+
+        <div class="lv pixel">
+          <span class="lv-label">LV</span>
+          <span class="lv-num">{hero.level}</span>
+        </div>
+        <div class="exp">
+          <div class="exp-row pixel">
+            <span>EXP</span>
+            <span>{hero.exp} / {hero.nextLevelAt}</span>
+          </div>
+          <div class="meter" style={`--v:${expPct}%;--c:var(--mana)`}><span></span></div>
+          <p class="exp-note">
+            {toNext} more commit{toNext === 1 ? '' : 's'} to LV {hero.level + 1}. Level is √(lifetime commits).
+          </p>
+        </div>
+
+        {
+          nowQuesting && (
+            <div class="now">
+              <p class="now-head pixel">
+                <span class="now-dot" aria-hidden="true" />
+                Now questing
+              </p>
+              <a class="now-repo pixel" href={nowQuesting.repoUrl} target="_blank" rel="noopener">
+                {nowQuesting.title}
+              </a>
+              <a class="now-msg" href={nowQuesting.url} target="_blank" rel="noopener">
+                “{nowQuesting.message}”
+              </a>
+              <p class="now-when pixel" data-ago={nowQuesting.date}>
+                {ago(nowQuesting.date)}
+              </p>
+            </div>
+          )
+        }
+      </article>
+
+      <article class="win card-bio reveal">
+        <span class="win-title">Profile</span>
+        <p class="bio">{hero.tagline}</p>
+        <dl class="stats">
+          {
+            stats.map((s) => (
+              <div class="stat">
+                <dt>
+                  <span class="pixel">{s.label}</span>
+                  <small>{s.note}</small>
+                </dt>
+                <dd class="pixel">
+                  {s.href ? (
+                    <a href={s.href} target="_blank" rel="noopener">
+                      {s.value}
+                    </a>
+                  ) : (
+                    s.value
+                  )}
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </article>
+
+      <article class="win card-elements reveal">
+        <span class="win-title">Elements</span>
+        <p class="card-note">Languages, weighted by how much of each repo they make up. Recent work counts more.</p>
+        <ul class="elements">
+          {
+            languages.map((l) => (
+              <li>
+                <div class="el-row">
+                  <span class="dot" style={`--c:${l.color}`} aria-hidden="true" />
+                  <span class="el-name">{l.name}</span>
+                  <span class="el-elem pixel">{element(l.name)}</span>
+                  <span class="el-count pixel">
+                    {l.repos} repo{l.repos === 1 ? '' : 's'}
+                  </span>
+                </div>
+                <div class="meter" style={`--v:${Math.max(l.pct, 4)}%;--c:${l.color}`}>
+                  <span />
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+
+      <article class="win card-gear reveal">
+        <span class="win-title">Equipment</span>
+        <div class="gear">
+          {
+            Object.entries(config.equipment).map(([slot, items]) => (
+              <div class="gear-slot">
+                <h4 class="pixel">{slot}</h4>
+                <ul class="chips">
+                  {(items as string[]).map((it) => (
+                    <li class="chip">{it}</li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .status-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      'hero bio bio'
+      'hero el gear';
+    gap: 32px 28px;
+  }
+
+  .card-hero {
+    grid-area: hero;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 2rem;
+  }
+  .card-bio {
+    grid-area: bio;
+  }
+  .card-elements {
+    grid-area: el;
+  }
+  .card-gear {
+    grid-area: gear;
+  }
+
+  .pedestal {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    padding: 18px 0 26px;
+    background:
+      radial-gradient(ellipse 40% 9% at 50% 88%, rgba(94, 230, 208, 0.35), transparent 70%),
+      radial-gradient(circle at 50% 45%, rgba(255, 207, 90, 0.12), transparent 55%);
+  }
+
+  .pedestal :global(.sprite) {
+    animation: idle 1.4s steps(2) infinite;
+  }
+
+  @keyframes idle {
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  .hero-name {
+    font-size: 1.55rem;
+  }
+
+  .hero-class {
+    margin-top: 0.2rem;
+    color: var(--gold);
+    font-size: 0.95rem;
+  }
+
+  .hero-class span {
+    color: var(--ink-faint);
+  }
+
+  .lv {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    margin-top: 1.2rem;
+  }
+
+  .lv-label {
+    font-size: 1rem;
+    color: var(--mana);
+  }
+
+  .lv-num {
+    font-size: 3.4rem;
+    line-height: 1;
+    text-shadow: 0 3px 0 var(--frame-dark);
+  }
+
+  .exp {
+    width: 100%;
+    margin-top: 0.6rem;
+    text-align: left;
+  }
+
+  .exp-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+  }
+
+  .exp-note {
+    margin-top: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+  }
+
+  .now {
+    display: grid;
+    gap: 0.2rem;
+    width: 100%;
+    margin-top: auto;
+    padding: 0.9rem 1rem;
+    text-align: left;
+    background: rgba(3, 2, 13, 0.35);
+    border: 1px solid rgba(126, 231, 135, 0.3);
+    border-radius: 4px;
+  }
+
+  .exp + .now {
+    margin-top: 1.4rem;
+  }
+
+  .now-head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--hp);
+  }
+
+  .now-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--hp);
+    box-shadow: 0 0 8px var(--hp);
+    animation: pulse 2s steps(2) infinite;
+  }
+
+  @keyframes pulse {
+    50% {
+      opacity: 0.35;
+    }
+  }
+
+  .now-repo {
+    font-size: 1.15rem;
+    text-decoration: none;
+  }
+
+  .now-msg {
+    font-size: 0.9rem;
+    color: var(--ink-dim);
+    text-decoration: none;
+  }
+
+  .now-repo:hover,
+  .now-msg:hover {
+    color: var(--gold);
+  }
+
+  .now-when {
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+  }
+
+  .bio {
+    font-size: 1.08rem;
+    line-height: 1.65;
+    max-width: 62ch;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    margin: 1.4rem 0 0;
+    background: rgba(239, 230, 207, 0.12);
+    border: 1px solid rgba(239, 230, 207, 0.12);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    gap: 0.1rem;
+    padding: 0.8rem 0.9rem;
+    background: rgba(17, 12, 54, 0.92);
+  }
+
+  .stat dt {
+    display: grid;
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+  }
+
+  .stat dt small {
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+  }
+
+  .stat dd {
+    margin: 0;
+    font-size: 1.9rem;
+    line-height: 1.1;
+    color: #fff6dc;
+  }
+
+  .stat dd a {
+    text-decoration-color: rgba(255, 207, 90, 0.5);
+    text-underline-offset: 4px;
+  }
+
+  .card-note {
+    font-size: 0.84rem;
+    color: var(--ink-faint);
+    margin-bottom: 1rem;
+  }
+
+  .elements {
+    display: grid;
+    gap: 0.85rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .el-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.3rem;
+    font-size: 0.95rem;
+  }
+
+  .el-elem {
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+  }
+
+  .el-elem::before {
+    content: '« ';
+  }
+
+  .el-elem::after {
+    content: ' »';
+  }
+
+  .el-count {
+    margin-left: auto;
+    font-size: 0.78rem;
+    color: var(--ink-dim);
+  }
+
+  .gear {
+    display: grid;
+    gap: 1.1rem;
+  }
+
+  .gear-slot h4 {
+    margin-bottom: 0.45rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  @media (max-width: 980px) {
+    .status-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-areas:
+        'hero bio'
+        'el gear';
+    }
+    .stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 680px) {
+    .status-grid {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: 'hero' 'bio' 'el' 'gear';
+    }
+  }
+</style>

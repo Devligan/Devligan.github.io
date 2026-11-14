@@ -1,0 +1,2593 @@
+{
+  "generatedAt": "2026-11-14T23:41:40.039Z",
+  "user": {
+    "login": "Devligan",
+    "name": "Sriharsha Challangi",
+    "avatarUrl": "https://avatars.githubusercontent.com/u/115281210?u=ed70d53e8efa75f223582072a69903d4d341cea0&v=4",
+    "createdAt": "2022-10-07T16:36:01Z",
+    "followers": 1
+  },
+  "stats": {
+    "repos": 21,
+    "totalCommits": 396,
+    "stars": 0,
+    "lastPush": "2026-11-14T23:10:23Z"
+  },
+  "languages": [
+    {
+      "name": "Python",
+      "color": "#3572A5",
+      "score": 7.350687070747108,
+      "repos": 12,
+      "pct": 100
+    },
+    {
+      "name": "TypeScript",
+      "color": "#3178c6",
+      "score": 1.681510174314631,
+      "repos": 2,
+      "pct": 23
+    },
+    {
+      "name": "JavaScript",
+      "color": "#f1e05a",
+      "score": 1.6721204657346092,
+      "repos": 5,
+      "pct": 23
+    },
+    {
+      "name": "HTML",
+      "color": "#e34c26",
+      "score": 0.9756293290012934,
+      "repos": 5,
+      "pct": 13
+    },
+    {
+      "name": "C#",
+      "color": "#7355dd",
+      "score": 0.9238577117843125,
+      "repos": 2,
+      "pct": 13
+    },
+    {
+      "name": "CSS",
+      "color": "#663399",
+      "score": 0.47178145667877075,
+      "repos": 4,
+      "pct": 6
+    },
+    {
+      "name": "PLpgSQL",
+      "color": "#336790",
+      "score": 0.2705572171365629,
+      "repos": 1,
+      "pct": 4
+    }
+  ],
+  "repos": [
+    {
+      "name": "powerflow",
+      "description": "Paper-trade the Texas power grid on real ERCOT prices: bid tomorrow's auction, watch real time, settle on ERCOT's calendar.",
+      "summary": "ERCOT prices every hour of Texas electricity twice. The day-ahead market clears an auction for tomorrow, today. The real-time market prices the same hour again as it is delivered. A cold snap, a plant trip or a windy night pulls the two apart.",
+      "url": "https://github.com/Devligan/powerflow",
+      "homepage": "https://powerflow-two.vercel.app",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2026-10-27T21:21:42Z",
+      "pushedAt": "2026-11-14T23:10:23Z",
+      "language": {
+        "name": "TypeScript",
+        "color": "#3178c6"
+      },
+      "languages": [
+        {
+          "name": "TypeScript",
+          "color": "#3178c6",
+          "size": 1241705
+        },
+        {
+          "name": "PLpgSQL",
+          "color": "#336790",
+          "size": 471289
+        },
+        {
+          "name": "CSS",
+          "color": "#663399",
+          "size": 19219
+        },
+        {
+          "name": "JavaScript",
+          "color": "#f1e05a",
+          "size": 9655
+        }
+      ],
+      "topics": [
+        "electricity-markets",
+        "energy-trading",
+        "ercot",
+        "paper-trading",
+        "power-trading",
+        "trading-simulator"
+      ],
+      "commits": 178,
+      "branch": "master",
+      "imageUrl": "https://raw.githubusercontent.com/Devligan/powerflow/master/public/showcase/markets.png",
+      "image": "/quest-art/powerflow.png"
+    },
+    {
+      "name": "orbital-insight",
+      "description": "See which satellites cross your sky tonight, find out what that moving light was, and explore every active satellite on a live globe. Real orbits, computed in your browser.",
+      "summary": "Open the site · How the numbers are made · Notes from building it",
+      "url": "https://github.com/Devligan/orbital-insight",
+      "homepage": "https://orbital-insight-drab.vercel.app",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2026-11-13T04:07:14Z",
+      "pushedAt": "2026-11-14T01:29:21Z",
+      "language": {
+        "name": "TypeScript",
+        "color": "#3178c6"
+      },
+      "languages": [
+        {
+          "name": "TypeScript",
+          "color": "#3178c6",
+          "size": 805273
+        },
+        {
+          "name": "JavaScript",
+          "color": "#f1e05a",
+          "size": 16498
+        },
+        {
+          "name": "CSS",
+          "color": "#663399",
+          "size": 8491
+        }
+      ],
+      "topics": [
+        "astrodynamics",
+        "conjunction-analysis",
+        "orbital-mechanics",
+        "satellite-tracking",
+        "sgp4",
+        "space-situational-awareness",
+        "iss",
+        "satellites",
+        "stargazing",
+        "starlink"
+      ],
+      "commits": 91,
+      "branch": "main",
+      "imageUrl": "https://raw.githubusercontent.com/Devligan/orbital-insight/main/docs/images/home.jpg",
+      "image": "/quest-art/orbital-insight.jpg"
+    },
+    {
+      "name": "Financial-Market-Volatility-Correlation-Analysis",
+      "description": "",
+      "summary": "An end-to-end quantitative risk system for a 113-asset cross-asset universe stocks, equity ETFs,",
+      "url": "https://github.com/Devligan/Financial-Market-Volatility-Correlation-Analysis",
+      "homepage": "",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2025-08-21T21:22:28Z",
+      "pushedAt": "2026-10-04T03:11:31Z",
+      "language": {
+        "name": "Jupyter Notebook",
+        "color": "#DA5B0B"
+      },
+      "languages": [
+        {
+          "name": "Jupyter Notebook",
+          "color": "#DA5B0B",
+          "size": 843691
+        },
+        {
+          "name": "HTML",
+          "color": "#e34c26",
+          "size": 414750
+        },
+        {
+          "name": "Python",
+          "color": "#3572A5",
+          "size": 174412
+        }
+      ],
+      "topics": [],
+      "commits": 12,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "neetcode-submissions-rkmukv8m",
+      "description": "My NeetCode.io problem submissions",
+      "summary": "NeetCode.io is a coding interview preparation platform featuring curated problems, video solutions, and an in-browser code editor. This repository is automatically populated with your accepted (or all) solutions using the GitHub Sync feature.",
+      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m",
+      "homepage": "",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2026-03-30T16:21:18Z",
+      "pushedAt": "2026-06-17T00:55:08Z",
+      "language": {
+        "name": "Python",
+        "color": "#3572A5"
+      },
+      "languages": [
+        {
+          "name": "Python",
+          "color": "#3572A5",
+          "size": 12795
+        }
+      ],
+      "topics": [],
+      "commits": 21,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "MATH-4322-Group-4-Project",
+      "description": "Group project for MATH 4322",
+      "summary": "This repository contains a Quarto file used for our final report. To avoid merging conflict: 1. create your own branch 2. pull the latest changes 3. make changes and commit 4. open a pull request for everyone to apporve before merging.",
+      "url": "https://github.com/Devligan/MATH-4322-Group-4-Project",
+      "homepage": "",
+      "stars": 0,
+      "forks": 1,
+      "archived": false,
+      "createdAt": "2026-03-03T04:26:42Z",
+      "pushedAt": "2026-05-04T17:20:58Z",
+      "language": null,
+      "languages": [],
+      "topics": [],
+      "commits": 2,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "Spotify-Wrapped",
+      "description": "COSC 3337 Group 1 Project",
+      "summary": "",
+      "url": "https://github.com/Devligan/Spotify-Wrapped",
+      "homepage": "",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2026-02-18T20:36:14Z",
+      "pushedAt": "2026-04-25T01:29:24Z",
+      "language": {
+        "name": "Jupyter Notebook",
+        "color": "#DA5B0B"
+      },
+      "languages": [
+        {
+          "name": "Jupyter Notebook",
+          "color": "#DA5B0B",
+          "size": 2973550
+        },
+        {
+          "name": "JavaScript",
+          "color": "#f1e05a",
+          "size": 23459
+        },
+        {
+          "name": "Python",
+          "color": "#3572A5",
+          "size": 16867
+        },
+        {
+          "name": "R",
+          "color": "#198CE7",
+          "size": 5810
+        },
+        {
+          "name": "HTML",
+          "color": "#e34c26",
+          "size": 826
+        }
+      ],
+      "topics": [],
+      "commits": 21,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "Crypto-Server",
+      "description": "Server to store coingecko crypto api prices",
+      "summary": "Crypto Terminal is a personal full-stack project built to work around the limitations of CoinGecko's free tier API, which only provides up to 90 days of historical data per request.",
+      "url": "https://github.com/Devligan/Crypto-Server",
+      "homepage": "https://cryptodashboard-sigma.vercel.app",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2026-03-19T22:17:52Z",
+      "pushedAt": "2026-03-20T01:40:57Z",
+      "language": {
+        "name": "HTML",
+        "color": "#e34c26"
+      },
+      "languages": [
+        {
+          "name": "HTML",
+          "color": "#e34c26",
+          "size": 11662
+        },
+        {
+          "name": "CSS",
+          "color": "#663399",
+          "size": 9193
+        },
+        {
+          "name": "JavaScript",
+          "color": "#f1e05a",
+          "size": 7247
+        }
+      ],
+      "topics": [],
+      "commits": 14,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "ATS-Resume-Maxer",
+      "description": "Personal Resume Builder project",
+      "summary": "",
+      "url": "https://github.com/Devligan/ATS-Resume-Maxer",
+      "homepage": "",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2026-03-11T14:10:03Z",
+      "pushedAt": "2026-03-11T14:48:20Z",
+      "language": {
+        "name": "JavaScript",
+        "color": "#f1e05a"
+      },
+      "languages": [
+        {
+          "name": "JavaScript",
+          "color": "#f1e05a",
+          "size": 4194
+        },
+        {
+          "name": "C#",
+          "color": "#7355dd",
+          "size": 1952
+        },
+        {
+          "name": "CSS",
+          "color": "#663399",
+          "size": 1313
+        },
+        {
+          "name": "HTML",
+          "color": "#e34c26",
+          "size": 366
+        }
+      ],
+      "topics": [],
+      "commits": 1,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "Inventory-Tracker",
+      "description": "",
+      "summary": "",
+      "url": "https://github.com/Devligan/Inventory-Tracker",
+      "homepage": "",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2026-02-28T17:46:58Z",
+      "pushedAt": "2026-02-28T19:57:34Z",
+      "language": {
+        "name": "C#",
+        "color": "#7355dd"
+      },
+      "languages": [
+        {
+          "name": "C#",
+          "color": "#7355dd",
+          "size": 31205
+        }
+      ],
+      "topics": [],
+      "commits": 8,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "Fake_News_Detector",
+      "description": "A project to determine whether news if real or fake.",
+      "summary": "",
+      "url": "https://github.com/Devligan/Fake_News_Detector",
+      "homepage": "",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2025-07-29T00:16:51Z",
+      "pushedAt": "2025-08-07T00:11:23Z",
+      "language": {
+        "name": "Jupyter Notebook",
+        "color": "#DA5B0B"
+      },
+      "languages": [
+        {
+          "name": "Jupyter Notebook",
+          "color": "#DA5B0B",
+          "size": 324479
+        },
+        {
+          "name": "Python",
+          "color": "#3572A5",
+          "size": 2434
+        }
+      ],
+      "topics": [],
+      "commits": 2,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "A-B-Testing",
+      "description": "",
+      "summary": "This project analyzes monthly marketing performance data from a control and test group to determine whether the test campaign led to statistically significant improvements. For more information on the data click here.",
+      "url": "https://github.com/Devligan/A-B-Testing",
+      "homepage": "",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2025-07-27T20:17:30Z",
+      "pushedAt": "2025-07-30T22:42:30Z",
+      "language": {
+        "name": "Jupyter Notebook",
+        "color": "#DA5B0B"
+      },
+      "languages": [
+        {
+          "name": "Jupyter Notebook",
+          "color": "#DA5B0B",
+          "size": 1103885
+        }
+      ],
+      "topics": [],
+      "commits": 7,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "Mobile_EDA_Price_Predictor",
+      "description": "EDA on mobile devices",
+      "summary": "This notebook contains an exploratory data analysis (EDA) of a mobile phone dataset, aiming to understand the relationship between various hardware/software features and the price of the devices.",
+      "url": "https://github.com/Devligan/Mobile_EDA_Price_Predictor",
+      "homepage": "",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2025-07-14T21:33:59Z",
+      "pushedAt": "2025-07-30T20:59:35Z",
+      "language": {
+        "name": "Jupyter Notebook",
+        "color": "#DA5B0B"
+      },
+      "languages": [
+        {
+          "name": "Jupyter Notebook",
+          "color": "#DA5B0B",
+          "size": 1515070
+        }
+      ],
+      "topics": [],
+      "commits": 6,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "Casting-product-image-data-for-quality-inspection",
+      "description": "A deeplearning project that aims to automate defect detection in casting",
+      "summary": "Manual inspection of metal castings in manufacturing is expensive, slow, and inconsistent. Trained inspectors must evaluate thousands of parts daily, yet human error and fatigue often lead to missed defects — putting safety, cost, and quality at risk.",
+      "url": "https://github.com/Devligan/Casting-product-image-data-for-quality-inspection",
+      "homepage": "",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2025-07-21T20:26:48Z",
+      "pushedAt": "2025-07-23T22:36:00Z",
+      "language": {
+        "name": "Jupyter Notebook",
+        "color": "#DA5B0B"
+      },
+      "languages": [
+        {
+          "name": "Jupyter Notebook",
+          "color": "#DA5B0B",
+          "size": 7738353
+        }
+      ],
+      "topics": [],
+      "commits": 5,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "PlantIdentifier",
+      "description": "",
+      "summary": "This is a deep learning-powered web app that identifies plant types from images using a Convolutional Neural Network (CNN). Built with TensorFlow and deployed using Gradio, it achieves 97% accuracy on unseen plant images.",
+      "url": "https://github.com/Devligan/PlantIdentifier",
+      "homepage": "",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2025-07-09T16:26:52Z",
+      "pushedAt": "2025-07-09T16:31:54Z",
+      "language": {
+        "name": "Jupyter Notebook",
+        "color": "#DA5B0B"
+      },
+      "languages": [
+        {
+          "name": "Jupyter Notebook",
+          "color": "#DA5B0B",
+          "size": 259970
+        },
+        {
+          "name": "Python",
+          "color": "#3572A5",
+          "size": 1119
+        }
+      ],
+      "topics": [],
+      "commits": 3,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "Multilingual_AI_Translator",
+      "description": "Multilingual voice/text translator using NLLB-200 and gTTS",
+      "summary": "This Gradio app lets you translate text or speech into another language and hear it spoken aloud using:",
+      "url": "https://github.com/Devligan/Multilingual_AI_Translator",
+      "homepage": "",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2025-05-16T19:58:04Z",
+      "pushedAt": "2025-05-16T20:10:56Z",
+      "language": {
+        "name": "Python",
+        "color": "#3572A5"
+      },
+      "languages": [
+        {
+          "name": "Python",
+          "color": "#3572A5",
+          "size": 8584
+        }
+      ],
+      "topics": [],
+      "commits": 5,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "connect_4_python",
+      "description": "Basic Connect 4 in Python using tkinter",
+      "summary": "",
+      "url": "https://github.com/Devligan/connect_4_python",
+      "homepage": "",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2024-10-27T21:11:41Z",
+      "pushedAt": "2024-10-27T21:14:05Z",
+      "language": {
+        "name": "Python",
+        "color": "#3572A5"
+      },
+      "languages": [
+        {
+          "name": "Python",
+          "color": "#3572A5",
+          "size": 2480
+        }
+      ],
+      "topics": [],
+      "commits": 2,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "electron_Wikipedia-Getting-to-Philosophy",
+      "description": "Making Wikipedia:Getting to Philosophy",
+      "summary": "",
+      "url": "https://github.com/Devligan/electron_Wikipedia-Getting-to-Philosophy",
+      "homepage": "",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2024-10-27T20:45:48Z",
+      "pushedAt": "2024-10-27T20:57:49Z",
+      "language": {
+        "name": "JavaScript",
+        "color": "#f1e05a"
+      },
+      "languages": [
+        {
+          "name": "JavaScript",
+          "color": "#f1e05a",
+          "size": 5946
+        },
+        {
+          "name": "HTML",
+          "color": "#e34c26",
+          "size": 752
+        },
+        {
+          "name": "CSS",
+          "color": "#663399",
+          "size": 633
+        }
+      ],
+      "topics": [],
+      "commits": 4,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "sales_search_sqlite",
+      "description": "SQLite to emulate SQL file and perform analysis of it in Python",
+      "summary": "",
+      "url": "https://github.com/Devligan/sales_search_sqlite",
+      "homepage": "",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2024-10-27T16:25:24Z",
+      "pushedAt": "2024-10-27T16:26:01Z",
+      "language": {
+        "name": "Python",
+        "color": "#3572A5"
+      },
+      "languages": [
+        {
+          "name": "Python",
+          "color": "#3572A5",
+          "size": 10134
+        }
+      ],
+      "topics": [],
+      "commits": 1,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "math_api",
+      "description": "A basic math API",
+      "summary": "",
+      "url": "https://github.com/Devligan/math_api",
+      "homepage": "",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2024-10-27T15:44:43Z",
+      "pushedAt": "2024-10-27T16:05:32Z",
+      "language": {
+        "name": "Python",
+        "color": "#3572A5"
+      },
+      "languages": [
+        {
+          "name": "Python",
+          "color": "#3572A5",
+          "size": 30190
+        }
+      ],
+      "topics": [],
+      "commits": 6,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "word_guesser",
+      "description": "A word guessing game like Wordle",
+      "summary": "An HTML / JavaScript project where players try to guess a word, similar to Wordle. Each time they guess your code will display the letters that are in the correct place, letters that are in the word but not in the right spot, and letters that are not in the word at all. Open…",
+      "url": "https://github.com/Devligan/word_guesser",
+      "homepage": "",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2024-10-27T15:05:31Z",
+      "pushedAt": "2024-10-27T15:08:00Z",
+      "language": {
+        "name": "JavaScript",
+        "color": "#f1e05a"
+      },
+      "languages": [
+        {
+          "name": "JavaScript",
+          "color": "#f1e05a",
+          "size": 3276
+        },
+        {
+          "name": "HTML",
+          "color": "#e34c26",
+          "size": 2887
+        }
+      ],
+      "topics": [],
+      "commits": 2,
+      "branch": "main",
+      "imageUrl": null
+    },
+    {
+      "name": "electron_to_do_list",
+      "description": "A digital to do list made with electron",
+      "summary": "",
+      "url": "https://github.com/Devligan/electron_to_do_list",
+      "homepage": "",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2024-10-27T14:29:39Z",
+      "pushedAt": "2024-10-27T14:39:31Z",
+      "language": {
+        "name": "JavaScript",
+        "color": "#f1e05a"
+      },
+      "languages": [
+        {
+          "name": "JavaScript",
+          "color": "#f1e05a",
+          "size": 6936
+        },
+        {
+          "name": "HTML",
+          "color": "#e34c26",
+          "size": 1313
+        },
+        {
+          "name": "CSS",
+          "color": "#663399",
+          "size": 661
+        }
+      ],
+      "topics": [],
+      "commits": 5,
+      "branch": "main",
+      "imageUrl": null
+    }
+  ],
+  "log": [
+    {
+      "repo": "powerflow",
+      "message": "A fresh book reads cleanly: no per-trade figures before a trade closes.",
+      "date": "2026-11-14T23:07:56Z",
+      "url": "https://github.com/Devligan/powerflow/commit/ae8cead5febef8e84faba93b4dcacebfa47c8731"
+    },
+    {
+      "repo": "powerflow",
+      "message": "Launch: every live book starts from real bids; docs describe the desk as it is.",
+      "date": "2026-11-14T22:55:10Z",
+      "url": "https://github.com/Devligan/powerflow/commit/49a05497ab9dcdf341452d8680407215326a1e5b"
+    },
+    {
+      "repo": "powerflow",
+      "message": "Desk review: one DART convention, a history worth reading, honest analytics.",
+      "date": "2026-11-14T20:37:57Z",
+      "url": "https://github.com/Devligan/powerflow/commit/fa969588e6385efabe6b57f6445fede7439f4f2c"
+    },
+    {
+      "repo": "powerflow",
+      "message": "Present it as a product: a Methodology page, no personal story.",
+      "date": "2026-11-14T17:34:42Z",
+      "url": "https://github.com/Devligan/powerflow/commit/927e5394e6ab4835ef0a61784f1e29d09e48d406"
+    },
+    {
+      "repo": "powerflow",
+      "message": "Tell why it exists, not what it is built with.",
+      "date": "2026-11-14T17:23:48Z",
+      "url": "https://github.com/Devligan/powerflow/commit/6592c5c212f8e24a004f7e7429db1abb26668b2e"
+    },
+    {
+      "repo": "orbital-insight",
+      "message": "Fit the close-approach and atlas tables on phones",
+      "date": "2026-11-14T01:23:52Z",
+      "url": "https://github.com/Devligan/orbital-insight/commit/06a330633361f02c1d5741eb97bae1cc037fc0b5"
+    },
+    {
+      "repo": "Financial-Market-Volatility-Correlation-Analysis",
+      "message": "Fix remaining corruption in README",
+      "date": "2026-10-04T03:10:55Z",
+      "url": "https://github.com/Devligan/Financial-Market-Volatility-Correlation-Analysis/commit/13c3349329d2c0d12f74c5956d75e3043cfd072d"
+    },
+    {
+      "repo": "Financial-Market-Volatility-Correlation-Analysis",
+      "message": "Fix R2 corruption in README",
+      "date": "2026-10-04T03:09:42Z",
+      "url": "https://github.com/Devligan/Financial-Market-Volatility-Correlation-Analysis/commit/e0594b848ec841ca0e79fead0580ae41a07eb554"
+    },
+    {
+      "repo": "Financial-Market-Volatility-Correlation-Analysis",
+      "message": "Fix gibberish corruption from previous edits",
+      "date": "2026-10-04T03:07:09Z",
+      "url": "https://github.com/Devligan/Financial-Market-Volatility-Correlation-Analysis/commit/31346fda08f7c9372e75430b7e643a617a39aade"
+    },
+    {
+      "repo": "Financial-Market-Volatility-Correlation-Analysis",
+      "message": "Fix typo: interactive",
+      "date": "2026-10-04T03:05:27Z",
+      "url": "https://github.com/Devligan/Financial-Market-Volatility-Correlation-Analysis/commit/0f7cdb1a3378d426e9421c295af5c30364027587"
+    },
+    {
+      "repo": "Financial-Market-Volatility-Correlation-Analysis",
+      "message": "Strip non-ASCII from all source files for clean, professional text",
+      "date": "2026-10-04T03:02:06Z",
+      "url": "https://github.com/Devligan/Financial-Market-Volatility-Correlation-Analysis/commit/1404035dc695dc507c6a754eef021a311d9aa9b7"
+    },
+    {
+      "repo": "Financial-Market-Volatility-Correlation-Analysis",
+      "message": "Normalize README: strip non-ASCII chars for clean professional text",
+      "date": "2026-10-04T03:00:55Z",
+      "url": "https://github.com/Devligan/Financial-Market-Volatility-Correlation-Analysis/commit/93d21063ccf5d9858f3d891fc4474bbe311b071c"
+    },
+    {
+      "repo": "Financial-Market-Volatility-Correlation-Analysis",
+      "message": "Fix garbled 'institutional-grade' in README",
+      "date": "2026-10-04T02:45:37Z",
+      "url": "https://github.com/Devligan/Financial-Market-Volatility-Correlation-Analysis/commit/cc2406a9765d4d07328abd9757940c76e7597e82"
+    },
+    {
+      "repo": "Financial-Market-Volatility-Correlation-Analysis",
+      "message": "Remove BOM from README",
+      "date": "2026-10-04T02:36:45Z",
+      "url": "https://github.com/Devligan/Financial-Market-Volatility-Correlation-Analysis/commit/a009b7dbb27d431e20f7c0673edcea731cce7811"
+    },
+    {
+      "repo": "Financial-Market-Volatility-Correlation-Analysis",
+      "message": "Forgot to push some changes",
+      "date": "2026-10-04T02:28:21Z",
+      "url": "https://github.com/Devligan/Financial-Market-Volatility-Correlation-Analysis/commit/48def5880729d2bb49198aeb2d13ab01d0f56f08"
+    },
+    {
+      "repo": "Financial-Market-Volatility-Correlation-Analysis",
+      "message": "Polish README and dashboard config",
+      "date": "2026-10-04T02:00:37Z",
+      "url": "https://github.com/Devligan/Financial-Market-Volatility-Correlation-Analysis/commit/f76b62c8066e3404d29c502cecdb731072ff85ba"
+    },
+    {
+      "repo": "neetcode-submissions-rkmukv8m",
+      "message": "Add: palindromic-substrings - submission-0",
+      "date": "2026-06-17T00:55:07Z",
+      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/d85b5178dfe990ae6dbf8201e6e20efd635ef090"
+    },
+    {
+      "repo": "neetcode-submissions-rkmukv8m",
+      "message": "Add: duplicate-integer - submission-2",
+      "date": "2026-05-08T22:10:30Z",
+      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/370e8836d852c854de02fff18e17ff7fd4bad08a"
+    },
+    {
+      "repo": "MATH-4322-Group-4-Project",
+      "message": "Forgot a change",
+      "date": "2026-04-28T04:12:19Z",
+      "url": "https://github.com/Devligan/MATH-4322-Group-4-Project/commit/a8e40738922f30a50126ec83cfe97966f8a6dc74"
+    },
+    {
+      "repo": "MATH-4322-Group-4-Project",
+      "message": "Adding file + few changes to introduction",
+      "date": "2026-04-28T04:10:46Z",
+      "url": "https://github.com/Devligan/MATH-4322-Group-4-Project/commit/46b58cad0aa924280fe981e289ec568eb0d5a53d"
+    },
+    {
+      "repo": "Spotify-Wrapped",
+      "message": "done",
+      "date": "2026-04-25T01:29:01Z",
+      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/477f81424014cdb6e80569450e2423ee65a910e1"
+    },
+    {
+      "repo": "Spotify-Wrapped",
+      "message": "Sample similarity Score",
+      "date": "2026-04-24T19:03:24Z",
+      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/0337ceee06dd2125d5f5869897af2affb9769618"
+    },
+    {
+      "repo": "Spotify-Wrapped",
+      "message": "Updated test to understand what the data is",
+      "date": "2026-04-19T23:28:09Z",
+      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/5c2bf6416f4c9bf66a71b4b5911dc647e9bc0906"
+    },
+    {
+      "repo": "Spotify-Wrapped",
+      "message": "Removed artist",
+      "date": "2026-04-19T23:12:19Z",
+      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/bddd9ec78fe7bd9adea428c5e6fded44442f84e5"
+    },
+    {
+      "repo": "Spotify-Wrapped",
+      "message": "Fixed data leakage",
+      "date": "2026-04-19T23:04:59Z",
+      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/ff940ecbd19eac9dd8d4a1b1065b50f9a82a8de7"
+    },
+    {
+      "repo": "Spotify-Wrapped",
+      "message": "Updated classifcation",
+      "date": "2026-04-19T22:11:48Z",
+      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/35f6e24d6855e320e1e47956e29af95ed439da26"
+    },
+    {
+      "repo": "Spotify-Wrapped",
+      "message": "Finished data",
+      "date": "2026-04-18T01:03:20Z",
+      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/1c2bcbbc116e26bc6a985a6c848735a8c825b9ed"
+    },
+    {
+      "repo": "Spotify-Wrapped",
+      "message": "Pushing more data",
+      "date": "2026-04-16T22:02:29Z",
+      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/8ce4c82bacc53c0a11e04e16db257ea451956927"
+    },
+    {
+      "repo": "Spotify-Wrapped",
+      "message": "Pushing data so far",
+      "date": "2026-04-16T12:10:59Z",
+      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/3c3eee8ef9f4f07c12abf546774a3cb04f58477c"
+    },
+    {
+      "repo": "Spotify-Wrapped",
+      "message": "API calling",
+      "date": "2026-04-14T01:52:57Z",
+      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/d9a495c53693acae56bb27ad8d1cfe6206f131e2"
+    },
+    {
+      "repo": "neetcode-submissions-rkmukv8m",
+      "message": "Add: three-integer-sum - submission-1",
+      "date": "2026-04-08T15:24:01Z",
+      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/25cfc162e049c9fc0210783c8ff6325ac67a87fd"
+    },
+    {
+      "repo": "neetcode-submissions-rkmukv8m",
+      "message": "Add: buy-and-sell-crypto - submission-0",
+      "date": "2026-04-02T17:07:13Z",
+      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/81dbfc1dedaa8e951cffc127f257fc2c86303646"
+    },
+    {
+      "repo": "neetcode-submissions-rkmukv8m",
+      "message": "Add: three-integer-sum - submission-0",
+      "date": "2026-04-02T17:01:02Z",
+      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/9a990e71448b2f22189ba270d473422705228336"
+    },
+    {
+      "repo": "neetcode-submissions-rkmukv8m",
+      "message": "Add: linked-list-cycle-detection - submission-0",
+      "date": "2026-03-31T19:15:14Z",
+      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/74891a3cbbbceb1febc0546fc367e757520e4bbf"
+    },
+    {
+      "repo": "neetcode-submissions-rkmukv8m",
+      "message": "Add: is-palindrome - submission-0",
+      "date": "2026-03-31T19:01:40Z",
+      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/420cdd789005680e58b7b913542fc5356d557769"
+    },
+    {
+      "repo": "neetcode-submissions-rkmukv8m",
+      "message": "Add: merge-two-sorted-linked-lists - submission-0",
+      "date": "2026-03-31T15:37:21Z",
+      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/e81ec999505a029f65d24d8e37460d579c3057a6"
+    },
+    {
+      "repo": "neetcode-submissions-rkmukv8m",
+      "message": "Add: reverse-a-linked-list - submission-0",
+      "date": "2026-03-31T15:30:34Z",
+      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/c43ce64c3417a7c0f87386ecd2898ceb2fc13607"
+    },
+    {
+      "repo": "neetcode-submissions-rkmukv8m",
+      "message": "Add: max-water-container - submission-0",
+      "date": "2026-03-31T15:28:11Z",
+      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/91f4d0168e80aee2fb347ff657f339ba04e79428"
+    }
+  ],
+  "calendar": {
+    "total": 416,
+    "weeks": [
+      [
+        [
+          "2025-11-09",
+          0
+        ],
+        [
+          "2025-11-10",
+          0
+        ],
+        [
+          "2025-11-11",
+          0
+        ],
+        [
+          "2025-11-12",
+          0
+        ],
+        [
+          "2025-11-13",
+          0
+        ],
+        [
+          "2025-11-14",
+          0
+        ],
+        [
+          "2025-11-15",
+          0
+        ]
+      ],
+      [
+        [
+          "2025-11-16",
+          0
+        ],
+        [
+          "2025-11-17",
+          0
+        ],
+        [
+          "2025-11-18",
+          0
+        ],
+        [
+          "2025-11-19",
+          0
+        ],
+        [
+          "2025-11-20",
+          0
+        ],
+        [
+          "2025-11-21",
+          0
+        ],
+        [
+          "2025-11-22",
+          0
+        ]
+      ],
+      [
+        [
+          "2025-11-23",
+          0
+        ],
+        [
+          "2025-11-24",
+          0
+        ],
+        [
+          "2025-11-25",
+          0
+        ],
+        [
+          "2025-11-26",
+          0
+        ],
+        [
+          "2025-11-27",
+          0
+        ],
+        [
+          "2025-11-28",
+          0
+        ],
+        [
+          "2025-11-29",
+          0
+        ]
+      ],
+      [
+        [
+          "2025-11-30",
+          0
+        ],
+        [
+          "2025-12-01",
+          0
+        ],
+        [
+          "2025-12-02",
+          0
+        ],
+        [
+          "2025-12-03",
+          0
+        ],
+        [
+          "2025-12-04",
+          0
+        ],
+        [
+          "2025-12-05",
+          0
+        ],
+        [
+          "2025-12-06",
+          0
+        ]
+      ],
+      [
+        [
+          "2025-12-07",
+          0
+        ],
+        [
+          "2025-12-08",
+          0
+        ],
+        [
+          "2025-12-09",
+          0
+        ],
+        [
+          "2025-12-10",
+          0
+        ],
+        [
+          "2025-12-11",
+          0
+        ],
+        [
+          "2025-12-12",
+          0
+        ],
+        [
+          "2025-12-13",
+          0
+        ]
+      ],
+      [
+        [
+          "2025-12-14",
+          0
+        ],
+        [
+          "2025-12-15",
+          0
+        ],
+        [
+          "2025-12-16",
+          0
+        ],
+        [
+          "2025-12-17",
+          0
+        ],
+        [
+          "2025-12-18",
+          0
+        ],
+        [
+          "2025-12-19",
+          0
+        ],
+        [
+          "2025-12-20",
+          0
+        ]
+      ],
+      [
+        [
+          "2025-12-21",
+          0
+        ],
+        [
+          "2025-12-22",
+          0
+        ],
+        [
+          "2025-12-23",
+          0
+        ],
+        [
+          "2025-12-24",
+          0
+        ],
+        [
+          "2025-12-25",
+          0
+        ],
+        [
+          "2025-12-26",
+          0
+        ],
+        [
+          "2025-12-27",
+          0
+        ]
+      ],
+      [
+        [
+          "2025-12-28",
+          0
+        ],
+        [
+          "2025-12-29",
+          0
+        ],
+        [
+          "2025-12-30",
+          0
+        ],
+        [
+          "2025-12-31",
+          0
+        ],
+        [
+          "2026-01-01",
+          0
+        ],
+        [
+          "2026-01-02",
+          0
+        ],
+        [
+          "2026-01-03",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-01-04",
+          0
+        ],
+        [
+          "2026-01-05",
+          0
+        ],
+        [
+          "2026-01-06",
+          0
+        ],
+        [
+          "2026-01-07",
+          0
+        ],
+        [
+          "2026-01-08",
+          0
+        ],
+        [
+          "2026-01-09",
+          0
+        ],
+        [
+          "2026-01-10",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-01-11",
+          0
+        ],
+        [
+          "2026-01-12",
+          0
+        ],
+        [
+          "2026-01-13",
+          0
+        ],
+        [
+          "2026-01-14",
+          0
+        ],
+        [
+          "2026-01-15",
+          0
+        ],
+        [
+          "2026-01-16",
+          0
+        ],
+        [
+          "2026-01-17",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-01-18",
+          0
+        ],
+        [
+          "2026-01-19",
+          0
+        ],
+        [
+          "2026-01-20",
+          0
+        ],
+        [
+          "2026-01-21",
+          0
+        ],
+        [
+          "2026-01-22",
+          0
+        ],
+        [
+          "2026-01-23",
+          0
+        ],
+        [
+          "2026-01-24",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-01-25",
+          0
+        ],
+        [
+          "2026-01-26",
+          0
+        ],
+        [
+          "2026-01-27",
+          0
+        ],
+        [
+          "2026-01-28",
+          0
+        ],
+        [
+          "2026-01-29",
+          0
+        ],
+        [
+          "2026-01-30",
+          0
+        ],
+        [
+          "2026-01-31",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-02-01",
+          0
+        ],
+        [
+          "2026-02-02",
+          0
+        ],
+        [
+          "2026-02-03",
+          0
+        ],
+        [
+          "2026-02-04",
+          0
+        ],
+        [
+          "2026-02-05",
+          0
+        ],
+        [
+          "2026-02-06",
+          0
+        ],
+        [
+          "2026-02-07",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-02-08",
+          0
+        ],
+        [
+          "2026-02-09",
+          0
+        ],
+        [
+          "2026-02-10",
+          0
+        ],
+        [
+          "2026-02-11",
+          0
+        ],
+        [
+          "2026-02-12",
+          0
+        ],
+        [
+          "2026-02-13",
+          0
+        ],
+        [
+          "2026-02-14",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-02-15",
+          0
+        ],
+        [
+          "2026-02-16",
+          0
+        ],
+        [
+          "2026-02-17",
+          0
+        ],
+        [
+          "2026-02-18",
+          3
+        ],
+        [
+          "2026-02-19",
+          0
+        ],
+        [
+          "2026-02-20",
+          0
+        ],
+        [
+          "2026-02-21",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-02-22",
+          0
+        ],
+        [
+          "2026-02-23",
+          0
+        ],
+        [
+          "2026-02-24",
+          0
+        ],
+        [
+          "2026-02-25",
+          0
+        ],
+        [
+          "2026-02-26",
+          0
+        ],
+        [
+          "2026-02-27",
+          0
+        ],
+        [
+          "2026-02-28",
+          9
+        ]
+      ],
+      [
+        [
+          "2026-03-01",
+          0
+        ],
+        [
+          "2026-03-02",
+          1
+        ],
+        [
+          "2026-03-03",
+          0
+        ],
+        [
+          "2026-03-04",
+          0
+        ],
+        [
+          "2026-03-05",
+          0
+        ],
+        [
+          "2026-03-06",
+          0
+        ],
+        [
+          "2026-03-07",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-03-08",
+          0
+        ],
+        [
+          "2026-03-09",
+          0
+        ],
+        [
+          "2026-03-10",
+          0
+        ],
+        [
+          "2026-03-11",
+          2
+        ],
+        [
+          "2026-03-12",
+          0
+        ],
+        [
+          "2026-03-13",
+          0
+        ],
+        [
+          "2026-03-14",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-03-15",
+          0
+        ],
+        [
+          "2026-03-16",
+          0
+        ],
+        [
+          "2026-03-17",
+          0
+        ],
+        [
+          "2026-03-18",
+          5
+        ],
+        [
+          "2026-03-19",
+          10
+        ],
+        [
+          "2026-03-20",
+          3
+        ],
+        [
+          "2026-03-21",
+          1
+        ]
+      ],
+      [
+        [
+          "2026-03-22",
+          0
+        ],
+        [
+          "2026-03-23",
+          5
+        ],
+        [
+          "2026-03-24",
+          0
+        ],
+        [
+          "2026-03-25",
+          0
+        ],
+        [
+          "2026-03-26",
+          0
+        ],
+        [
+          "2026-03-27",
+          0
+        ],
+        [
+          "2026-03-28",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-03-29",
+          0
+        ],
+        [
+          "2026-03-30",
+          6
+        ],
+        [
+          "2026-03-31",
+          9
+        ],
+        [
+          "2026-04-01",
+          0
+        ],
+        [
+          "2026-04-02",
+          2
+        ],
+        [
+          "2026-04-03",
+          0
+        ],
+        [
+          "2026-04-04",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-04-05",
+          0
+        ],
+        [
+          "2026-04-06",
+          0
+        ],
+        [
+          "2026-04-07",
+          0
+        ],
+        [
+          "2026-04-08",
+          1
+        ],
+        [
+          "2026-04-09",
+          0
+        ],
+        [
+          "2026-04-10",
+          0
+        ],
+        [
+          "2026-04-11",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-04-12",
+          0
+        ],
+        [
+          "2026-04-13",
+          1
+        ],
+        [
+          "2026-04-14",
+          0
+        ],
+        [
+          "2026-04-15",
+          0
+        ],
+        [
+          "2026-04-16",
+          2
+        ],
+        [
+          "2026-04-17",
+          1
+        ],
+        [
+          "2026-04-18",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-04-19",
+          4
+        ],
+        [
+          "2026-04-20",
+          0
+        ],
+        [
+          "2026-04-21",
+          0
+        ],
+        [
+          "2026-04-22",
+          0
+        ],
+        [
+          "2026-04-23",
+          0
+        ],
+        [
+          "2026-04-24",
+          2
+        ],
+        [
+          "2026-04-25",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-04-26",
+          0
+        ],
+        [
+          "2026-04-27",
+          2
+        ],
+        [
+          "2026-04-28",
+          0
+        ],
+        [
+          "2026-04-29",
+          0
+        ],
+        [
+          "2026-04-30",
+          0
+        ],
+        [
+          "2026-05-01",
+          0
+        ],
+        [
+          "2026-05-02",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-05-03",
+          0
+        ],
+        [
+          "2026-05-04",
+          0
+        ],
+        [
+          "2026-05-05",
+          0
+        ],
+        [
+          "2026-05-06",
+          0
+        ],
+        [
+          "2026-05-07",
+          0
+        ],
+        [
+          "2026-05-08",
+          1
+        ],
+        [
+          "2026-05-09",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-05-10",
+          0
+        ],
+        [
+          "2026-05-11",
+          0
+        ],
+        [
+          "2026-05-12",
+          0
+        ],
+        [
+          "2026-05-13",
+          0
+        ],
+        [
+          "2026-05-14",
+          0
+        ],
+        [
+          "2026-05-15",
+          0
+        ],
+        [
+          "2026-05-16",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-05-17",
+          0
+        ],
+        [
+          "2026-05-18",
+          0
+        ],
+        [
+          "2026-05-19",
+          0
+        ],
+        [
+          "2026-05-20",
+          0
+        ],
+        [
+          "2026-05-21",
+          0
+        ],
+        [
+          "2026-05-22",
+          0
+        ],
+        [
+          "2026-05-23",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-05-24",
+          0
+        ],
+        [
+          "2026-05-25",
+          0
+        ],
+        [
+          "2026-05-26",
+          0
+        ],
+        [
+          "2026-05-27",
+          0
+        ],
+        [
+          "2026-05-28",
+          0
+        ],
+        [
+          "2026-05-29",
+          0
+        ],
+        [
+          "2026-05-30",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-05-31",
+          0
+        ],
+        [
+          "2026-06-01",
+          0
+        ],
+        [
+          "2026-06-02",
+          0
+        ],
+        [
+          "2026-06-03",
+          0
+        ],
+        [
+          "2026-06-04",
+          0
+        ],
+        [
+          "2026-06-05",
+          0
+        ],
+        [
+          "2026-06-06",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-06-07",
+          0
+        ],
+        [
+          "2026-06-08",
+          0
+        ],
+        [
+          "2026-06-09",
+          0
+        ],
+        [
+          "2026-06-10",
+          0
+        ],
+        [
+          "2026-06-11",
+          0
+        ],
+        [
+          "2026-06-12",
+          0
+        ],
+        [
+          "2026-06-13",
+          1
+        ]
+      ],
+      [
+        [
+          "2026-06-14",
+          0
+        ],
+        [
+          "2026-06-15",
+          0
+        ],
+        [
+          "2026-06-16",
+          1
+        ],
+        [
+          "2026-06-17",
+          0
+        ],
+        [
+          "2026-06-18",
+          0
+        ],
+        [
+          "2026-06-19",
+          0
+        ],
+        [
+          "2026-06-20",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-06-21",
+          0
+        ],
+        [
+          "2026-06-22",
+          0
+        ],
+        [
+          "2026-06-23",
+          0
+        ],
+        [
+          "2026-06-24",
+          0
+        ],
+        [
+          "2026-06-25",
+          0
+        ],
+        [
+          "2026-06-26",
+          0
+        ],
+        [
+          "2026-06-27",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-06-28",
+          0
+        ],
+        [
+          "2026-06-29",
+          0
+        ],
+        [
+          "2026-06-30",
+          0
+        ],
+        [
+          "2026-07-01",
+          0
+        ],
+        [
+          "2026-07-02",
+          0
+        ],
+        [
+          "2026-07-03",
+          0
+        ],
+        [
+          "2026-07-04",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-07-05",
+          0
+        ],
+        [
+          "2026-07-06",
+          0
+        ],
+        [
+          "2026-07-07",
+          0
+        ],
+        [
+          "2026-07-08",
+          0
+        ],
+        [
+          "2026-07-09",
+          0
+        ],
+        [
+          "2026-07-10",
+          0
+        ],
+        [
+          "2026-07-11",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-07-12",
+          0
+        ],
+        [
+          "2026-07-13",
+          0
+        ],
+        [
+          "2026-07-14",
+          0
+        ],
+        [
+          "2026-07-15",
+          0
+        ],
+        [
+          "2026-07-16",
+          0
+        ],
+        [
+          "2026-07-17",
+          0
+        ],
+        [
+          "2026-07-18",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-07-19",
+          0
+        ],
+        [
+          "2026-07-20",
+          0
+        ],
+        [
+          "2026-07-21",
+          0
+        ],
+        [
+          "2026-07-22",
+          0
+        ],
+        [
+          "2026-07-23",
+          0
+        ],
+        [
+          "2026-07-24",
+          0
+        ],
+        [
+          "2026-07-25",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-07-26",
+          0
+        ],
+        [
+          "2026-07-27",
+          0
+        ],
+        [
+          "2026-07-28",
+          0
+        ],
+        [
+          "2026-07-29",
+          0
+        ],
+        [
+          "2026-07-30",
+          0
+        ],
+        [
+          "2026-07-31",
+          0
+        ],
+        [
+          "2026-08-01",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-08-02",
+          0
+        ],
+        [
+          "2026-08-03",
+          0
+        ],
+        [
+          "2026-08-04",
+          0
+        ],
+        [
+          "2026-08-05",
+          0
+        ],
+        [
+          "2026-08-06",
+          0
+        ],
+        [
+          "2026-08-07",
+          0
+        ],
+        [
+          "2026-08-08",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-08-09",
+          0
+        ],
+        [
+          "2026-08-10",
+          0
+        ],
+        [
+          "2026-08-11",
+          0
+        ],
+        [
+          "2026-08-12",
+          0
+        ],
+        [
+          "2026-08-13",
+          0
+        ],
+        [
+          "2026-08-14",
+          0
+        ],
+        [
+          "2026-08-15",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-08-16",
+          0
+        ],
+        [
+          "2026-08-17",
+          0
+        ],
+        [
+          "2026-08-18",
+          0
+        ],
+        [
+          "2026-08-19",
+          0
+        ],
+        [
+          "2026-08-20",
+          0
+        ],
+        [
+          "2026-08-21",
+          0
+        ],
+        [
+          "2026-08-22",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-08-23",
+          0
+        ],
+        [
+          "2026-08-24",
+          0
+        ],
+        [
+          "2026-08-25",
+          0
+        ],
+        [
+          "2026-08-26",
+          0
+        ],
+        [
+          "2026-08-27",
+          0
+        ],
+        [
+          "2026-08-28",
+          0
+        ],
+        [
+          "2026-08-29",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-08-30",
+          0
+        ],
+        [
+          "2026-08-31",
+          0
+        ],
+        [
+          "2026-09-01",
+          0
+        ],
+        [
+          "2026-09-02",
+          0
+        ],
+        [
+          "2026-09-03",
+          0
+        ],
+        [
+          "2026-09-04",
+          0
+        ],
+        [
+          "2026-09-05",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-09-06",
+          0
+        ],
+        [
+          "2026-09-07",
+          0
+        ],
+        [
+          "2026-09-08",
+          1
+        ],
+        [
+          "2026-09-09",
+          0
+        ],
+        [
+          "2026-09-10",
+          0
+        ],
+        [
+          "2026-09-11",
+          0
+        ],
+        [
+          "2026-09-12",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-09-13",
+          0
+        ],
+        [
+          "2026-09-14",
+          0
+        ],
+        [
+          "2026-09-15",
+          0
+        ],
+        [
+          "2026-09-16",
+          0
+        ],
+        [
+          "2026-09-17",
+          0
+        ],
+        [
+          "2026-09-18",
+          0
+        ],
+        [
+          "2026-09-19",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-09-20",
+          0
+        ],
+        [
+          "2026-09-21",
+          1
+        ],
+        [
+          "2026-09-22",
+          0
+        ],
+        [
+          "2026-09-23",
+          0
+        ],
+        [
+          "2026-09-24",
+          0
+        ],
+        [
+          "2026-09-25",
+          0
+        ],
+        [
+          "2026-09-26",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-09-27",
+          0
+        ],
+        [
+          "2026-09-28",
+          0
+        ],
+        [
+          "2026-09-29",
+          0
+        ],
+        [
+          "2026-09-30",
+          0
+        ],
+        [
+          "2026-10-01",
+          0
+        ],
+        [
+          "2026-10-02",
+          0
+        ],
+        [
+          "2026-10-03",
+          12
+        ]
+      ],
+      [
+        [
+          "2026-10-04",
+          0
+        ],
+        [
+          "2026-10-05",
+          0
+        ],
+        [
+          "2026-10-06",
+          0
+        ],
+        [
+          "2026-10-07",
+          0
+        ],
+        [
+          "2026-10-08",
+          0
+        ],
+        [
+          "2026-10-09",
+          0
+        ],
+        [
+          "2026-10-10",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-10-11",
+          0
+        ],
+        [
+          "2026-10-12",
+          0
+        ],
+        [
+          "2026-10-13",
+          1
+        ],
+        [
+          "2026-10-14",
+          10
+        ],
+        [
+          "2026-10-15",
+          2
+        ],
+        [
+          "2026-10-16",
+          12
+        ],
+        [
+          "2026-10-17",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-10-18",
+          0
+        ],
+        [
+          "2026-10-19",
+          0
+        ],
+        [
+          "2026-10-20",
+          0
+        ],
+        [
+          "2026-10-21",
+          0
+        ],
+        [
+          "2026-10-22",
+          0
+        ],
+        [
+          "2026-10-23",
+          0
+        ],
+        [
+          "2026-10-24",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-10-25",
+          0
+        ],
+        [
+          "2026-10-26",
+          0
+        ],
+        [
+          "2026-10-27",
+          2
+        ],
+        [
+          "2026-10-28",
+          12
+        ],
+        [
+          "2026-10-29",
+          0
+        ],
+        [
+          "2026-10-30",
+          19
+        ],
+        [
+          "2026-10-31",
+          4
+        ]
+      ],
+      [
+        [
+          "2026-11-01",
+          22
+        ],
+        [
+          "2026-11-02",
+          0
+        ],
+        [
+          "2026-11-03",
+          0
+        ],
+        [
+          "2026-11-04",
+          0
+        ],
+        [
+          "2026-11-05",
+          13
+        ],
+        [
+          "2026-11-06",
+          6
+        ],
+        [
+          "2026-11-07",
+          0
+        ]
+      ],
+      [
+        [
+          "2026-11-08",
+          9
+        ],
+        [
+          "2026-11-09",
+          0
+        ],
+        [
+          "2026-11-10",
+          54
+        ],
+        [
+          "2026-11-11",
+          3
+        ],
+        [
+          "2026-11-12",
+          58
+        ],
+        [
+          "2026-11-13",
+          83
+        ],
+        [
+          "2026-11-14",
+          20
+        ]
+      ]
+    ],
+    "current": 5,
+    "longest": 5
+  },
+  "training": {
+    "solved": 20,
+    "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m"
+  }
+}

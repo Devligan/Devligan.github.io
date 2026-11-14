@@ -1,0 +1,100 @@
+---
+// The horizon under the title screen: two ridgelines, a transmission tower
+// (PowerFlow) and the hero on a hill looking up at the satellites (Orbital Insight).
+import Sprite from './Sprite.astro';
+
+const W = 400;
+const H = 100;
+const q = (v: number) => Math.round(v / 2) * 2; // snap to the 2-unit pixel grid
+
+function ridge(fn: (x: number) => number, step: number) {
+  let d = `M0 ${H}`;
+  for (let x = 0; x <= W; x += step) {
+    const y = q(fn(x));
+    d += ` L${x} ${y} L${x + step} ${y}`;
+  }
+  return d + ` L${W} ${H} Z`;
+}
+
+const far = ridge((x) => 52 + 14 * Math.sin(x / 41) + 8 * Math.sin(x / 13 + 1) + 4 * Math.sin(x / 5), 6);
+const HERO_X = 300;
+const nearFn = (x: number) => {
+  const hill = 16 * Math.exp(-((x - HERO_X) ** 2) / 1800); // the hero's hill
+  return 86 + 4 * Math.sin(x / 47 + 2) + 2 * Math.sin(x / 11) - hill;
+};
+const near = ridge(nearFn, 4);
+// Stand on the highest ground under the sprite's feet.
+const heroY = Math.min(...[0, 4, 8, 12].map((dx) => q(nearFn(Math.floor((HERO_X - 8 + dx) / 4) * 4)))) - 20 + 1;
+
+// Transmission tower, drawn as a lattice of straight segments.
+const tx = 96;
+const tower = [
+  [tx - 10, 86, tx - 2, 30],
+  [tx + 10, 86, tx + 2, 30],
+  [tx - 14, 36, tx + 14, 36],
+  [tx - 10, 46, tx + 10, 46],
+  [tx - 2, 30, tx + 2, 30],
+  [tx - 8, 72, tx + 6, 58],
+  [tx + 8, 72, tx - 6, 58],
+  [tx - 6, 58, tx + 4, 46],
+  [tx + 6, 58, tx - 4, 46],
+  [tx - 4, 46, tx + 2, 36],
+  [tx + 4, 46, tx - 2, 36],
+  [tx - 2, 30, tx, 24],
+  [tx + 2, 30, tx, 24],
+];
+const wires = [
+  `M${tx - 14} 37 Q ${tx - 60} 52 -10 44`,
+  `M${tx + 14} 37 Q ${tx + 110} 60 410 46`,
+  `M${tx - 10} 47 Q ${tx - 55} 60 -10 56`,
+  `M${tx + 10} 47 Q ${tx + 110} 70 410 58`,
+];
+---
+
+<svg
+  class="landscape"
+  viewBox={`0 0 ${W} ${H}`}
+  preserveAspectRatio="xMidYMax slice"
+  aria-hidden="true"
+  shape-rendering="crispEdges"
+>
+  <defs>
+    <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a1d63" stop-opacity="0" />
+      <stop offset="1" stop-color="#2a1d63" stop-opacity="0.55" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="40" width={W} height="60" fill="url(#haze)" />
+  <path d={far} fill="#191343" />
+  <g stroke="#100c2e" stroke-width="1.6" fill="none" shape-rendering="geometricPrecision">
+    {tower.map(([x1, y1, x2, y2]) => <line x1={x1} y1={y1} x2={x2} y2={y2} />)}
+  </g>
+  <g stroke="#2b2566" stroke-width="0.6" fill="none" shape-rendering="geometricPrecision">
+    {wires.map((d) => <path d={d} />)}
+  </g>
+  <rect class="beacon" x={tx - 1} y="22" width="2" height="2" fill="#ff6b7a" />
+  <path d={near} fill="#0b0922" />
+  <Sprite x={HERO_X - 8} y={heroY} />
+  <rect x="0" y="96" width={W} height="4" fill="#07071a" />
+</svg>
+
+<style>
+  .landscape {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: clamp(150px, 24vw, 340px);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .beacon {
+    animation: beacon 2.4s steps(1) infinite;
+  }
+  @keyframes beacon {
+    50% {
+      opacity: 0.15;
+    }
+  }
+</style>

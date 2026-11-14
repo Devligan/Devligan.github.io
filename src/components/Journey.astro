@@ -1,0 +1,287 @@
+---
+import Banner from './Banner.astro';
+import { adventureLog, ago, data, journeyDay, shortDate } from '../lib/view.mjs';
+
+const cal = data.calendar;
+const CELL = 11;
+const GAP = 3;
+const STEP = CELL + GAP;
+const TOP = 18;
+
+let best: [string, number] = ['', 0];
+let levels = [1, 2, 3, 4];
+let months: { x: number; label: string }[] = [];
+if (cal) {
+  const counts = cal.weeks.flat().map(([, n]: [string, number]) => n);
+  const nonzero = counts.filter((n: number) => n > 0).sort((a: number, b: number) => a - b);
+  const quant = (p: number) => nonzero[Math.min(nonzero.length - 1, Math.floor(nonzero.length * p))] ?? 1;
+  levels = [quant(0.25), quant(0.5), quant(0.75), quant(0.95)];
+  for (const [d, n] of cal.weeks.flat() as [string, number][]) if (n > best[1]) best = [d, n];
+  let lastMonth = -1;
+  cal.weeks.forEach((week: [string, number][], i: number) => {
+    const m = new Date(week[0][0]).getUTCMonth();
+    if (m !== lastMonth && i < cal.weeks.length - 2) {
+      months.push({ x: i * STEP, label: new Date(week[0][0]).toLocaleString('en-US', { month: 'short', timeZone: 'UTC' }) });
+      lastMonth = m;
+    }
+  });
+  if (months.length && months[1] && months[1].x - months[0].x < STEP * 3) months.shift();
+}
+const tone = (n: number) => (n === 0 ? 0 : n <= levels[0] ? 1 : n <= levels[1] ? 2 : n <= levels[2] ? 3 : n < levels[3] ? 4 : 5);
+const width = cal ? cal.weeks.length * STEP : 0;
+const height = TOP + 7 * STEP;
+---
+
+<section class="chapter" id="journey" aria-labelledby="journey-title">
+  <div class="wrap">
+    <Banner kicker="Chapter IV" title="Journey" subtitle="What I've been working on lately, straight from my commits." id="journey-title" />
+
+    {
+      cal && (
+        <div class="win map reveal">
+          <span class="win-title">World Map · last 12 months</span>
+          <div class="map-head">
+            <p>
+              <strong class="pixel">{cal.total}</strong> contributions
+            </p>
+            {best[1] > 0 && (
+              <p>
+                Biggest day: <strong class="pixel">{best[1]}</strong> on {shortDate(best[0])}
+              </p>
+            )}
+            <p>
+              Longest streak: <strong class="pixel">{cal.longest}</strong> days
+            </p>
+          </div>
+          <div class="map-scroll" data-scroll-end>
+            <svg class="cal" viewBox={`0 0 ${width} ${height}`} width={width} height={height} role="img" aria-label={`Contribution calendar: ${cal.total} contributions in the last year`}>
+              {months.map((m) => (
+                <text x={m.x} y="11" class="cal-month">
+                  {m.label}
+                </text>
+              ))}
+              {cal.weeks.map((week: [string, number][], wi: number) =>
+                week.map(([date, n]: [string, number]) => (
+                  <rect
+                    x={wi * STEP}
+                    y={TOP + new Date(date).getUTCDay() * STEP}
+                    width={CELL}
+                    height={CELL}
+                    class={`t${tone(n)}`}
+                  >
+                    <title>{`${shortDate(date)}: ${n} contribution${n === 1 ? '' : 's'}`}</title>
+                  </rect>
+                )),
+              )}
+            </svg>
+          </div>
+          <div class="legend pixel" aria-hidden="true">
+            <span>Quiet</span>
+            {[0, 1, 2, 3, 4, 5].map((t) => (
+              <i class={`t${t}`} />
+            ))}
+            <span>Legendary</span>
+          </div>
+        </div>
+      )
+    }
+
+    <div class="win adventure reveal">
+      <span class="win-title">Adventure Log</span>
+      <ol class="entries">
+        {
+          adventureLog.map((e) => (
+            <li class="entry">
+              <div class="entry-when pixel">
+                <span class="entry-day">Day {journeyDay(e.date).toLocaleString('en-US')}</span>
+                <span class="entry-ago" data-ago={e.date}>
+                  {ago(e.date)}
+                </span>
+              </div>
+              <div class="entry-what">
+                <span class="entry-repo pixel">{e.repo}</span>
+                <a href={e.url} target="_blank" rel="noopener">
+                  {e.message}
+                </a>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="adventure-foot">
+        Day 1 was {shortDate(data.user.createdAt)}, the day this GitHub account was made.
+        <a href={`https://github.com/${data.user.login}`} target="_blank" rel="noopener">Full history on GitHub ↗</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .map {
+    padding-top: 1.6rem;
+  }
+
+  .map-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 2rem;
+    margin-bottom: 1rem;
+    color: var(--ink-dim);
+    font-size: 0.95rem;
+  }
+
+  .map-head strong {
+    font-weight: 400;
+    font-size: 1.3rem;
+    color: #fff6dc;
+  }
+
+  .map-scroll {
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-color: var(--ink-faint) transparent;
+  }
+
+  .cal {
+    display: block;
+    width: 100%;
+    min-width: 640px;
+    height: auto;
+  }
+
+  .cal-month {
+    font: 400 10px var(--pixel);
+    fill: var(--ink-faint);
+  }
+
+  .cal rect,
+  .legend i {
+    rx: 1px;
+  }
+
+  .t0 {
+    fill: rgba(239, 230, 207, 0.07);
+    background: rgba(239, 230, 207, 0.07);
+  }
+  .t1 {
+    fill: #233f72;
+    background: #233f72;
+  }
+  .t2 {
+    fill: #2c6f8c;
+    background: #2c6f8c;
+  }
+  .t3 {
+    fill: #3ea6a6;
+    background: #3ea6a6;
+  }
+  .t4 {
+    fill: #5ee6d0;
+    background: #5ee6d0;
+  }
+  .t5 {
+    fill: #ffcf5a;
+    background: #ffcf5a;
+  }
+
+  .cal rect:hover {
+    stroke: var(--frame);
+    stroke-width: 1.5;
+  }
+
+  .legend {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
+    margin-top: 0.6rem;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+  }
+
+  .legend i {
+    width: 11px;
+    height: 11px;
+  }
+
+  .legend span {
+    margin: 0 4px;
+  }
+
+  .adventure {
+    margin-top: 40px;
+    padding-top: 1.6rem;
+  }
+
+  .entries {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px dashed rgba(239, 230, 207, 0.1);
+  }
+
+  .entry-when {
+    display: grid;
+    font-size: 0.82rem;
+  }
+
+  .entry-day {
+    color: var(--gold);
+  }
+
+  .entry-ago {
+    color: var(--ink-faint);
+    font-size: 0.74rem;
+  }
+
+  .entry-what {
+    display: grid;
+    gap: 0.1rem;
+  }
+
+  .entry-repo {
+    font-size: 0.78rem;
+    color: var(--mana);
+  }
+
+  .entry-what a {
+    color: var(--ink);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  .entry-what a:hover {
+    color: var(--gold);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .adventure-foot {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+
+  .adventure-foot a {
+    color: var(--ink-dim);
+    margin-left: 0.4rem;
+  }
+
+  @media (max-width: 560px) {
+    .entry {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+    }
+    .entry-when {
+      display: flex;
+      gap: 0.75rem;
+    }
+  }
+</style>
