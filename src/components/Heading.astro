@@ -2,14 +2,10 @@
 interface Props {
   title: string;
   id: string;
-  note?: string;
 }
-const { title, id, note } = Astro.props;
+const { title, id } = Astro.props;
 ---
 
 <header class="heading reveal">
-  <div class="heading-title">
-    <h2 id={id} class="gold-text">{title}</h2>
-  </div>
-  {note && <p>{note}</p>}
+  <h2 id={id} class="gold-text">{title}</h2>
 </header>

@@ -1,20 +1,15 @@
-/* ── Tokens ─────────────────────────────────────────────────────────────── */
-
 :root {
   color-scheme: dark;
 
   --night-0: #04050d;
   --night-1: #070a1c;
-  --night-2: #0c112c;
-  --panel: rgba(17, 23, 60, 0.72);
-  --panel-2: rgba(10, 14, 38, 0.86);
+  --panel: #0d1230;
+  --panel-2: #0a0e26;
 
   --gold: #f3cf7a;
   --gold-2: #d9a441;
-  --gold-deep: #8a5d17;
-  --gold-text: linear-gradient(180deg, #fff6d8 0%, #f8dc93 40%, #e0a945 62%, #f5cf74 100%);
+  --gold-text: linear-gradient(180deg, #fbe6b0 0%, #e9b955 100%);
   --cyan: #8fdcff;
-  --blue: #4f7dff;
 
   --text: #eef0ff;
   --dim: #b6bbdd;
@@ -27,13 +22,10 @@
 
   --gutter: clamp(16px, 4vw, 40px);
   --max: 1200px;
-  --radius: 14px;
+  --radius: 12px;
 
-  /* Gold corner bracket arms for frames. */
   --arm: linear-gradient(var(--gold), var(--gold));
 }
-
-/* ── Base ───────────────────────────────────────────────────────────────── */
 
 *,
 *::before,
@@ -50,14 +42,12 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(40, 80, 190, 0.16), transparent 70%),
-    linear-gradient(180deg, var(--night-1), var(--night-0) 40%, var(--night-1));
+  background: linear-gradient(180deg, var(--night-1), var(--night-0) 40%, var(--night-1));
   color: var(--text);
   font: 400 16px/1.65 var(--body);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  /* No blinking text caret when clicking around the page (caret browsing, dialogs). */
+  /* Hide the caret Chrome shows when clicking text with caret browsing on. */
   caret-color: transparent;
 }
 
@@ -124,15 +114,6 @@ h3 {
   top: 12px;
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-}
-
 .wrap {
   width: 100%;
   max-width: var(--max);
@@ -147,20 +128,12 @@ h3 {
   -webkit-text-fill-color: transparent;
 }
 
-/* ── The ornate frame ───────────────────────────────────────────────────── */
-/* Gold hairline, a dark gap, a fainter inner line, and gold brackets on each corner. */
-
+/* Panels: a gold hairline with bracketed corners. */
 .frame {
   position: relative;
-  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  box-shadow:
-    inset 0 0 0 4px rgba(4, 5, 13, 0.55),
-    inset 0 0 0 5px rgba(243, 207, 122, 0.12),
-    0 30px 70px -35px rgba(0, 0, 0, 0.9);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
 }
 
 .frame::before {
@@ -169,18 +142,15 @@ h3 {
   inset: -5px;
   pointer-events: none;
   background:
-    var(--arm) top left / 18px 2px no-repeat,
-    var(--arm) top left / 2px 18px no-repeat,
-    var(--arm) top right / 18px 2px no-repeat,
-    var(--arm) top right / 2px 18px no-repeat,
-    var(--arm) bottom left / 18px 2px no-repeat,
-    var(--arm) bottom left / 2px 18px no-repeat,
-    var(--arm) bottom right / 18px 2px no-repeat,
-    var(--arm) bottom right / 2px 18px no-repeat;
-  filter: drop-shadow(0 0 5px rgba(243, 207, 122, 0.45));
+    var(--arm) top left / 16px 2px no-repeat,
+    var(--arm) top left / 2px 16px no-repeat,
+    var(--arm) top right / 16px 2px no-repeat,
+    var(--arm) top right / 2px 16px no-repeat,
+    var(--arm) bottom left / 16px 2px no-repeat,
+    var(--arm) bottom left / 2px 16px no-repeat,
+    var(--arm) bottom right / 16px 2px no-repeat,
+    var(--arm) bottom right / 2px 16px no-repeat;
 }
-
-/* ── Section heading ────────────────────────────────────────────────────── */
 
 .section {
   position: relative;
@@ -188,116 +158,69 @@ h3 {
 }
 
 .heading {
-  display: grid;
-  justify-items: center;
-  gap: 0.9rem;
-  margin-bottom: clamp(40px, 5vw, 64px);
+  margin-bottom: clamp(36px, 5vw, 56px);
   text-align: center;
-}
-
-.heading-title {
-  display: flex;
-  align-items: center;
-  gap: clamp(14px, 3vw, 28px);
-  width: 100%;
-  max-width: 760px;
-}
-
-.heading-title::before,
-.heading-title::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold) 80%);
-  opacity: 0.6;
-}
-
-.heading-title::after {
-  background: linear-gradient(270deg, transparent, var(--gold) 80%);
 }
 
 .heading h2 {
   font-size: clamp(2rem, 5vw, 3.2rem);
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  filter: drop-shadow(0 0 22px rgba(243, 207, 122, 0.25));
 }
-
-.heading p {
-  max-width: 52ch;
-  color: var(--dim);
-}
-
-/* ── Buttons & tags ─────────────────────────────────────────────────────── */
 
 .btn {
-  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.55em;
-  padding: 0.75em 1.35em;
+  gap: 0.5em;
+  padding: 0.7em 1.25em;
   font: 600 0.92rem/1 var(--body);
-  letter-spacing: 0.02em;
   color: var(--text);
   text-decoration: none;
-  background: rgba(12, 17, 44, 0.6);
+  background: transparent;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 8px;
   cursor: pointer;
   transition:
     border-color 0.2s,
-    box-shadow 0.2s,
-    background 0.2s,
-    transform 0.2s;
+    background 0.2s;
 }
 
 .btn:hover {
   border-color: var(--gold);
-  box-shadow: 0 0 24px -6px rgba(243, 207, 122, 0.55);
-  transform: translateY(-1px);
+  background: rgba(243, 207, 122, 0.06);
 }
 
 .btn-gold {
   color: var(--night-0);
-  background: linear-gradient(180deg, #ffe7a6, var(--gold) 45%, var(--gold-2));
-  border-color: #ffe7a6;
-  box-shadow: 0 8px 30px -10px rgba(243, 207, 122, 0.7);
+  background: var(--gold);
+  border-color: var(--gold);
 }
 
 .btn-gold:hover {
-  background: linear-gradient(180deg, #fff1c8, #f8da8f 45%, var(--gold));
+  background: #f8dc98;
+  border-color: #f8dc98;
 }
 
-.btn .arrow {
-  transition: transform 0.2s;
-}
-
-.btn:hover .arrow {
-  transform: translateX(3px);
-}
-
+/* Tech lists read as plain text: "Next.js · TypeScript · Supabase". */
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
   margin: 0;
   padding: 0;
   list-style: none;
+  font-size: 0.86rem;
+  color: var(--dim);
 }
 
-.tag {
-  padding: 0.25em 0.75em;
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--dim);
-  background: rgba(79, 125, 255, 0.08);
-  border: 1px solid var(--line-soft);
-  border-radius: 999px;
+.tag + .tag::before {
+  content: '·';
+  margin: 0 0.5em;
+  color: var(--faint);
 }
 
 .eyebrow {
-  font: 600 0.74rem/1.2 var(--body);
-  letter-spacing: 0.22em;
+  font: 600 0.78rem/1.2 var(--body);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--gold);
 }
@@ -306,31 +229,12 @@ h3 {
   font-variant-numeric: tabular-nums;
 }
 
-.live-dot {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #6ef2b0;
-  box-shadow: 0 0 10px #6ef2b0;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  50% {
-    opacity: 0.35;
-  }
-}
-
-/* ── Scroll reveal ──────────────────────────────────────────────────────── */
-
 .js .reveal {
   opacity: 0;
-  transform: translateY(22px);
+  transform: translateY(12px);
   transition:
-    opacity 0.8s ease,
-    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
-  transition-delay: var(--d, 0s);
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
 .js .reveal.is-in {

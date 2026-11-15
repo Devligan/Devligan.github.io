@@ -16,7 +16,7 @@ const scatter = (words: string[]) =>
 
 <section class="section" id="projects" aria-labelledby="projects-title">
   <div class="wrap">
-    <Heading title="Projects" id="projects-title" note="Most recently updated first. Click any project for screenshots, details and links." />
+    <Heading title="Projects" id="projects-title" />
 
     {
       [
@@ -27,7 +27,7 @@ const scatter = (words: string[]) =>
           {group.title && <h3 class="group-title reveal">{group.title}</h3>}
           <ul class={`grid grid-${group.size}`}>
             {group.list.map((p, i) => (
-              <li class="reveal" style={`--d:${(i % 3) * 0.08}s`}>
+              <li class="reveal">
                 <a class={`pcard pcard-${group.size}`} href={p.source} data-open={p.id} aria-haspopup="dialog">
                   <div class="pcard-media">
                     {p.cover ? (
@@ -44,14 +44,9 @@ const scatter = (words: string[]) =>
                         <span class="title-cover-lang">{p.language ?? p.category}</span>
                       </div>
                     )}
-                    <span class="pcard-cat">{p.category}</span>
-                    {p.status.live && (
-                      <span class="pcard-live">
-                        <span class="live-dot" aria-hidden="true" /> Active
-                      </span>
-                    )}
                   </div>
                   <div class="pcard-body">
+                    <p class="pcard-cat">{p.category}</p>
                     <h3>{p.title}</h3>
                     <p>{p.summary}</p>
                     <div class="pcard-foot">
@@ -245,39 +240,28 @@ const scatter = (words: string[]) =>
     display: flex;
   }
 
-  /* ── Card ── */
-
   .pcard {
-    position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
     overflow: hidden;
     text-decoration: none;
-    background: linear-gradient(180deg, var(--panel), var(--panel-2));
+    background: var(--panel);
     border: 1px solid var(--line-soft);
-    border-radius: 16px;
-    transition:
-      transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
-      border-color 0.35s,
-      box-shadow 0.35s;
+    border-radius: var(--radius);
+    transition: border-color 0.25s;
   }
 
   .pcard:hover,
   .pcard:focus-visible {
-    transform: translateY(-4px);
     border-color: var(--line);
-    box-shadow:
-      0 0 0 1px rgba(243, 207, 122, 0.25),
-      0 24px 60px -24px rgba(243, 207, 122, 0.35),
-      0 30px 70px -30px rgba(0, 0, 0, 0.9);
   }
 
   .pcard-media {
-    position: relative;
     aspect-ratio: 16 / 10;
     overflow: hidden;
-    background: #0a0e26;
+    background: var(--panel-2);
+    border-bottom: 1px solid var(--line-soft);
   }
 
   .pcard-sm .pcard-media {
@@ -289,63 +273,25 @@ const scatter = (words: string[]) =>
     height: 100%;
     object-fit: cover;
     object-position: top center;
-    transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition: transform 0.6s ease;
   }
 
   .pcard:hover .pcard-media img {
-    transform: scale(1.04);
-  }
-
-  /* Fade the image into the card so bright charts sit inside the night palette. */
-  .pcard-media::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(180deg, rgba(7, 10, 28, 0.35), transparent 30%, transparent 60%, rgba(12, 17, 44, 0.95)),
-      linear-gradient(0deg, rgba(30, 60, 150, 0.12), rgba(30, 60, 150, 0.12));
-    pointer-events: none;
-  }
-
-  .pcard-cat,
-  .pcard-live {
-    position: absolute;
-    top: 14px;
-    z-index: 1;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.3em 0.8em;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border-radius: 999px;
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
+    transform: scale(1.02);
   }
 
   .pcard-cat {
-    left: 14px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--gold);
-    background: rgba(7, 10, 28, 0.75);
-    border: 1px solid var(--line);
-  }
-
-  .pcard-live {
-    right: 14px;
-    color: #8af5c0;
-    background: rgba(7, 10, 28, 0.75);
-    border: 1px solid rgba(110, 242, 176, 0.3);
   }
 
   .type-cover {
     position: relative;
     width: 100%;
     height: 100%;
-    background:
-      radial-gradient(ellipse 60% 60% at 50% 50%, rgba(79, 125, 255, 0.22), transparent 70%),
-      #0b1030;
   }
 
   .type-cover span {
@@ -356,6 +302,10 @@ const scatter = (words: string[]) =>
     white-space: nowrap;
   }
 
+  .type-cover span:nth-child(3n) {
+    color: var(--gold);
+  }
+
   .title-cover {
     display: flex;
     flex-direction: column;
@@ -364,31 +314,21 @@ const scatter = (words: string[]) =>
     gap: 0.6rem;
     width: 100%;
     height: 100%;
-    padding: 1.5rem 1.5rem 3.5rem;
+    padding: 1.5rem;
     text-align: center;
-    background:
-      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.5) 0 1px, transparent 1.5px) 0 0 / 90px 90px,
-      radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.35) 0 1px, transparent 1.5px) 0 0 / 130px 130px,
-      radial-gradient(ellipse 60% 60% at 50% 45%, rgba(79, 125, 255, 0.22), transparent 70%),
-      #0b1030;
   }
 
   .title-cover-name {
     font: 700 clamp(1.4rem, 3vw, 2.2rem) / 1.15 var(--display);
     color: var(--gold);
-    filter: drop-shadow(0 0 18px rgba(243, 207, 122, 0.35));
   }
 
   .title-cover-lang {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--dim);
-  }
-
-  .type-cover span:nth-child(3n) {
-    color: var(--gold);
   }
 
   .pcard-body {
@@ -396,14 +336,11 @@ const scatter = (words: string[]) =>
     flex-direction: column;
     flex: 1;
     gap: 0.5rem;
-    margin-top: -2.4rem;
-    padding: 0 clamp(18px, 2.4vw, 26px) clamp(18px, 2.4vw, 24px);
-    position: relative;
+    padding: clamp(18px, 2.4vw, 24px);
   }
 
   .pcard h3 {
     font-size: clamp(1.45rem, 2.6vw, 1.9rem);
-    text-shadow: 0 2px 18px rgba(4, 5, 13, 0.9);
   }
 
   .pcard-sm h3 {
@@ -445,8 +382,6 @@ const scatter = (words: string[]) =>
   .pcard:hover .pcard-more span {
     transform: translateX(4px);
   }
-
-  /* ── Other repos ── */
 
   .others {
     margin-top: clamp(48px, 6vw, 72px);
@@ -538,8 +473,6 @@ const scatter = (words: string[]) =>
     height: 8px;
     border-radius: 50%;
   }
-
-  /* ── Drawer ── */
 
   .drawer {
     position: fixed;

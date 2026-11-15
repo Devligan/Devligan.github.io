@@ -1,17 +1,8 @@
-// ─────────────────────────────────────────────────────────────────────────────
-//  The only hand-written part of the site.
+// Site content. Repo data (stats, commits, screenshots) comes from GitHub via
+// scripts/fetch-github.mjs.
 //
-//  Everything else (repos, commits, the activity calendar, stats, project
-//  screenshots) is pulled from GitHub by scripts/fetch-github.mjs every hour.
-//
-//  Ways to change what shows up without touching this file:
-//    • Add the topic `portfolio` to a GitHub repo  → it's featured in Projects, with
-//      "What it does" and "How it's built" taken from its README, its README
-//      screenshots as the gallery, and its homepage URL as the live demo.
-//      For a hand-tuned write-up, add it to `projects` below.
-//    • Add the topic `portfolio-hide` to a repo     → it's hidden everywhere.
-//    • Add screenshots to a featured repo's README  → they become its gallery.
-// ─────────────────────────────────────────────────────────────────────────────
+// GitHub topics also control the site: `portfolio` features a repo (its write-up
+// comes from its README), `portfolio-hide` hides one.
 
 export default {
   github: 'Devligan',
@@ -21,12 +12,12 @@ export default {
     name: 'Sriharsha Challangi',
     handle: 'Devligan',
     role: 'Software Engineer',
-    // One line under the name. Recruiters read this first.
     headline: 'CS + MIS + Math at the University of Houston. Previously a software engineering intern on the ETRM team at Mitsui & Co.',
+    // Best rewritten in your own words; this is a plain factual placeholder.
     bio: [
-      'I build software that has to be exactly right: settlement math, risk numbers, market data that arrives on time.',
-      'In summer 2026 I interned on the ETRM team at Mitsui & Co. Energy Marketing and Services, where I mapped migration risk across 100+ C# customizations and built a pipeline for ERCOT market data. Most of my own projects live in the same world: power markets, portfolio risk and crypto prices.',
-      'Outside of markets I build data-heavy tools, from a live satellite tracker to computer-vision models, and I tutor C++ and Python at UH.',
+      'I study Computer Science, MIS and Math at the University of Houston, and I’m most interested in software for financial and energy markets.',
+      'In summer 2026 I interned on the ETRM team at Mitsui & Co. Energy Marketing and Services. I reviewed more than 100 C# customizations ahead of an ETRM upgrade and built a pipeline that loads ERCOT market data into a SQL database.',
+      'My own projects are in the same area, including a paper-trading app for ERCOT power prices and a risk analysis toolkit covering 113 assets. I also tutor C++ and Python at UH.',
     ],
     email: 'sriharshachallangi@gmail.com',
     linkedin: 'https://www.linkedin.com/in/sriharsha-challangi/',

@@ -29,8 +29,6 @@ const notebook = (name) => name === 'Jupyter Notebook';
 export const langName = (l) => (l ? (notebook(l.name) ? 'Python' : l.name) : null);
 export const langColor = (l) => (l ? (notebook(l.name) ? '#3572A5' : l.color ?? '#8a8fb0') : '#8a8fb0');
 
-// ── Experience ───────────────────────────────────────────────────────────────
-
 const monthName = (ym) => shortDate(`${ym}-01`, { month: 'short', year: 'numeric' });
 function span(start, end) {
   const [sy, sm] = start.split('-').map(Number);
@@ -49,8 +47,6 @@ export const experience = config.experience.map((e) => ({
 }));
 export const education = config.education;
 
-// ── Stats ────────────────────────────────────────────────────────────────────
-
 const days = (data.calendar?.weeks ?? []).flat();
 const sum = (arr) => arr.reduce((s, [, n]) => s + n, 0);
 
@@ -63,8 +59,6 @@ export const stats = {
   last7: sum(days.slice(-7)),
   since: new Date(data.user.createdAt).getUTCFullYear(),
 };
-
-// ── Projects ─────────────────────────────────────────────────────────────────
 
 const repoByName = new Map(data.repos.map((r) => [r.name, r]));
 const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -157,8 +151,6 @@ export const featured = [...configured.filter((p) => p.featured), ...tagged].sor
 export const more = configured.filter((p) => !p.featured).sort(byRecent);
 export const allProjects = [...featured, ...more];
 
-// ── Every other repo ─────────────────────────────────────────────────────────
-
 const shown = new Set(allProjects.map((p) => p.repo));
 export const otherRepos = data.repos
   .filter((r) => !shown.has(r.name))
@@ -173,13 +165,16 @@ export const otherRepos = data.repos
   }))
   .sort((a, b) => b.pushedAt.localeCompare(a.pushedAt));
 
-// ── Recent commits: projects only, and no single repo may take over ──────────
+// Recent commits: projects only, and no single repo may take over
 
 const projectRepos = new Set(allProjects.map((p) => p.repo));
 export const recentCommits = (() => {
   const perRepo = new Map();
   return data.log.filter((e) => {
     if (!projectRepos.has(e.repo)) return false;
+    // Only current work, and skip housekeeping commits that say little about it.
+    if (now - new Date(e.date) > 90 * DAY) return false;
+    if (/readme|typo|corrupt|gibberish|non-ascii|forgot|wip\b|merge/i.test(e.message)) return false;
     const n = (perRepo.get(e.repo) ?? 0) + 1;
     perRepo.set(e.repo, n);
     return n <= 2;

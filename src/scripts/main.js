@@ -1,10 +1,9 @@
-// Enhancements only. The page is complete without this script.
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ── Relative times stay true even if the page was built a while ago ─────────
+// Relative times stay true even if the page was built a while ago
 
 function ago(iso) {
   const mins = Math.round((Date.now() - new Date(iso)) / 60000);
@@ -26,8 +25,6 @@ if (reduced) $$('svg').forEach((s) => s.pauseAnimations?.());
 // The contribution calendar starts scrolled to today on narrow screens.
 for (const el of $$('[data-scroll-end]')) el.scrollLeft = el.scrollWidth;
 
-// ── Scroll reveal ───────────────────────────────────────────────────────────
-
 const reveal = new IntersectionObserver(
   (entries) => {
     for (const en of entries) {
@@ -40,7 +37,7 @@ const reveal = new IntersectionObserver(
 );
 $$('.reveal').forEach((el) => reveal.observe(el));
 
-// ── Nav: hidden on the title screen, then tracks the section on screen ──────
+// Nav: hidden on the title screen, then tracks the section on screen
 
 const navBar = $('[data-nav-bar]');
 const hero = $('#top');
@@ -59,8 +56,6 @@ const spy = new IntersectionObserver(
   { rootMargin: '-45% 0px -50% 0px' },
 );
 $$('main > section[id]').forEach((s) => spy.observe(s));
-
-// ── Project drawers ─────────────────────────────────────────────────────────
 
 const drawers = new Map($$('[data-drawer]').map((d) => [d.dataset.drawer, d]));
 let openId = null;
@@ -123,8 +118,6 @@ function fromHash() {
 }
 window.addEventListener('popstate', fromHash);
 fromHash();
-
-// ── Starfield ───────────────────────────────────────────────────────────────
 
 const canvas = $('canvas.stars');
 if (canvas) {

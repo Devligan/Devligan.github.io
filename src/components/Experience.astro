@@ -5,7 +5,7 @@ import { education, experience } from '../lib/view.mjs';
 
 <section class="section" id="experience" aria-labelledby="experience-title">
   <div class="wrap">
-    <Heading title="Experience" id="experience-title" note="Where I’ve worked, newest first." />
+    <Heading title="Experience" id="experience-title" />
 
     <ol class="timeline">
       {
@@ -24,10 +24,7 @@ import { education, experience } from '../lib/view.mjs';
                 </div>
                 <div class="badges">
                   {e.current && (
-                    <span class="badge badge-now">
-                      <span class="live-dot" aria-hidden="true" />
-                      Current
-                    </span>
+                    <span class="badge badge-now">Current</span>
                   )}
                   <span class="badge">{e.type}</span>
                 </div>
@@ -131,9 +128,6 @@ import { education, experience } from '../lib/view.mjs';
 
   .is-highlight .node {
     background: var(--gold);
-    box-shadow:
-      0 0 0 4px var(--night-1),
-      0 0 18px 2px rgba(243, 207, 122, 0.7);
   }
 
   .card {
@@ -142,11 +136,6 @@ import { education, experience } from '../lib/view.mjs';
 
   .is-highlight .card {
     border-color: rgba(243, 207, 122, 0.55);
-    box-shadow:
-      inset 0 0 0 4px rgba(4, 5, 13, 0.55),
-      inset 0 0 0 5px rgba(243, 207, 122, 0.2),
-      0 0 60px -20px rgba(243, 207, 122, 0.35),
-      0 30px 70px -35px rgba(0, 0, 0, 0.9);
   }
 
   .card-head {
@@ -177,20 +166,18 @@ import { education, experience } from '../lib/view.mjs';
   }
 
   .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.2em 0.7em;
-    font-size: 0.74rem;
+    font-size: 0.82rem;
     font-weight: 600;
-    color: var(--dim);
-    border: 1px solid var(--line-soft);
-    border-radius: 999px;
+    color: var(--faint);
+  }
+
+  .badge + .badge::before {
+    content: '·';
+    margin-right: 0.4rem;
   }
 
   .badge-now {
-    color: #8af5c0;
-    border-color: rgba(110, 242, 176, 0.35);
+    color: var(--gold);
   }
 
   .meta {
@@ -229,8 +216,6 @@ import { education, experience } from '../lib/view.mjs';
     opacity: 0.85;
   }
 
-  /* ── Education ── */
-
   .education {
     display: grid;
     gap: 1rem;
@@ -250,7 +235,6 @@ import { education, experience } from '../lib/view.mjs';
     width: 34px;
     height: 34px;
     fill: var(--gold);
-    filter: drop-shadow(0 0 10px rgba(243, 207, 122, 0.4));
   }
 
   .edu h3 {

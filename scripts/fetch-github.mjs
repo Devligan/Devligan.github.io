@@ -111,8 +111,6 @@ const CALENDAR_QUERY = /* GraphQL */ `
   }
 `;
 
-// ── README helpers ───────────────────────────────────────────────────────────
-
 function readmeSummary(md) {
   if (!md) return '';
   const text = md
@@ -225,7 +223,6 @@ function readmeImages(md) {
   );
 }
 
-// ── Project galleries ────────────────────────────────────────────────────────
 // Images are resized to WebP and cached by their git blob SHA, so the hourly
 // build only re-processes an image when it actually changes.
 
@@ -294,8 +291,6 @@ async function buildGallery(repo, media, readme, prevGallery) {
   return gallery;
 }
 
-// ── Derived numbers ──────────────────────────────────────────────────────────
-
 function streaks(days) {
   let longest = 0;
   let run = 0;
@@ -339,8 +334,6 @@ function languageTotals(repos) {
   const max = list[0]?.score ?? 1;
   return list.map((t) => ({ ...t, pct: Math.round((t.score / max) * 100) }));
 }
-
-// ── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
   const hidden = new Set(config.hidden.map((h) => h.toLowerCase()));
