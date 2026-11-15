@@ -57,6 +57,14 @@ body {
   font: 400 16px/1.65 var(--body);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  /* No blinking text caret when clicking around the page (caret browsing, dialogs). */
+  caret-color: transparent;
+}
+
+input,
+textarea,
+[contenteditable='true'] {
+  caret-color: auto;
 }
 
 body.has-dialog {
