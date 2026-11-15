@@ -20,6 +20,9 @@ function ago(iso) {
 }
 for (const el of $$('[data-ago]')) el.textContent = ago(el.dataset.ago);
 
+// SVG orbit animations (SMIL) ignore CSS, so pause them for reduced motion.
+if (reduced) $$('svg').forEach((s) => s.pauseAnimations?.());
+
 // The contribution calendar starts scrolled to today on narrow screens.
 for (const el of $$('[data-scroll-end]')) el.scrollLeft = el.scrollWidth;
 

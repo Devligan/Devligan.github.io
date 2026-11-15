@@ -9,34 +9,45 @@ const menu = [
   { href: '#about', label: 'About' },
   { href: '#contact', label: 'Contact' },
 ];
-// Words that circle the name.
-const ring = 'SOFTWARE ENGINEER ✦ FINTECH ✦ TRADING SYSTEMS ✦ MARKET DATA ✦ RISK ✦ HOUSTON ✦ ';
-const ticks = Array.from({ length: 72 }, (_, i) => i * 5);
+// Tilted orbits around the name, each with a satellite riding it.
+const CX = 500;
+const CY = 300;
+const orbits = [
+  { id: 'o1', rx: 470, ry: 118, tilt: -11, dur: 42, tone: 'gold', reverse: false },
+  { id: 'o2', rx: 395, ry: 170, tilt: 17, dur: 28, tone: 'cyan', reverse: true },
+  { id: 'o3', rx: 540, ry: 64, tilt: 4, dur: 64, tone: 'faint', reverse: false },
+].map((o) => ({
+  ...o,
+  d: o.reverse
+    ? `M${CX + o.rx} ${CY} a${o.rx} ${o.ry} 0 1 0 ${-2 * o.rx} 0 a${o.rx} ${o.ry} 0 1 0 ${2 * o.rx} 0`
+    : `M${CX - o.rx} ${CY} a${o.rx} ${o.ry} 0 1 0 ${2 * o.rx} 0 a${o.rx} ${o.ry} 0 1 0 ${-2 * o.rx} 0`,
+}));
 ---
 
 <section class="hero" id="top" aria-labelledby="hero-name">
-  <div class="sigil" aria-hidden="true">
-    <svg viewBox="0 0 600 600">
+  <div class="orbits" aria-hidden="true">
+    <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice">
       <defs>
-        <path id="ring-path" d="M300,300 m-232,0 a232,232 0 1,1 464,0 a232,232 0 1,1 -464,0" />
-        <radialGradient id="sigil-glow">
-          <stop offset="0" stop-color="#f3cf7a" stop-opacity="0.16" />
+        <radialGradient id="core-glow">
+          <stop offset="0" stop-color="#f3cf7a" stop-opacity="0.12" />
           <stop offset="1" stop-color="#f3cf7a" stop-opacity="0" />
         </radialGradient>
       </defs>
-      <circle cx="300" cy="300" r="290" fill="url(#sigil-glow)" />
-      <g class="spin-slow">
-        <circle cx="300" cy="300" r="270" class="ring" />
-        {ticks.map((deg) => <line x1="300" y1="34" x2="300" y2={deg % 30 === 0 ? 48 : 40} transform={`rotate(${deg} 300 300)`} class="tick" />)}
-        <text class="ring-text">
-          <textPath href="#ring-path" textLength="1440">{ring}{ring}</textPath>
-        </text>
-      </g>
-      <g class="spin-rev">
-        <circle cx="300" cy="300" r="205" class="ring ring-dash" />
-        <ellipse cx="300" cy="300" rx="205" ry="70" class="ring orbit" transform="rotate(-24 300 300)" />
-        <circle cx="300" cy="300" r="5" class="sat" transform="rotate(-24 300 300) translate(205 0)" />
-      </g>
+      <ellipse cx={CX} cy={CY} rx="380" ry="230" fill="url(#core-glow)" />
+      {
+        orbits.map((o) => (
+          <g transform={`rotate(${o.tilt} ${CX} ${CY})`} class={`orbit orbit-${o.tone}`}>
+            <path id={o.id} d={o.d} class="path" />
+            <g class="sat">
+              <circle r="9" class="sat-glow" />
+              <circle r="3" class="sat-core" />
+              <animateMotion dur={`${o.dur}s`} repeatCount="indefinite" rotate="auto">
+                <mpath href={`#${o.id}`} />
+              </animateMotion>
+            </g>
+          </g>
+        ))
+      }
     </svg>
   </div>
 
@@ -103,80 +114,65 @@ const ticks = Array.from({ length: 72 }, (_, i) => i * 5);
     inset: -20% -10% 0;
     z-index: -2;
     background:
-      radial-gradient(ellipse 45% 35% at 50% 46%, rgba(243, 207, 122, 0.1), transparent 70%),
-      radial-gradient(ellipse 40% 40% at 18% 70%, rgba(139, 123, 255, 0.18), transparent 70%),
-      radial-gradient(ellipse 40% 40% at 85% 25%, rgba(143, 220, 255, 0.1), transparent 70%);
+      radial-gradient(ellipse 50% 40% at 50% 50%, rgba(40, 80, 190, 0.18), transparent 70%),
+      radial-gradient(ellipse 40% 40% at 15% 75%, rgba(30, 70, 170, 0.16), transparent 70%),
+      radial-gradient(ellipse 40% 40% at 88% 22%, rgba(143, 220, 255, 0.08), transparent 70%);
   }
 
-  /* Big enough that the lettered ring frames the content instead of crossing it. */
-  .sigil {
+  .orbits {
     position: absolute;
-    left: 50%;
-    top: 50%;
+    inset: 0;
     z-index: -1;
-    width: max(1180px, 118vh);
-    aspect-ratio: 1;
-    transform: translate(-50%, -50%);
-    opacity: 0.8;
+  }
+
+  .orbits svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .path {
+    fill: none;
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .orbit-gold .path {
+    stroke: rgba(243, 207, 122, 0.3);
+  }
+
+  .orbit-cyan .path {
+    stroke: rgba(143, 220, 255, 0.24);
+  }
+
+  .orbit-faint .path {
+    stroke: rgba(238, 240, 255, 0.12);
+    stroke-dasharray: 3 6;
+  }
+
+  .sat-core {
+    fill: #fff;
+  }
+
+  .sat-glow {
+    opacity: 0.35;
+  }
+
+  .orbit-gold .sat-glow {
+    fill: var(--gold);
+  }
+
+  .orbit-cyan .sat-glow {
+    fill: var(--cyan);
+  }
+
+  .orbit-faint .sat-glow {
+    fill: #fff;
+    opacity: 0.18;
   }
 
   @media (max-width: 700px) {
-    .sigil {
-      width: 200vw;
-      opacity: 0.45;
-    }
-  }
-
-  .sigil svg {
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-  }
-
-  .ring {
-    fill: none;
-    stroke: rgba(243, 207, 122, 0.28);
-    stroke-width: 1;
-  }
-
-  .ring-dash {
-    stroke-dasharray: 2 7;
-    stroke: rgba(243, 207, 122, 0.35);
-  }
-
-  .orbit {
-    stroke: rgba(143, 220, 255, 0.28);
-  }
-
-  .sat {
-    fill: var(--cyan);
-    filter: drop-shadow(0 0 6px var(--cyan));
-  }
-
-  .tick {
-    stroke: rgba(243, 207, 122, 0.35);
-    stroke-width: 1;
-  }
-
-  .ring-text {
-    font: 600 13px var(--display);
-    letter-spacing: 0.32em;
-    fill: rgba(243, 207, 122, 0.4);
-  }
-
-  .spin-slow {
-    transform-origin: 300px 300px;
-    animation: spin 160s linear infinite;
-  }
-
-  .spin-rev {
-    transform-origin: 300px 300px;
-    animation: spin 90s linear infinite reverse;
-  }
-
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
+    .orbits {
+      opacity: 0.6;
     }
   }
 

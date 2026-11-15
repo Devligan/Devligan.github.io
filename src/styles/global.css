@@ -14,7 +14,7 @@
   --gold-deep: #8a5d17;
   --gold-text: linear-gradient(180deg, #fff6d8 0%, #f8dc93 40%, #e0a945 62%, #f5cf74 100%);
   --cyan: #8fdcff;
-  --violet: #8b7bff;
+  --blue: #4f7dff;
 
   --text: #eef0ff;
   --dim: #b6bbdd;
@@ -29,8 +29,8 @@
   --max: 1200px;
   --radius: 14px;
 
-  /* A four-point sparkle for frame corners. */
-  --spark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C12.9 8.2 15.8 11.1 24 12C15.8 12.9 12.9 15.8 12 24C11.1 15.8 8.2 12.9 0 12C8.2 11.1 11.1 8.2 12 0Z' fill='%23f3cf7a'/%3E%3C/svg%3E");
+  /* Gold corner bracket arms for frames. */
+  --arm: linear-gradient(var(--gold), var(--gold));
 }
 
 /* ── Base ───────────────────────────────────────────────────────────────── */
@@ -51,7 +51,7 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(60, 50, 160, 0.18), transparent 70%),
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(40, 80, 190, 0.16), transparent 70%),
     linear-gradient(180deg, var(--night-1), var(--night-0) 40%, var(--night-1));
   color: var(--text);
   font: 400 16px/1.65 var(--body);
@@ -140,7 +140,7 @@ h3 {
 }
 
 /* ── The ornate frame ───────────────────────────────────────────────────── */
-/* Gold hairline, a dark gap, a fainter inner line, and a sparkle on each corner. */
+/* Gold hairline, a dark gap, a fainter inner line, and gold brackets on each corner. */
 
 .frame {
   position: relative;
@@ -158,14 +158,18 @@ h3 {
 .frame::before {
   content: '';
   position: absolute;
-  inset: -7px;
+  inset: -5px;
   pointer-events: none;
   background:
-    var(--spark) top left / 14px no-repeat,
-    var(--spark) top right / 14px no-repeat,
-    var(--spark) bottom left / 14px no-repeat,
-    var(--spark) bottom right / 14px no-repeat;
-  filter: drop-shadow(0 0 6px rgba(243, 207, 122, 0.6));
+    var(--arm) top left / 18px 2px no-repeat,
+    var(--arm) top left / 2px 18px no-repeat,
+    var(--arm) top right / 18px 2px no-repeat,
+    var(--arm) top right / 2px 18px no-repeat,
+    var(--arm) bottom left / 18px 2px no-repeat,
+    var(--arm) bottom left / 2px 18px no-repeat,
+    var(--arm) bottom right / 18px 2px no-repeat,
+    var(--arm) bottom right / 2px 18px no-repeat;
+  filter: drop-shadow(0 0 5px rgba(243, 207, 122, 0.45));
 }
 
 /* ── Section heading ────────────────────────────────────────────────────── */
@@ -278,7 +282,7 @@ h3 {
   font-size: 0.78rem;
   font-weight: 500;
   color: var(--dim);
-  background: rgba(139, 123, 255, 0.08);
+  background: rgba(79, 125, 255, 0.08);
   border: 1px solid var(--line-soft);
   border-radius: 999px;
 }
