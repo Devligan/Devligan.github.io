@@ -2,14 +2,16 @@
 import Heading from './Heading.astro';
 import { allProjects, ago, featured, more, otherRepos } from '../lib/view.mjs';
 
-// Cover for a project with no screenshots (the translator): greetings scattered across the card.
-const greetings = ['Hola', 'Bonjour', 'नमस्ते', 'こんにちは', 'Olá', 'Ciao', '안녕하세요', 'Hallo', 'Merhaba', '你好'].map((text, i) => ({
-  text,
-  x: 6 + ((i * 37) % 70),
-  y: 10 + ((i * 23) % 72),
-  size: 0.9 + ((i * 7) % 5) * 0.28,
-  alpha: 0.3 + ((i * 13) % 6) * 0.11,
-}));
+// Covers for projects with no screenshots: a project's own `coverWords` scattered
+// across the card (the translator's greetings), otherwise its title on a star chart.
+const scatter = (words: string[]) =>
+  words.map((text, i) => ({
+    text,
+    x: 6 + ((i * 37) % 70),
+    y: 10 + ((i * 23) % 72),
+    size: 0.9 + ((i * 7) % 5) * 0.28,
+    alpha: 0.3 + ((i * 13) % 6) * 0.11,
+  }));
 ---
 
 <section class="section" id="projects" aria-labelledby="projects-title">
@@ -30,11 +32,16 @@ const greetings = ['Hola', 'Bonjour', 'नमस्ते', 'こんにちは', '
                   <div class="pcard-media">
                     {p.cover ? (
                       <img src={p.cover.src} alt={p.cover.alt} width={p.cover.w} height={p.cover.h} loading="lazy" decoding="async" />
-                    ) : (
+                    ) : p.coverWords ? (
                       <div class="type-cover" aria-hidden="true">
-                        {greetings.map((g) => (
+                        {scatter(p.coverWords).map((g) => (
                           <span style={`left:${g.x}%;top:${g.y}%;font-size:${g.size}rem;opacity:${g.alpha}`}>{g.text}</span>
                         ))}
+                      </div>
+                    ) : (
+                      <div class="title-cover" aria-hidden="true">
+                        <span class="title-cover-name">{p.title}</span>
+                        <span class="title-cover-lang">{p.language ?? p.category}</span>
                       </div>
                     )}
                     <span class="pcard-cat">{p.category}</span>
@@ -349,6 +356,37 @@ const greetings = ['Hola', 'Bonjour', 'नमस्ते', 'こんにちは', '
     white-space: nowrap;
   }
 
+  .title-cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem 1.5rem 3.5rem;
+    text-align: center;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.5) 0 1px, transparent 1.5px) 0 0 / 90px 90px,
+      radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.35) 0 1px, transparent 1.5px) 0 0 / 130px 130px,
+      radial-gradient(ellipse 60% 60% at 50% 45%, rgba(79, 125, 255, 0.22), transparent 70%),
+      #0b1030;
+  }
+
+  .title-cover-name {
+    font: 700 clamp(1.4rem, 3vw, 2.2rem) / 1.15 var(--display);
+    color: var(--gold);
+    filter: drop-shadow(0 0 18px rgba(243, 207, 122, 0.35));
+  }
+
+  .title-cover-lang {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
   .type-cover span:nth-child(3n) {
     color: var(--gold);
   }
@@ -372,7 +410,13 @@ const greetings = ['Hola', 'Bonjour', 'नमस्ते', 'こんにちは', '
     font-size: 1.25rem;
   }
 
+  /* Long README-derived summaries stay tidy on the card; the panel has the full text. */
   .pcard-body > p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
     color: var(--dim);
     font-size: 0.95rem;
   }

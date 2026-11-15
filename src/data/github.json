@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T00:58:22.152Z",
+  "generatedAt": "2026-11-15T01:10:24.679Z",
   "user": {
     "login": "Devligan",
     "name": "Sriharsha Challangi",
@@ -17,49 +17,49 @@
     {
       "name": "Python",
       "color": "#3572A5",
-      "score": 6.5218960042490535,
+      "score": 6.52184867765757,
       "repos": 11,
       "pct": 100
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "score": 1.6794583402608108,
+      "score": 1.6794390949521552,
       "repos": 2,
       "pct": 26
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "score": 1.6720331016998233,
+      "score": 1.6720217378351192,
       "repos": 5,
       "pct": 26
     },
     {
       "name": "HTML",
       "color": "#e34c26",
-      "score": 0.9755785632726311,
+      "score": 0.9755705935836888,
       "repos": 5,
       "pct": 15
     },
     {
       "name": "C#",
       "color": "#7355dd",
-      "score": 0.9238078129283185,
+      "score": 0.923799979316372,
       "repos": 2,
       "pct": 14
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "score": 0.4717268871760069,
+      "score": 0.4717230011784747,
       "repos": 4,
       "pct": 7
     },
     {
       "name": "PLpgSQL",
       "color": "#336790",
-      "score": 0.2725113478358625,
+      "score": 0.2725082228339756,
       "repos": 1,
       "pct": 4
     }
@@ -69,6 +69,12 @@
       "name": "powerflow",
       "description": "Paper-trade the Texas power grid on real ERCOT prices: bid tomorrow's auction, watch real time, settle on ERCOT's calendar.",
       "summary": "ERCOT prices every hour of Texas electricity twice. The day-ahead market clears an auction for tomorrow, today. The real-time market prices the same hour again as it is delivered. A cold snap, a plant trip or a windy night pulls the two apart.",
+      "features": [
+        "You bid blind, as ERCOT requires. Bids close at 10:00 Central the day before and fill at the clearing price ERCOT publishes that afternoon.",
+        "You settle on ERCOT's calendar. Positions are marked to real time as each hour runs and settle when ERCOT calls the prices final, two business days later.",
+        "The prices are real. They come from ERCOT's public market reports every 15 minutes. Only the money is simulated."
+      ],
+      "built": "",
       "url": "https://github.com/Devligan/powerflow",
       "homepage": "https://powerflow-two.vercel.app",
       "stars": 0,
@@ -140,6 +146,14 @@
       "name": "orbital-insight",
       "description": "See which satellites cross your sky tonight, find out what that moving light was, and explore every active satellite on a live globe. Real orbits, computed in your browser.",
       "summary": "Open the site · How the numbers are made · Notes from building it",
+      "features": [
+        "See what's up tonight. Type a town (or share your location) and get the passes you can actually see: only ones where the satellite is sunlit against a dark sky. Each comes with a little chart of your sky, the direction…",
+        "Identify a sighting. Saw a steady light glide past? Say when and which way you were looking, and the whole catalog is checked against your sky for that moment.",
+        "Explore the globe. About 16,000 objects, propagated live. Follow the ISS, scrub time forward, click any dot.",
+        "See who's in orbit. Every satellite by orbit height and tilt, where Starlink's shells, the sun-synchronous band and the geostationary ring jump out.",
+        "Screen for close approaches. Pick a satellite and check it against everything else for the next few days."
+      ],
+      "built": "Every satellite in orbit has a published set of numbers describing its orbit, refreshed every day or so by the people who track them. Feed those numbers into SGP4, the standard model the tracking community uses, and you get where the satellite is at any moment. This site does that in your browser for about 16,000 satellites at once, which is what puts the whole sky on the globe and lets it check a sighting against…",
       "url": "https://github.com/Devligan/orbital-insight",
       "homepage": "https://orbital-insight-drab.vercel.app",
       "stars": 0,
@@ -217,6 +231,14 @@
       "name": "Financial-Market-Volatility-Correlation-Analysis",
       "description": "",
       "summary": "An end-to-end quantitative risk system for a 113-asset cross-asset universe stocks, equity ETFs,",
+      "features": [
+        "Fetches live market data from Yahoo Finance over a long history (default window: 2010-01-01 -> today) with a committed snapshot fallback (data/price_history.csv), so everything also works offline.",
+        "Calculates advanced risk & return metrics annualized (CAGR) returns, annualized volatility, Sharpe and Sortino ratios, maximum drawdown, Calmar ratio, historical VaR/CVaR (95% & 99%), skewness, excess kurtosis, beta,…",
+        "Benchmark-relative analytics tracking error, information ratio and up/down capture ratios to separate skill from market exposure, plus calendar-year return tables and the largest drawdown episodes (peak -> trough ->…",
+        "Builds correlation matrices to study co-movement, plus rolling correlation and rolling volatility for any pair of assets.",
+        "Optimizes portfolios maximum-Sharpe (tangency) portfolio, global minimum-variance portfolio, a Markowitz efficient frontier, and 10,000 Monte Carlo portfolios for context, all long-only via SLSQP."
+      ],
+      "built": "The analytics live in a small package; every entry point is a thin presenter on top of it.",
       "url": "https://github.com/Devligan/Financial-Market-Volatility-Correlation-Analysis",
       "homepage": "",
       "stars": 0,
@@ -276,6 +298,8 @@
       "name": "MATH-4322-Group-4-Project",
       "description": "Group project for MATH 4322",
       "summary": "This repository contains a Quarto file used for our final report. To avoid merging conflict: 1. create your own branch 2. pull the latest changes 3. make changes and commit 4. open a pull request for everyone to apporve before merging.",
+      "features": [],
+      "built": "",
       "url": "https://github.com/Devligan/MATH-4322-Group-4-Project",
       "homepage": "",
       "stars": 0,
@@ -293,6 +317,8 @@
       "name": "Spotify-Wrapped",
       "description": "COSC 3337 Group 1 Project",
       "summary": "",
+      "features": [],
+      "built": "",
       "url": "https://github.com/Devligan/Spotify-Wrapped",
       "homepage": "",
       "stars": 0,
@@ -339,6 +365,8 @@
       "name": "Crypto-Server",
       "description": "Server to store coingecko crypto api prices",
       "summary": "Crypto Terminal is a personal full-stack project built to work around the limitations of CoinGecko's free tier API, which only provides up to 90 days of historical data per request.",
+      "features": [],
+      "built": "",
       "url": "https://github.com/Devligan/Crypto-Server",
       "homepage": "https://cryptodashboard-sigma.vercel.app",
       "stars": 0,
@@ -384,6 +412,8 @@
       "name": "ATS-Resume-Maxer",
       "description": "Personal Resume Builder project",
       "summary": "",
+      "features": [],
+      "built": "",
       "url": "https://github.com/Devligan/ATS-Resume-Maxer",
       "homepage": "",
       "stars": 0,
@@ -425,6 +455,14 @@
       "name": "Inventory-Tracker",
       "description": "",
       "summary": "",
+      "features": [
+        "Add new inventory items",
+        "Remove existing items",
+        "Categorize items as perishable or non-perishable",
+        "View all items in the inventory",
+        "Simple logging of actions and changes"
+      ],
+      "built": "",
       "url": "https://github.com/Devligan/Inventory-Tracker",
       "homepage": "",
       "stars": 0,
@@ -450,7 +488,15 @@
     {
       "name": "Fake_News_Detector",
       "description": "A project to determine whether news if real or fake.",
-      "summary": "",
+      "summary": "A simple and interpretable web app that classifies news articles as FAKE or REAL using logistic regression trained on TF-IDF features.",
+      "features": [
+        "Accepts raw news text or a URL to a news article.",
+        "Cleans and lemmatizes text using nltk.",
+        "Vectorizes input using a trained TfidfVectorizer.",
+        "Predicts FAKE or REAL using logistic regression.",
+        "Provides confidence score for each prediction."
+      ],
+      "built": "",
       "url": "https://github.com/Devligan/Fake_News_Detector",
       "homepage": "",
       "stars": 0,
@@ -498,6 +544,13 @@
       "name": "A-B-Testing",
       "description": "",
       "summary": "This project analyzes monthly marketing performance data from a control and test group to determine whether the test campaign led to statistically significant improvements. For more information on the data click here.",
+      "features": [
+        "Test group spent 11% more than control",
+        "Received 33% fewer impressions and 41% lower reach",
+        "Add to Cart rate dropped by 32%",
+        "No significant change in purchases"
+      ],
+      "built": "",
       "url": "https://github.com/Devligan/A-B-Testing",
       "homepage": "",
       "stars": 0,
@@ -524,6 +577,14 @@
       "name": "Mobile_EDA_Price_Predictor",
       "description": "EDA on mobile devices",
       "summary": "This notebook contains an exploratory data analysis (EDA) of a mobile phone dataset, aiming to understand the relationship between various hardware/software features and the price of the devices.",
+      "features": [
+        "Hardware features: RAM, storage, battery, camera, etc.",
+        "Connectivity: 3G/4G/5G, NFC, IR blaster, Wi-Fi, etc.",
+        "Display and build: screen size, refresh rate, resolution, protection",
+        "Brand, model, and launch details",
+        "Target variable: price_usd"
+      ],
+      "built": "",
       "url": "https://github.com/Devligan/Mobile_EDA_Price_Predictor",
       "homepage": "",
       "stars": 0,
@@ -550,6 +611,14 @@
       "name": "Casting-product-image-data-for-quality-inspection",
       "description": "A deeplearning project that aims to automate defect detection in casting",
       "summary": "Manual inspection of metal castings in manufacturing is expensive, slow, and inconsistent. Trained inspectors must evaluate thousands of parts daily, yet human error and fatigue often lead to missed defects — putting safety, cost, and quality at risk.",
+      "features": [
+        "Preprocessing pipeline with image augmentation",
+        "Fine-tuned ResNet18 model using transfer learning",
+        "Evaluation with accuracy, precision, recall, ROC AUC, and confusion matrix",
+        "Explainability via SHAP to interpret model predictions",
+        "Visual overlays to show model reasoning on individual images"
+      ],
+      "built": "",
       "url": "https://github.com/Devligan/Casting-product-image-data-for-quality-inspection",
       "homepage": "",
       "stars": 0,
@@ -592,6 +661,13 @@
       "name": "PlantIdentifier",
       "description": "",
       "summary": "This is a deep learning-powered web app that identifies plant types from images using a Convolutional Neural Network (CNN). Built with TensorFlow and deployed using Gradio, it achieves 97% accuracy on unseen plant images.",
+      "features": [
+        "Identifies plant type from uploaded images",
+        "Simple drag-and-drop image upload",
+        "Powered by a CNN model trained on real-world plant datasets",
+        "Deployed using Gradio on Hugging Face Spaces"
+      ],
+      "built": "",
       "url": "https://github.com/Devligan/PlantIdentifier",
       "homepage": "",
       "stars": 0,
@@ -623,6 +699,13 @@
       "name": "Multilingual_AI_Translator",
       "description": "Multilingual voice/text translator using NLLB-200 and gTTS",
       "summary": "This Gradio app lets you translate text or speech into another language and hear it spoken aloud using:",
+      "features": [
+        "Text Translation: Type in any sentence and get a translation with audio output.",
+        "Voice Input: Speak into your mic and get your speech transcribed, translated, and read back.",
+        "Automatic Language Detection for source text.",
+        "Supports 50+ Languages (based on gTTS support + NLLB)."
+      ],
+      "built": "",
       "url": "https://github.com/Devligan/Multilingual_AI_Translator",
       "homepage": "",
       "stars": 0,
@@ -650,6 +733,8 @@
       "name": "connect_4_python",
       "description": "Basic Connect 4 in Python using tkinter",
       "summary": "",
+      "features": [],
+      "built": "",
       "url": "https://github.com/Devligan/connect_4_python",
       "homepage": "",
       "stars": 0,
@@ -676,6 +761,8 @@
       "name": "electron_Wikipedia-Getting-to-Philosophy",
       "description": "Making Wikipedia:Getting to Philosophy",
       "summary": "",
+      "features": [],
+      "built": "",
       "url": "https://github.com/Devligan/electron_Wikipedia-Getting-to-Philosophy",
       "homepage": "",
       "stars": 0,
@@ -712,6 +799,8 @@
       "name": "sales_search_sqlite",
       "description": "SQLite to emulate SQL file and perform analysis of it in Python",
       "summary": "",
+      "features": [],
+      "built": "",
       "url": "https://github.com/Devligan/sales_search_sqlite",
       "homepage": "",
       "stars": 0,
@@ -738,6 +827,8 @@
       "name": "math_api",
       "description": "A basic math API",
       "summary": "",
+      "features": [],
+      "built": "",
       "url": "https://github.com/Devligan/math_api",
       "homepage": "",
       "stars": 0,
@@ -764,6 +855,8 @@
       "name": "word_guesser",
       "description": "A word guessing game like Wordle",
       "summary": "An HTML / JavaScript project where players try to guess a word, similar to Wordle. Each time they guess your code will display the letters that are in the correct place, letters that are in the word but not in the right spot, and letters that are not in the word at all. Open…",
+      "features": [],
+      "built": "",
       "url": "https://github.com/Devligan/word_guesser",
       "homepage": "",
       "stars": 0,
@@ -795,6 +888,8 @@
       "name": "electron_to_do_list",
       "description": "A digital to do list made with electron",
       "summary": "",
+      "features": [],
+      "built": "",
       "url": "https://github.com/Devligan/electron_to_do_list",
       "homepage": "",
       "stars": 0,
@@ -926,78 +1021,6 @@
       "url": "https://github.com/Devligan/Financial-Market-Volatility-Correlation-Analysis/commit/f76b62c8066e3404d29c502cecdb731072ff85ba"
     },
     {
-      "repo": "MATH-4322-Group-4-Project",
-      "message": "Forgot a change",
-      "date": "2026-04-28T04:12:19Z",
-      "url": "https://github.com/Devligan/MATH-4322-Group-4-Project/commit/a8e40738922f30a50126ec83cfe97966f8a6dc74"
-    },
-    {
-      "repo": "MATH-4322-Group-4-Project",
-      "message": "Adding file + few changes to introduction",
-      "date": "2026-04-28T04:10:46Z",
-      "url": "https://github.com/Devligan/MATH-4322-Group-4-Project/commit/46b58cad0aa924280fe981e289ec568eb0d5a53d"
-    },
-    {
-      "repo": "Spotify-Wrapped",
-      "message": "done",
-      "date": "2026-04-25T01:29:01Z",
-      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/477f81424014cdb6e80569450e2423ee65a910e1"
-    },
-    {
-      "repo": "Spotify-Wrapped",
-      "message": "Sample similarity Score",
-      "date": "2026-04-24T19:03:24Z",
-      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/0337ceee06dd2125d5f5869897af2affb9769618"
-    },
-    {
-      "repo": "Spotify-Wrapped",
-      "message": "Updated test to understand what the data is",
-      "date": "2026-04-19T23:28:09Z",
-      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/5c2bf6416f4c9bf66a71b4b5911dc647e9bc0906"
-    },
-    {
-      "repo": "Spotify-Wrapped",
-      "message": "Removed artist",
-      "date": "2026-04-19T23:12:19Z",
-      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/bddd9ec78fe7bd9adea428c5e6fded44442f84e5"
-    },
-    {
-      "repo": "Spotify-Wrapped",
-      "message": "Fixed data leakage",
-      "date": "2026-04-19T23:04:59Z",
-      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/ff940ecbd19eac9dd8d4a1b1065b50f9a82a8de7"
-    },
-    {
-      "repo": "Spotify-Wrapped",
-      "message": "Updated classifcation",
-      "date": "2026-04-19T22:11:48Z",
-      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/35f6e24d6855e320e1e47956e29af95ed439da26"
-    },
-    {
-      "repo": "Spotify-Wrapped",
-      "message": "Finished data",
-      "date": "2026-04-18T01:03:20Z",
-      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/1c2bcbbc116e26bc6a985a6c848735a8c825b9ed"
-    },
-    {
-      "repo": "Spotify-Wrapped",
-      "message": "Pushing more data",
-      "date": "2026-04-16T22:02:29Z",
-      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/8ce4c82bacc53c0a11e04e16db257ea451956927"
-    },
-    {
-      "repo": "Spotify-Wrapped",
-      "message": "Pushing data so far",
-      "date": "2026-04-16T12:10:59Z",
-      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/3c3eee8ef9f4f07c12abf546774a3cb04f58477c"
-    },
-    {
-      "repo": "Spotify-Wrapped",
-      "message": "API calling",
-      "date": "2026-04-14T01:52:57Z",
-      "url": "https://github.com/Devligan/Spotify-Wrapped/commit/d9a495c53693acae56bb27ad8d1cfe6206f131e2"
-    },
-    {
       "repo": "Crypto-Server",
       "message": "Made the Readme",
       "date": "2026-03-20T01:40:56Z",
@@ -1056,11 +1079,83 @@
       "message": "update",
       "date": "2026-03-19T01:31:17Z",
       "url": "https://github.com/Devligan/Crypto-Server/commit/0c46b824847a7cdb3420cf2f4cf5325304c2cc60"
+    },
+    {
+      "repo": "Fake_News_Detector",
+      "message": "Update Readme.md",
+      "date": "2025-08-07T00:11:23Z",
+      "url": "https://github.com/Devligan/Fake_News_Detector/commit/af60106aa07fd1de79b6503d52ed1db5bca7648f"
+    },
+    {
+      "repo": "Fake_News_Detector",
+      "message": "Add files via upload",
+      "date": "2025-07-29T00:17:58Z",
+      "url": "https://github.com/Devligan/Fake_News_Detector/commit/83d4dbf1ff9e222607d1244a769d53cdfb45aff9"
+    },
+    {
+      "repo": "Casting-product-image-data-for-quality-inspection",
+      "message": "Add files via upload",
+      "date": "2025-07-23T22:35:58Z",
+      "url": "https://github.com/Devligan/Casting-product-image-data-for-quality-inspection/commit/bcadbd12ca8ac8c300e42aef9c26c144715044ff"
+    },
+    {
+      "repo": "Casting-product-image-data-for-quality-inspection",
+      "message": "Add files via upload",
+      "date": "2025-07-23T22:32:58Z",
+      "url": "https://github.com/Devligan/Casting-product-image-data-for-quality-inspection/commit/c231422220cde7a5d6b9ce87e5488ffec95a0485"
+    },
+    {
+      "repo": "Casting-product-image-data-for-quality-inspection",
+      "message": "Add files via upload",
+      "date": "2025-07-23T21:47:56Z",
+      "url": "https://github.com/Devligan/Casting-product-image-data-for-quality-inspection/commit/68c712cd9ab4d116763b89ccac2430fe21c8cfde"
+    },
+    {
+      "repo": "Casting-product-image-data-for-quality-inspection",
+      "message": "Create README.md",
+      "date": "2025-07-21T20:31:01Z",
+      "url": "https://github.com/Devligan/Casting-product-image-data-for-quality-inspection/commit/c1dedee5dcc1502af697b0614f3d6b532c9710ad"
+    },
+    {
+      "repo": "Casting-product-image-data-for-quality-inspection",
+      "message": "Add files via upload",
+      "date": "2025-07-21T20:27:39Z",
+      "url": "https://github.com/Devligan/Casting-product-image-data-for-quality-inspection/commit/e4e06f0f14675b43ff4ebff330af233f0f3c967d"
     }
   ],
   "calendar": {
     "total": 429,
     "weeks": [
+      [
+        [
+          "2025-11-09",
+          0
+        ],
+        [
+          "2025-11-10",
+          0
+        ],
+        [
+          "2025-11-11",
+          0
+        ],
+        [
+          "2025-11-12",
+          0
+        ],
+        [
+          "2025-11-13",
+          0
+        ],
+        [
+          "2025-11-14",
+          0
+        ],
+        [
+          "2025-11-15",
+          0
+        ]
+      ],
       [
         [
           "2025-11-16",
@@ -1518,11 +1613,11 @@
         ],
         [
           "2026-03-02",
-          0
+          1
         ],
         [
           "2026-03-03",
-          1
+          0
         ],
         [
           "2026-03-04",
@@ -2610,21 +2705,15 @@
         ],
         [
           "2026-11-12",
-          57
+          58
         ],
         [
           "2026-11-13",
-          84
+          83
         ],
         [
           "2026-11-14",
           33
-        ]
-      ],
-      [
-        [
-          "2026-11-15",
-          0
         ]
       ]
     ],

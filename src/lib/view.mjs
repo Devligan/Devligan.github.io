@@ -81,8 +81,38 @@ function status(repo) {
   return { label: `Updated ${shortDate(repo.pushedAt, { month: 'short', year: 'numeric' })}`, live: false };
 }
 
+// Category for a repo featured by topic: from its topics if they say, else its language.
+const CATEGORY_TOPICS = [
+  [/fintech|finance|trading|quant|market/, 'Fintech'],
+  [/machine-learning|deep-learning|ml|ai|nlp|computer-vision/, 'Machine learning'],
+  [/data-science|data-analysis|analytics|data-visualization/, 'Data science'],
+  [/web|nextjs|react|frontend|full-stack/, 'Web app'],
+  [/game/, 'Game'],
+];
+function categoryFor(repo) {
+  for (const [re, label] of CATEGORY_TOPICS) if (repo.topics.some((t) => re.test(t))) return label;
+  const lang = langName(repo.language);
+  return lang ? `${lang} project` : 'Project';
+}
+
+// Stack for a repo featured by topic: its main languages, plus any topics that
+// name tools rather than categories (e.g. `pytorch`, `streamlit`).
+function stackFor(repo) {
+  const total = repo.languages.reduce((s, l) => s + l.size, 0) || 1;
+  const langs = repo.languages.filter((l) => l.size / total > 0.05).map((l) => langName(l));
+  const tools = repo.topics.filter((t) => !t.startsWith('portfolio') && !CATEGORY_TOPICS.some(([re]) => re.test(t)));
+  return [...new Set([...langs, ...tools])];
+}
+
+// "PlantIdentifier" / "plant_identifier" / "plant-identifier" → "Plant Identifier"
+const humanize = (name) =>
+  name
+    .replace(/[-_]+/g, ' ')
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+
 function toProject(entry, repo) {
-  const title = entry.title ?? repo.name.replace(/[-_]/g, ' ');
+  const title = entry.title ?? humanize(repo.name);
   return {
     ...entry,
     id: slug(title),
@@ -97,7 +127,7 @@ function toProject(entry, repo) {
     createdAt: repo.createdAt,
     pushedAt: repo.pushedAt,
     status: status(repo),
-    stack: entry.stack ?? repo.topics.filter((t) => !t.startsWith('portfolio')),
+    stack: entry.stack ?? stackFor(repo),
   };
 }
 
@@ -107,7 +137,19 @@ const configured = config.projects
 // Repos tagged `portfolio` on GitHub join the featured list automatically.
 const tagged = data.repos
   .filter((r) => r.topics.includes('portfolio') && !config.projects.some((p) => p.repo === r.name))
-  .map((r) => toProject({ repo: r.name, featured: true, category: 'Project', built: r.summary }, r));
+  .map((r) =>
+    toProject(
+      {
+        repo: r.name,
+        featured: true,
+        category: categoryFor(r),
+        summary: r.description || r.summary,
+        does: r.features,
+        built: r.built || (r.features.length ? '' : r.summary),
+      },
+      r,
+    ),
+  );
 
 // Most recently pushed first, so whatever I'm working on rises to the top.
 const byRecent = (a, b) => b.pushedAt.localeCompare(a.pushedAt);
@@ -131,11 +173,13 @@ export const otherRepos = data.repos
   }))
   .sort((a, b) => b.pushedAt.localeCompare(a.pushedAt));
 
-// ── Recent commits (no single repo may take over) ────────────────────────────
+// ── Recent commits: projects only, and no single repo may take over ──────────
 
+const projectRepos = new Set(allProjects.map((p) => p.repo));
 export const recentCommits = (() => {
   const perRepo = new Map();
   return data.log.filter((e) => {
+    if (!projectRepos.has(e.repo)) return false;
     const n = (perRepo.get(e.repo) ?? 0) + 1;
     perRepo.set(e.repo, n);
     return n <= 2;

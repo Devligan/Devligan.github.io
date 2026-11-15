@@ -88,7 +88,10 @@ const REPO_QUERY = /* GraphQL */ `
             name
             target { ... on Commit { history(author: { id: $userId }) { totalCount } } }
           }
+          # Git paths are case-sensitive, so try the usual spellings.
           readme: object(expression: "HEAD:README.md") { ... on Blob { text } }
+          readmeLower: object(expression: "HEAD:readme.md") { ... on Blob { text } }
+          readmeTitle: object(expression: "HEAD:Readme.md") { ... on Blob { text } }
         }
       }
     }
@@ -134,7 +137,75 @@ function readmeSummary(md) {
         !/\b(npm|pip) install\b|run "|https?:\/\//i.test(p),
     );
   const first = (paras[0] ?? '').replace(/\*\*|__|`/g, '');
-  return first.length > 280 ? first.slice(0, 277).replace(/\s+\S*$/, '') + '…' : first;
+  return clip(first, 280);
+}
+
+const clip = (s, n) => (s.length > n ? s.slice(0, n - 1).replace(/\s+\S*$/, '') + '…' : s);
+
+/** Markdown inline → plain text, minus leading emoji/checkmarks. */
+function plain(s) {
+  return s
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/<[^>]+>/g, '')
+    .replace(/\*\*|__|`/g, '')
+    .replace(/^[\p{Extended_Pictographic}✅✔️‍\s]+/u, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/** Split a README into { heading, lines } sections, skipping code blocks. */
+function readmeSections(md) {
+  const out = [];
+  let cur = { heading: '', lines: [] };
+  let inCode = false;
+  for (const line of md.replace(/\r/g, '').split('\n')) {
+    if (/^\s*```/.test(line)) {
+      inCode = !inCode;
+      continue;
+    }
+    if (inCode) continue;
+    const h = line.match(/^#{1,4}\s+(.*)/);
+    if (h) {
+      out.push(cur);
+      cur = { heading: plain(h[1]), lines: [] };
+    } else cur.lines.push(line);
+  }
+  out.push(cur);
+  return out;
+}
+
+function bulletsOf(lines) {
+  const items = [];
+  for (const line of lines) {
+    const m = line.match(/^\s{0,3}[-*+]\s+(.*)/);
+    if (m) items.push(m[1]);
+    else if (items.length && /^\s{2,}\S/.test(line)) items[items.length - 1] += ` ${line.trim()}`;
+  }
+  return items.map(plain).filter((t) => t.length > 12 && !/\b(npm|pip) install\b/i.test(t));
+}
+
+const SKIP = /install|usage|setup|getting started|running|run it|quick ?start|credit|licen|limitation|todo|contribut|how to use|dataset|data source|author/i;
+
+/**
+ * What a tagged project does and how it's built, in the README's own words.
+ * Used for repos featured with the `portfolio` topic that have no hand-written entry.
+ */
+function readmeDetails(md) {
+  if (!md) return { features: [], built: '' };
+  const secs = readmeSections(md);
+  const featureSec =
+    secs.find((s) => /feature|what (it|the project|you can) do|highlight|capabilit|overview/i.test(s.heading) && bulletsOf(s.lines).length >= 2) ??
+    secs.find((s) => !SKIP.test(s.heading) && bulletsOf(s.lines).length >= 2);
+  const features = featureSec ? bulletsOf(featureSec.lines).slice(0, 5).map((t) => clip(t, 220)) : [];
+
+  const builtSec = secs.find((s) => /how it works|architecture|how it fits|tech|stack|built with|implementation|model/i.test(s.heading));
+  const para = builtSec?.lines
+    .join('\n')
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .find((p) => p.length > 40 && !/^[|>*+-]/.test(p));
+  return { features, built: para ? clip(plain(para.replace(/\n/g, ' ')), 420) : '' };
 }
 
 /** Every real screenshot in a README (no badges), in order, with its alt text. */
@@ -283,10 +354,12 @@ async function main() {
     .filter((r) => !r.isFork && !r.isEmpty)
     .map((r) => {
       const topics = r.repositoryTopics.nodes.map((n) => n.topic.name);
+      const readme = (r.readme ?? r.readmeTitle ?? r.readmeLower)?.text ?? '';
       return {
         name: r.name,
         description: r.description ?? '',
-        summary: readmeSummary(r.readme?.text),
+        summary: readmeSummary(readme),
+        ...readmeDetails(readme),
         url: r.url,
         homepage: r.homepageUrl || '',
         stars: r.stargazerCount,
@@ -299,7 +372,7 @@ async function main() {
         topics,
         commits: r.defaultBranchRef?.target?.history?.totalCount ?? 0,
         branch: r.defaultBranchRef?.name ?? 'main',
-        readme: r.readme?.text ?? '',
+        readme,
       };
     })
     .filter((r) => !hidden.has(r.name.toLowerCase()) && !r.topics.includes('portfolio-hide'));
@@ -343,8 +416,11 @@ async function main() {
     calendar = prev.calendar ?? null;
   }
 
-  // Adventure log: real commit messages from the most recently active repos.
-  const recent = [...repos].sort((a, b) => b.pushedAt.localeCompare(a.pushedAt)).slice(0, 6);
+  // Recent commit messages from the most recently active projects (not coursework).
+  const recent = repos
+    .filter((r) => mediaFor.has(r.name))
+    .sort((a, b) => b.pushedAt.localeCompare(a.pushedAt))
+    .slice(0, 6);
   const log = [];
   for (const r of recent) {
     try {

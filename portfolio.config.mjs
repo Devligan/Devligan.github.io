@@ -5,7 +5,10 @@
 //  screenshots) is pulled from GitHub by scripts/fetch-github.mjs every hour.
 //
 //  Ways to change what shows up without touching this file:
-//    • Add the topic `portfolio` to a GitHub repo  → it's featured in Projects.
+//    • Add the topic `portfolio` to a GitHub repo  → it's featured in Projects, with
+//      "What it does" and "How it's built" taken from its README, its README
+//      screenshots as the gallery, and its homepage URL as the live demo.
+//      For a hand-tuned write-up, add it to `projects` below.
 //    • Add the topic `portfolio-hide` to a repo     → it's hidden everywhere.
 //    • Add screenshots to a featured repo's README  → they become its gallery.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -254,6 +257,8 @@ export default {
       ],
       built: 'Meta’s NLLB-200 (distilled 600M) through Hugging Face Transformers for translation, gTTS for speech, SpeechRecognition and LangDetect for input, all behind a Gradio app.',
       stack: ['Transformers', 'NLLB-200', 'gTTS', 'Gradio'],
+      // No screenshots in the repo, so the card shows these instead.
+      coverWords: ['Hola', 'Bonjour', 'नमस्ते', 'こんにちは', 'Olá', 'Ciao', '안녕하세요', 'Hallo', 'Merhaba', '你好'],
       live: 'https://huggingface.co/spaces/Devligan/Multilingual_AI_Translator',
       liveNote: 'Hosted on Hugging Face; may take ~30s to wake.',
     },
