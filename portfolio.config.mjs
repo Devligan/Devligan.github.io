@@ -15,9 +15,9 @@ export default {
     headline: 'CS + MIS + Math at the University of Houston. Previously a software engineering intern on the ETRM team at Mitsui & Co.',
     // Best rewritten in your own words; this is a plain factual placeholder.
     bio: [
-      'I study Computer Science, MIS and Math at the University of Houston, and I’m most interested in software for financial and energy markets.',
+      'I study Computer Science, MIS and Math at the University of Houston, and I’m aiming for software engineering roles in big tech and fintech.',
       'In summer 2026 I interned on the ETRM team at Mitsui & Co. Energy Marketing and Services. I reviewed more than 100 C# customizations ahead of an ETRM upgrade and built a pipeline that loads ERCOT market data into a SQL database.',
-      'My own projects are in the same area, including a paper-trading app for ERCOT power prices and a risk analysis toolkit covering 113 assets. I also tutor C++ and Python at UH.',
+      'Most of my own projects are finance-related, including a paper-trading app for ERCOT power prices and a risk analysis toolkit covering 113 assets. I also tutor C++ and Python at UH.',
     ],
     email: 'sriharshachallangi@gmail.com',
     linkedin: 'https://www.linkedin.com/in/sriharsha-challangi/',
