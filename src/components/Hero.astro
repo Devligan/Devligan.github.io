@@ -1,5 +1,5 @@
 ---
-import { ago, data, profile, stats } from '../lib/view.mjs';
+import { profile } from '../lib/view.mjs';
 
 const [first, ...rest] = profile.name.split(' ');
 const last = rest.join(' ');
@@ -9,6 +9,12 @@ const menu = [
   { href: '#about', label: 'About' },
   { href: '#contact', label: 'Contact' },
 ];
+const links = [
+  profile.linkedin && { label: 'LinkedIn', href: profile.linkedin },
+  { label: 'GitHub', href: `https://github.com/${profile.handle}` },
+  profile.email && { label: 'Email', href: `mailto:${profile.email}` },
+  profile.resume && { label: 'Résumé', href: profile.resume },
+].filter(Boolean) as { label: string; href: string }[];
 // Tilted orbits around the name, each with a satellite riding it.
 const CX = 500;
 const CY = 300;
@@ -75,18 +81,17 @@ const orbits = [
       }
     </nav>
 
-    <p class="synced">
-      <span class="live-dot" aria-hidden="true"></span>
-      Synced from GitHub <span data-ago={data.generatedAt}>{ago(data.generatedAt)}</span>
-      <span class="sep">·</span>
-      <span class="num">{stats.commits}</span> commits
+    <p class="reach">
+      {profile.location && <span>{profile.location}</span>}
       {
-        stats.contributions !== null && (
+        links.map((l) => (
           <>
             <span class="sep">·</span>
-            <span class="num">{stats.contributions}</span> contributions this year
+            <a href={l.href} target={l.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
+              {l.label}
+            </a>
           </>
-        )
+        ))
       }
     </p>
   </div>
@@ -289,20 +294,25 @@ const orbits = [
     transform: none;
   }
 
-  .synced {
+  .reach {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.5rem;
     margin-top: 2rem;
-    font-size: 0.82rem;
+    font-size: 0.86rem;
     color: var(--faint);
   }
 
-  .synced .num {
+  .reach a {
     color: var(--dim);
-    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .reach a:hover {
+    color: var(--gold);
   }
 
   .sep {

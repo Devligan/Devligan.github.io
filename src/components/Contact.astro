@@ -1,5 +1,5 @@
 ---
-import { data, profile, shortDate } from '../lib/view.mjs';
+import { data, profile } from '../lib/view.mjs';
 
 const links = [
   profile.email && { label: 'Email', value: profile.email, href: `mailto:${profile.email}`, primary: true },
@@ -35,9 +35,14 @@ const links = [
 <footer class="footer">
   <div class="wrap footer-inner">
     <p>© {new Date(data.generatedAt).getUTCFullYear()} {profile.name} · {profile.location}</p>
-    <p>
-      Synced from GitHub {shortDate(data.generatedAt)} and rebuilt every hour ·
-      <a href={`https://github.com/${profile.handle}/${profile.handle}.github.io`} target="_blank" rel="noopener">source</a>
+    <p class="footer-links">
+      {
+        links.map((l) => (
+          <a href={l.href} target={l.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
+            {l.label}
+          </a>
+        ))
+      }
     </p>
   </div>
 </footer>
@@ -95,7 +100,17 @@ const links = [
     gap: 0.5rem 2rem;
   }
 
+  .footer-links {
+    display: flex;
+    gap: 1.4rem;
+  }
+
   .footer a {
     color: var(--dim);
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    color: var(--gold);
   }
 </style>

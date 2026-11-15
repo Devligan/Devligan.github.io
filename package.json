@@ -3,7 +3,9 @@
   "type": "module",
   "version": "1.0.0",
   "private": true,
-  "description": "Sriharsha Challangi's portfolio: a JRPG save file that rebuilds itself from GitHub.",
+  "description": "Sriharsha Challangi's personal portfolio site.",
+  "author": "Sriharsha Challangi",
+  "license": "UNLICENSED",
   "scripts": {
     "sync": "node scripts/fetch-github.mjs",
     "dev": "astro dev",
