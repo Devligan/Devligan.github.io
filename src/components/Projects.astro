@@ -1,6 +1,6 @@
 ---
 import Heading from './Heading.astro';
-import { allProjects, ago, featured, more, otherRepos, shortDate } from '../lib/view.mjs';
+import { allProjects, ago, featured, more, otherRepos } from '../lib/view.mjs';
 
 // Cover for a project with no screenshots (the translator): greetings scattered across the card.
 const greetings = ['Hola', 'Bonjour', 'नमस्ते', 'こんにちは', 'Olá', 'Ciao', '안녕하세요', 'Hallo', 'Merhaba', '你好'].map((text, i) => ({
@@ -184,21 +184,6 @@ const greetings = ['Hola', 'Bonjour', 'नमस्ते', 'こんにちは', '
               ))}
             </ul>
           </div>
-
-          <dl class="d-stats">
-            <div>
-              <dt>Commits</dt>
-              <dd class="num">{p.commits}</dd>
-            </div>
-            <div>
-              <dt>Started</dt>
-              <dd>{shortDate(p.createdAt, { month: 'short', year: 'numeric' })}</dd>
-            </div>
-            <div>
-              <dt>Last push</dt>
-              <dd data-ago={p.pushedAt}>{ago(p.pushedAt)}</dd>
-            </div>
-          </dl>
 
           <nav class="d-nav" aria-label="Other projects">
             <a href={prev.source} data-open={prev.id}>
@@ -761,36 +746,13 @@ const greetings = ['Hola', 'Bonjour', 'नमस्ते', 'こんにちは', '
     margin-top: 2rem;
   }
 
-  .d-stats {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin: 2rem 0 0;
-    border-top: 1px solid var(--line-soft);
-    border-bottom: 1px solid var(--line-soft);
-  }
-
-  .d-stats div {
-    padding: 1rem 0;
-  }
-
-  .d-stats dt {
-    font-size: 0.74rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--faint);
-  }
-
-  .d-stats dd {
-    margin: 0.2rem 0 0;
-    font: 600 1.15rem var(--display);
-  }
-
   .d-nav {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-    margin-top: 1.6rem;
+    margin-top: 2rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--line-soft);
   }
 
   .d-nav a {
