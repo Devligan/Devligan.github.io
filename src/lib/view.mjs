@@ -61,8 +61,6 @@ export const stats = {
   streak: data.calendar?.current ?? null,
   longest: data.calendar?.longest ?? null,
   last7: sum(days.slice(-7)),
-  practice: data.practice?.solved ?? null,
-  practiceUrl: data.practice?.url,
   since: new Date(data.user.createdAt).getUTCFullYear(),
 };
 
@@ -71,9 +69,8 @@ export const stats = {
 const repoByName = new Map(data.repos.map((r) => [r.name, r]));
 const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
-/** A repo's human name: its project title, "NeetCode" for the practice repo, else the repo name. */
+/** A repo's human name: its project title, else the repo name. */
 export function displayName(repo) {
-  if (repo === config.practice?.repo) return 'NeetCode';
   return config.projects.find((p) => p.repo === repo)?.title ?? repo;
 }
 

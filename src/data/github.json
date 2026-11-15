@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T00:55:02.507Z",
+  "generatedAt": "2026-11-15T00:58:01.132Z",
   "user": {
     "login": "Devligan",
     "name": "Sriharsha Challangi",
@@ -8,8 +8,8 @@
     "followers": 1
   },
   "stats": {
-    "repos": 21,
-    "totalCommits": 396,
+    "repos": 20,
+    "totalCommits": 375,
     "stars": 0,
     "lastPush": "2026-11-14T23:10:23Z"
   },
@@ -17,49 +17,49 @@
     {
       "name": "Python",
       "color": "#3572A5",
-      "score": 7.350350724304435,
-      "repos": 12,
+      "score": 6.52189738102979,
+      "repos": 11,
       "pct": 100
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "score": 1.6794636581093263,
+      "score": 1.6794589001294846,
       "repos": 2,
-      "pct": 23
+      "pct": 26
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "score": 1.6720362417366188,
+      "score": 1.6720334322865469,
       "repos": 5,
-      "pct": 23
+      "pct": 26
     },
     {
       "name": "HTML",
       "color": "#e34c26",
-      "score": 0.9755807654430533,
+      "score": 0.9755787951196029,
       "repos": 5,
-      "pct": 13
+      "pct": 15
     },
     {
       "name": "C#",
       "color": "#7355dd",
-      "score": 0.9238099774975645,
+      "score": 0.9238080408166088,
       "repos": 2,
-      "pct": 13
+      "pct": 14
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "score": 0.4717279609476475,
+      "score": 0.47172700022389674,
       "repos": 4,
-      "pct": 6
+      "pct": 7
     },
     {
       "name": "PLpgSQL",
       "color": "#336790",
-      "score": 0.27251221133392933,
+      "score": 0.2725114387458452,
       "repos": 1,
       "pct": 4
     }
@@ -271,32 +271,6 @@
           "h": 384
         }
       ]
-    },
-    {
-      "name": "neetcode-submissions-rkmukv8m",
-      "description": "My NeetCode.io problem submissions",
-      "summary": "NeetCode.io is a coding interview preparation platform featuring curated problems, video solutions, and an in-browser code editor. This repository is automatically populated with your accepted (or all) solutions using the GitHub Sync feature.",
-      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m",
-      "homepage": "",
-      "stars": 0,
-      "forks": 0,
-      "archived": false,
-      "createdAt": "2026-03-30T16:21:18Z",
-      "pushedAt": "2026-06-17T00:55:08Z",
-      "language": {
-        "name": "Python",
-        "color": "#3572A5"
-      },
-      "languages": [
-        {
-          "name": "Python",
-          "color": "#3572A5",
-          "size": 12795
-        }
-      ],
-      "topics": [],
-      "commits": 21,
-      "branch": "main"
     },
     {
       "name": "MATH-4322-Group-4-Project",
@@ -952,18 +926,6 @@
       "url": "https://github.com/Devligan/Financial-Market-Volatility-Correlation-Analysis/commit/f76b62c8066e3404d29c502cecdb731072ff85ba"
     },
     {
-      "repo": "neetcode-submissions-rkmukv8m",
-      "message": "Add: palindromic-substrings - submission-0",
-      "date": "2026-06-17T00:55:07Z",
-      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/d85b5178dfe990ae6dbf8201e6e20efd635ef090"
-    },
-    {
-      "repo": "neetcode-submissions-rkmukv8m",
-      "message": "Add: duplicate-integer - submission-2",
-      "date": "2026-05-08T22:10:30Z",
-      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/370e8836d852c854de02fff18e17ff7fd4bad08a"
-    },
-    {
       "repo": "MATH-4322-Group-4-Project",
       "message": "Forgot a change",
       "date": "2026-04-28T04:12:19Z",
@@ -1036,57 +998,99 @@
       "url": "https://github.com/Devligan/Spotify-Wrapped/commit/d9a495c53693acae56bb27ad8d1cfe6206f131e2"
     },
     {
-      "repo": "neetcode-submissions-rkmukv8m",
-      "message": "Add: three-integer-sum - submission-1",
-      "date": "2026-04-08T15:24:01Z",
-      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/25cfc162e049c9fc0210783c8ff6325ac67a87fd"
+      "repo": "Crypto-Server",
+      "message": "Made the Readme",
+      "date": "2026-03-20T01:40:56Z",
+      "url": "https://github.com/Devligan/Crypto-Server/commit/da59469f35acd4c68eb4400fe41306437da78b23"
     },
     {
-      "repo": "neetcode-submissions-rkmukv8m",
-      "message": "Add: buy-and-sell-crypto - submission-0",
-      "date": "2026-04-02T17:07:13Z",
-      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/81dbfc1dedaa8e951cffc127f257fc2c86303646"
+      "repo": "Crypto-Server",
+      "message": "Forgot to upadet API",
+      "date": "2026-03-20T01:33:12Z",
+      "url": "https://github.com/Devligan/Crypto-Server/commit/e657ded6c91e1729e07774783e6d6278a776b0f3"
     },
     {
-      "repo": "neetcode-submissions-rkmukv8m",
-      "message": "Add: three-integer-sum - submission-0",
-      "date": "2026-04-02T17:01:02Z",
-      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/9a990e71448b2f22189ba270d473422705228336"
+      "repo": "Crypto-Server",
+      "message": "Final touches",
+      "date": "2026-03-20T01:30:00Z",
+      "url": "https://github.com/Devligan/Crypto-Server/commit/3a88b30b076ea3e4beec793d3e8ca0cc8976be46"
     },
     {
-      "repo": "neetcode-submissions-rkmukv8m",
-      "message": "Add: linked-list-cycle-detection - submission-0",
-      "date": "2026-03-31T19:15:14Z",
-      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/74891a3cbbbceb1febc0546fc367e757520e4bbf"
+      "repo": "Crypto-Server",
+      "message": "Im blind",
+      "date": "2026-03-20T01:28:10Z",
+      "url": "https://github.com/Devligan/Crypto-Server/commit/1251146a1dbae5edb97be51fe78d53314ee9513a"
     },
     {
-      "repo": "neetcode-submissions-rkmukv8m",
-      "message": "Add: is-palindrome - submission-0",
-      "date": "2026-03-31T19:01:40Z",
-      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/420cdd789005680e58b7b913542fc5356d557769"
+      "repo": "Crypto-Server",
+      "message": "Update URL for Vercel",
+      "date": "2026-03-20T00:59:19Z",
+      "url": "https://github.com/Devligan/Crypto-Server/commit/58c30e7e7d84b94de93093cd59a1e91ffd07dff2"
     },
     {
-      "repo": "neetcode-submissions-rkmukv8m",
-      "message": "Add: merge-two-sorted-linked-lists - submission-0",
-      "date": "2026-03-31T15:37:21Z",
-      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/e81ec999505a029f65d24d8e37460d579c3057a6"
+      "repo": "Crypto-Server",
+      "message": "Website finished",
+      "date": "2026-03-20T00:34:17Z",
+      "url": "https://github.com/Devligan/Crypto-Server/commit/ca0334710eca7de88c9cabd989a8c54dab0326dc"
     },
     {
-      "repo": "neetcode-submissions-rkmukv8m",
-      "message": "Add: reverse-a-linked-list - submission-0",
-      "date": "2026-03-31T15:30:34Z",
-      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/c43ce64c3417a7c0f87386ecd2898ceb2fc13607"
+      "repo": "Crypto-Server",
+      "message": "initial site",
+      "date": "2026-03-19T23:50:26Z",
+      "url": "https://github.com/Devligan/Crypto-Server/commit/3f5692582efe04a85a8180b088c5f3fadfe46329"
     },
     {
-      "repo": "neetcode-submissions-rkmukv8m",
-      "message": "Add: max-water-container - submission-0",
-      "date": "2026-03-31T15:28:11Z",
-      "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m/commit/91f4d0168e80aee2fb347ff657f339ba04e79428"
+      "repo": "Crypto-Server",
+      "message": "cleaning",
+      "date": "2026-03-19T23:40:18Z",
+      "url": "https://github.com/Devligan/Crypto-Server/commit/4a3e2838db3a3a1c267bac0a1e247c8e397f6880"
+    },
+    {
+      "repo": "Crypto-Server",
+      "message": "fix migrations and update schema",
+      "date": "2026-03-19T22:39:01Z",
+      "url": "https://github.com/Devligan/Crypto-Server/commit/5f485606fe0fab746745fb5625d6f22adb6c922c"
+    },
+    {
+      "repo": "Crypto-Server",
+      "message": "update",
+      "date": "2026-03-19T01:31:17Z",
+      "url": "https://github.com/Devligan/Crypto-Server/commit/0c46b824847a7cdb3420cf2f4cf5325304c2cc60"
     }
   ],
   "calendar": {
     "total": 428,
     "weeks": [
+      [
+        [
+          "2025-11-09",
+          0
+        ],
+        [
+          "2025-11-10",
+          0
+        ],
+        [
+          "2025-11-11",
+          0
+        ],
+        [
+          "2025-11-12",
+          0
+        ],
+        [
+          "2025-11-13",
+          0
+        ],
+        [
+          "2025-11-14",
+          0
+        ],
+        [
+          "2025-11-15",
+          0
+        ]
+      ],
       [
         [
           "2025-11-16",
@@ -1544,11 +1548,11 @@
         ],
         [
           "2026-03-02",
-          0
+          1
         ],
         [
           "2026-03-03",
-          1
+          0
         ],
         [
           "2026-03-04",
@@ -2636,29 +2640,19 @@
         ],
         [
           "2026-11-12",
-          57
+          58
         ],
         [
           "2026-11-13",
-          84
+          83
         ],
         [
           "2026-11-14",
           32
         ]
-      ],
-      [
-        [
-          "2026-11-15",
-          0
-        ]
       ]
     ],
     "current": 5,
     "longest": 5
-  },
-  "practice": {
-    "solved": 20,
-    "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m"
   }
 }

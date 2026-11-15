@@ -360,23 +360,6 @@ async function main() {
   }
   log.sort((a, b) => b.date.localeCompare(a.date));
 
-  // Practice repo: one folder per solved problem.
-  let practice = null;
-  if (config.practice?.repo) {
-    try {
-      const tree = await rest(`/repos/${LOGIN}/${config.practice.repo}/git/trees/HEAD?recursive=1`);
-      const problems = new Set(
-        tree.tree
-          .filter((t) => t.type === 'blob' && t.path.split('/').length >= 2)
-          .map((t) => t.path.split('/').slice(0, -1).join('/')),
-      );
-      practice = { solved: problems.size, url: `https://github.com/${LOGIN}/${config.practice.repo}` };
-    } catch (e) {
-      console.warn(`  practice skipped, keeping last snapshot: ${e.message}`);
-      practice = prev.practice ?? prev.training ?? null;
-    }
-  }
-
   const totalCommits = repos.reduce((s, r) => s + r.commits, 0);
   const data = {
     generatedAt: new Date().toISOString(),
@@ -397,7 +380,6 @@ async function main() {
     repos,
     log: log.slice(0, 40),
     calendar,
-    practice,
   };
 
   await mkdir(path.dirname(OUT), { recursive: true });

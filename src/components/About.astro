@@ -6,7 +6,6 @@ const figures = [
   { value: stats.commits.toLocaleString('en-US'), label: 'Commits', note: 'public repos, lifetime' },
   stats.contributions !== null && { value: stats.contributions.toLocaleString('en-US'), label: 'Contributions', note: 'last 12 months' },
   { value: stats.repos, label: 'Public repos', note: `on GitHub since ${stats.since}` },
-  stats.practice !== null && { value: stats.practice, label: config.practice.label, note: 'solved', href: stats.practiceUrl },
 ].filter(Boolean) as { value: string | number; label: string; note: string; href?: string }[];
 
 // Contribution calendar for the year, as a gold heatmap.
@@ -134,7 +133,7 @@ const STEP = 15;
 
   .figures {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     margin: 0;
     padding: 0.4rem;
   }
@@ -147,12 +146,15 @@ const STEP = 15;
     padding: 1.1rem 1.2rem;
   }
 
-  .figures > div:nth-child(odd) {
-    border-right: 1px solid var(--line-soft);
+  .figures > div + div {
+    border-left: 1px solid var(--line-soft);
   }
 
-  .figures > div:nth-child(n + 3) {
-    border-top: 1px solid var(--line-soft);
+  @media (max-width: 460px) {
+    .figures > div + div {
+      border-left: 0;
+      border-top: 1px solid var(--line-soft);
+    }
   }
 
   .figures dt {

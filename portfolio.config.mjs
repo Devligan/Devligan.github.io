@@ -92,12 +92,6 @@ export default {
     Infrastructure: ['PostgreSQL', 'Supabase', 'Vercel', 'AWS EC2', 'GitHub Actions'],
   },
 
-  // Repo with one folder per solved problem (LeetCode-style practice).
-  practice: {
-    repo: 'neetcode-submissions-rkmukv8m',
-    label: 'NeetCode problems',
-  },
-
   // Everything here is taken from each repo's own README (or, for the ML
   // projects, the notebook's printed results). Don't add claims that aren't there.
   //
@@ -266,5 +260,5 @@ export default {
   ],
 
   // Never shown, whatever GitHub says.
-  hidden: ['TheOdinProject', 'Devligan.github.io'],
+  hidden: ['TheOdinProject', 'Devligan.github.io', 'neetcode-submissions-rkmukv8m'],
 };
