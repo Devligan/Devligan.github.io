@@ -12,7 +12,7 @@ import config from '../portfolio.config.mjs';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const OUT = path.join(ROOT, 'src/data/github.json');
-const ART_DIR = path.join(ROOT, 'public/quest-art');
+const ART_DIR = path.join(ROOT, 'public/project-art');
 const LOGIN = config.github;
 
 function token() {
@@ -157,7 +157,7 @@ async function downloadArt(repo, url) {
   if (!res.ok) throw new Error(`${url} → ${res.status}`);
   await mkdir(ART_DIR, { recursive: true });
   await writeFile(path.join(ART_DIR, file), Buffer.from(await res.arrayBuffer()));
-  return `/quest-art/${file}`;
+  return `/project-art/${file}`;
 }
 
 // ── Derived numbers ──────────────────────────────────────────────────────────
@@ -241,14 +241,14 @@ async function main() {
     })
     .filter((r) => !hidden.has(r.name.toLowerCase()) && !r.topics.includes('portfolio-hide'));
 
-  // Card art for quests: the first real screenshot in each README, saved locally
+  // Card art for projects: the first real screenshot in each README, saved locally
   // so the site never hotlinks.
-  const questRepos = new Set([
-    ...config.quests.map((q) => q.repo),
+  const projectRepos = new Set([
+    ...config.projects.map((p) => p.repo),
     ...repos.filter((r) => r.topics.includes('portfolio')).map((r) => r.name),
   ]);
   for (const r of repos) {
-    if (!questRepos.has(r.name) || !r.imageUrl) continue;
+    if (!projectRepos.has(r.name) || !r.imageUrl) continue;
     try {
       r.image = await downloadArt(r.name, r.imageUrl);
     } catch (e) {
@@ -290,20 +290,20 @@ async function main() {
   }
   log.sort((a, b) => b.date.localeCompare(a.date));
 
-  // Training grounds: one folder per solved problem.
-  let training = null;
-  if (config.training?.repo) {
+  // Practice repo: one folder per solved problem.
+  let practice = null;
+  if (config.practice?.repo) {
     try {
-      const tree = await rest(`/repos/${LOGIN}/${config.training.repo}/git/trees/HEAD?recursive=1`);
+      const tree = await rest(`/repos/${LOGIN}/${config.practice.repo}/git/trees/HEAD?recursive=1`);
       const problems = new Set(
         tree.tree
           .filter((t) => t.type === 'blob' && t.path.split('/').length >= 2)
           .map((t) => t.path.split('/').slice(0, -1).join('/')),
       );
-      training = { solved: problems.size, url: `https://github.com/${LOGIN}/${config.training.repo}` };
+      practice = { solved: problems.size, url: `https://github.com/${LOGIN}/${config.practice.repo}` };
     } catch (e) {
-      console.warn(`  training skipped, keeping last snapshot: ${e.message}`);
-      training = prev.training ?? null;
+      console.warn(`  practice skipped, keeping last snapshot: ${e.message}`);
+      practice = prev.practice ?? prev.training ?? null;
     }
   }
 
@@ -327,7 +327,7 @@ async function main() {
     repos,
     log: log.slice(0, 40),
     calendar,
-    training,
+    practice,
   };
 
   await mkdir(path.dirname(OUT), { recursive: true });

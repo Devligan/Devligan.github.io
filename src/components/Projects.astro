@@ -1,0 +1,381 @@
+---
+import SectionHead from './SectionHead.astro';
+import { ago, featured, more, shortDate } from '../lib/view.mjs';
+
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+
+<section class="section" id="projects" aria-labelledby="projects-title">
+  <div class="wrap">
+    <SectionHead index="01 — Work" title="Projects" note="Selected work, fintech first. Each one is live or open source." id="projects-title" />
+
+    <ol class="projects">
+      {
+        featured.map((p, i) => (
+          <li class="project reveal">
+            <div class="p-meta mono">
+              <span class="p-no">{pad(i + 1)}</span>
+              <span class="p-cat">{p.category}</span>
+              <span class={`p-status ${p.status.tone}`}>
+                {p.status.tone === 'up' && <span class="live-dot" aria-hidden="true" />}
+                {p.status.label}
+              </span>
+            </div>
+
+            <div class="p-main">
+              <a class="p-media" href={p.live || p.source} target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+                {p.image ? (
+                  <img src={p.image} alt="" loading="lazy" decoding="async" />
+                ) : (
+                  <div class="p-cover">
+                    <span class="p-cover-title">{p.title}</span>
+                    <span class="p-cover-sub mono">{p.repo}</span>
+                  </div>
+                )}
+              </a>
+
+              <div class="p-body">
+                <h3>{p.title}</h3>
+                <p class="p-summary">{p.summary}</p>
+
+                {p.highlight && (
+                  <div class="p-highlight">
+                    <p class="p-hl-value mono">{p.highlight.value}</p>
+                    <p class="p-hl-label">{p.highlight.label}</p>
+                  </div>
+                )}
+
+                <div class="p-links">
+                  {p.live && (
+                    <a class="btn btn-primary" href={p.live} target="_blank" rel="noopener">
+                      Live demo <span class="arrow">↗</span>
+                    </a>
+                  )}
+                  <a class="btn" href={p.source} target="_blank" rel="noopener">
+                    Source <span class="arrow">↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {(p.problem || p.approach || p.result) && (
+              <dl class="p-brief">
+                {p.problem && (
+                  <div>
+                    <dt class="label">Problem</dt>
+                    <dd>{p.problem}</dd>
+                  </div>
+                )}
+                {p.approach && (
+                  <div>
+                    <dt class="label">Approach</dt>
+                    <dd>{p.approach}</dd>
+                  </div>
+                )}
+                {p.result && (
+                  <div>
+                    <dt class="label">Result</dt>
+                    <dd>{p.result}</dd>
+                  </div>
+                )}
+              </dl>
+            )}
+
+            <div class="p-foot">
+              <ul class="tags" aria-label="Built with">
+                {p.stack.map((s: string) => (
+                  <li class="tag">{s}</li>
+                ))}
+              </ul>
+              <p class="p-stats mono">
+                <span>{p.commits} commits</span>
+                <span>since {shortDate(p.createdAt, { month: 'short', year: 'numeric' })}</span>
+                <span>
+                  pushed <span data-ago={p.pushedAt}>{ago(p.pushedAt)}</span>
+                </span>
+              </p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    {
+      more.length > 0 && (
+        <div class="more">
+          <h3 class="more-title reveal">More projects</h3>
+          <ul class="more-grid">
+            {more.map((p) => (
+              <li class="card reveal">
+                <p class="label">{p.category}</p>
+                <h4>{p.title}</h4>
+                <p class="card-summary">{p.summary}</p>
+                <ul class="tags">
+                  {p.stack.map((s: string) => (
+                    <li class="tag">{s}</li>
+                  ))}
+                </ul>
+                <div class="card-links">
+                  {p.live && (
+                    <a href={p.live} target="_blank" rel="noopener">
+                      Try it ↗
+                    </a>
+                  )}
+                  <a href={p.source} target="_blank" rel="noopener">
+                    Source ↗
+                  </a>
+                </div>
+                {p.liveNote && <p class="card-note">{p.liveNote}</p>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .projects {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .project {
+    padding: clamp(28px, 4vw, 44px) 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .project:first-child {
+    padding-top: 0;
+  }
+
+  .p-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.4rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.78rem;
+    color: var(--faint);
+  }
+
+  .p-no {
+    color: var(--accent);
+  }
+
+  .p-cat {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--dim);
+  }
+
+  .p-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .p-status.up {
+    color: var(--up);
+  }
+
+  .p-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: clamp(24px, 4vw, 48px);
+    align-items: start;
+  }
+
+  .p-media {
+    display: block;
+    text-decoration: none;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--panel);
+  }
+
+  .p-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .p-media:hover img {
+    transform: scale(1.025);
+  }
+
+  .p-cover {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.4rem;
+    height: 100%;
+    padding: clamp(20px, 3vw, 32px);
+    background:
+      radial-gradient(ellipse 60% 70% at 85% 10%, rgba(242, 181, 68, 0.16), transparent 70%),
+      linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% 40px,
+      var(--panel);
+  }
+
+  .p-cover-title {
+    font: italic 400 clamp(2.6rem, 5vw, 4rem) / 1 var(--serif);
+  }
+
+  .p-cover-sub {
+    font-size: 0.78rem;
+    color: var(--faint);
+  }
+
+  .p-body h3 {
+    font-size: clamp(2.2rem, 4vw, 3rem);
+  }
+
+  .p-summary {
+    margin-top: 0.6rem;
+    font-size: 1.08rem;
+    color: var(--dim);
+  }
+
+  .p-highlight {
+    margin-top: 1.6rem;
+    padding: 1rem 0 1rem 1.1rem;
+    border-left: 2px solid var(--accent);
+  }
+
+  .p-hl-value {
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+
+  .p-hl-label {
+    margin-top: 0.4rem;
+    font-size: 0.88rem;
+    color: var(--dim);
+  }
+
+  .p-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.6rem;
+  }
+
+  .p-brief {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(20px, 3vw, 40px);
+    margin: clamp(24px, 3vw, 36px) 0 0;
+    padding-top: 1.4rem;
+    border-top: 1px dashed var(--line);
+  }
+
+  .p-brief dd {
+    margin: 0.45rem 0 0;
+    font-size: 0.94rem;
+    line-height: 1.6;
+    color: var(--dim);
+  }
+
+  .p-foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.6rem;
+  }
+
+  .p-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 1.2rem;
+    font-size: 0.76rem;
+    color: var(--faint);
+  }
+
+  /* ── More projects ── */
+
+  .more {
+    margin-top: clamp(48px, 6vw, 72px);
+  }
+
+  .more-title {
+    margin-bottom: 1.25rem;
+    font-size: 1.9rem;
+  }
+
+  .more-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 22px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    transition: border-color 0.2s;
+  }
+
+  .card:hover {
+    border-color: var(--line-2);
+  }
+
+  .card h4 {
+    font: 400 1.6rem/1.1 var(--serif);
+  }
+
+  .card-summary {
+    flex: 1;
+    font-size: 0.93rem;
+    color: var(--dim);
+  }
+
+  .card-links {
+    display: flex;
+    gap: 1.2rem;
+    font-size: 0.88rem;
+    font-weight: 500;
+  }
+
+  .card-links a {
+    text-decoration: none;
+  }
+
+  .card-links a:first-child {
+    color: var(--accent);
+  }
+
+  .card-links a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .card-note {
+    font-size: 0.78rem;
+    color: var(--faint);
+  }
+
+  @media (max-width: 860px) {
+    .p-main,
+    .p-brief {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

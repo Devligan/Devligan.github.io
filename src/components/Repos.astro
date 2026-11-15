@@ -1,0 +1,268 @@
+---
+import SectionHead from './SectionHead.astro';
+import { ago, languages, repos } from '../lib/view.mjs';
+---
+
+<section class="section" id="repos" aria-labelledby="repos-title">
+  <div class="wrap">
+    <SectionHead index="03 — Index" title="Repositories" note="Every public repo, newest first. New ones appear here within the hour." id="repos-title" />
+
+    <div class="filters reveal" role="group" aria-label="Filter by language">
+      <button type="button" class="filter" aria-pressed="true" data-filter="all">
+        All <span class="mono">{repos.length}</span>
+      </button>
+      {
+        languages.map((lang) => (
+          <button type="button" class="filter" aria-pressed="false" data-filter={lang}>
+            {lang} <span class="mono">{repos.filter((r) => r.language === lang).length}</span>
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="table reveal">
+      <div class="thead mono" aria-hidden="true">
+        <span>Repository</span>
+        <span>Language</span>
+        <span class="num">Commits</span>
+        <span class="num">Updated</span>
+      </div>
+      <ul class="rows" data-rows>
+        {
+          repos.map((r) => (
+            <li class="row" data-lang={r.language ?? 'none'}>
+              <div class="r-name">
+                <a href={r.url} target="_blank" rel="noopener">
+                  {r.name}
+                </a>
+                {r.featured && <span class="badge">Featured</span>}
+                {r.isNew && <span class="badge badge-new">New</span>}
+                {r.homepage && (
+                  <a class="r-live" href={r.homepage} target="_blank" rel="noopener">
+                    live ↗
+                  </a>
+                )}
+                {r.blurb && <p>{r.blurb}</p>}
+              </div>
+              <span class="r-lang">
+                {r.language ? (
+                  <>
+                    <span class="dot" style={`--c:${r.color}`} aria-hidden="true" />
+                    {r.language}
+                  </>
+                ) : (
+                  <span class="faint">—</span>
+                )}
+              </span>
+              <span class="r-num mono">{r.commits}</span>
+              <span class="r-num mono" data-ago={r.pushedAt}>
+                {ago(r.pushedAt)}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="table-foot">
+      <p class="mono" aria-live="polite" data-log-count></p>
+      <button type="button" class="btn" data-log-more hidden>Show all repositories</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.4rem 0.8rem;
+    font: 500 0.84rem/1 var(--sans);
+    color: var(--dim);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    cursor: pointer;
+    transition:
+      color 0.15s,
+      border-color 0.15s,
+      background 0.15s;
+  }
+
+  .filter span {
+    font-size: 0.74rem;
+    color: var(--faint);
+  }
+
+  .filter:hover {
+    color: var(--text);
+    border-color: var(--line-2);
+  }
+
+  .filter[aria-pressed='true'] {
+    color: var(--accent-ink);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .filter[aria-pressed='true'] span {
+    color: rgba(26, 19, 5, 0.6);
+  }
+
+  .table {
+    border-top: 1px solid var(--line-2);
+  }
+
+  .thead,
+  .row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 9rem 6rem 7rem;
+    gap: 1.25rem;
+  }
+
+  .thead {
+    padding: 0.7rem 0.5rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--faint);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .num {
+    text-align: right;
+  }
+
+  .rows {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .row {
+    align-items: baseline;
+    padding: 0.95rem 0.5rem;
+    border-bottom: 1px solid var(--line);
+    transition: background 0.15s;
+  }
+
+  .row[hidden] {
+    display: none;
+  }
+
+  .row:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .r-name {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.3rem 0.6rem;
+    min-width: 0;
+  }
+
+  .r-name > a:first-child {
+    font-weight: 500;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  .r-name > a:first-child:hover {
+    color: var(--accent);
+  }
+
+  .r-name p {
+    flex-basis: 100%;
+    font-size: 0.88rem;
+    color: var(--dim);
+    max-width: 70ch;
+  }
+
+  .badge {
+    padding: 0.05em 0.5em;
+    font: 500 0.68rem/1.5 var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(242, 181, 68, 0.35);
+    border-radius: 4px;
+  }
+
+  .badge-new {
+    color: var(--up);
+    border-color: rgba(62, 207, 142, 0.35);
+  }
+
+  .r-live {
+    font: 400 0.78rem var(--mono);
+    color: var(--up);
+    text-decoration: none;
+  }
+
+  .r-live:hover {
+    text-decoration: underline;
+  }
+
+  .r-lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: var(--dim);
+  }
+
+  .r-num {
+    text-align: right;
+    font-size: 0.84rem;
+    color: var(--dim);
+  }
+
+  .faint {
+    color: var(--faint);
+  }
+
+  .table-foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--faint);
+  }
+
+  .table-foot .btn[hidden] {
+    display: none;
+  }
+
+  @media (max-width: 760px) {
+    .thead {
+      display: none;
+    }
+    .row {
+      grid-template-columns: auto auto 1fr;
+      gap: 0.4rem 1.2rem;
+    }
+    .r-name {
+      grid-column: 1 / -1;
+    }
+    .r-num {
+      text-align: left;
+    }
+    .r-num:last-child {
+      text-align: right;
+    }
+    .r-num:not(:last-child)::after {
+      content: ' commits';
+    }
+  }
+</style>

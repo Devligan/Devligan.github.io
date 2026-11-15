@@ -1,23 +1,24 @@
 ---
 import Base from '../layouts/Base.astro';
-import TitleScreen from '../components/TitleScreen.astro';
-import Quests from '../components/Quests.astro';
-import Status from '../components/Status.astro';
-import QuestLog from '../components/QuestLog.astro';
-import Journey from '../components/Journey.astro';
-import SavePoint from '../components/SavePoint.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Projects from '../components/Projects.astro';
+import About from '../components/About.astro';
+import Repos from '../components/Repos.astro';
+import Activity from '../components/Activity.astro';
+import Contact from '../components/Contact.astro';
 ---
 
 <Base>
-  <TitleScreen />
+  <Header />
   <main>
-    <Quests />
-    <Status />
-    <QuestLog />
-    <Journey />
-    <SavePoint />
+    <Hero />
+    <Projects />
+    <About />
+    <Repos />
+    <Activity />
+    <Contact />
   </main>
-  <div class="win toast" role="status" aria-live="polite" data-toast></div>
   <script>
     import '../scripts/main.js';
   </script>

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T23:53:59.765Z",
+  "generatedAt": "2026-11-15T00:05:49.178Z",
   "user": {
     "login": "Devligan",
     "name": "Sriharsha Challangi",
@@ -17,49 +17,49 @@
     {
       "name": "Python",
       "color": "#3572A5",
-      "score": 7.350630553772776,
+      "score": 7.3505763536435955,
       "repos": 12,
       "pct": 100
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "score": 1.6814904454505157,
+      "score": 1.6795423280367343,
       "repos": 2,
       "pct": 23
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "score": 1.6721088301822342,
+      "score": 1.6720826931918704,
       "repos": 5,
       "pct": 23
     },
     {
       "name": "HTML",
       "color": "#e34c26",
-      "score": 0.9756211687329936,
+      "score": 0.9756133429984009,
       "repos": 5,
       "pct": 13
     },
     {
       "name": "C#",
       "color": "#7355dd",
-      "score": 0.9238496908699088,
+      "score": 0.9238419987728759,
       "repos": 2,
       "pct": 13
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "score": 0.47177747741843346,
+      "score": 0.47174384564703586,
       "repos": 4,
       "pct": 6
     },
     {
       "name": "PLpgSQL",
       "color": "#336790",
-      "score": 0.27055404047155635,
+      "score": 0.2725249855474968,
       "repos": 1,
       "pct": 4
     }
@@ -84,12 +84,12 @@
         {
           "name": "TypeScript",
           "color": "#3178c6",
-          "size": 1241705
+          "size": 1241700
         },
         {
           "name": "PLpgSQL",
           "color": "#336790",
-          "size": 471289
+          "size": 476014
         },
         {
           "name": "CSS",
@@ -113,7 +113,7 @@
       "commits": 178,
       "branch": "master",
       "imageUrl": "https://raw.githubusercontent.com/Devligan/powerflow/master/public/showcase/markets.png",
-      "image": "/quest-art/powerflow.png"
+      "image": "/project-art/powerflow.png"
     },
     {
       "name": "orbital-insight",
@@ -162,7 +162,7 @@
       "commits": 91,
       "branch": "main",
       "imageUrl": "https://raw.githubusercontent.com/Devligan/orbital-insight/main/docs/images/home.jpg",
-      "image": "/quest-art/orbital-insight.jpg"
+      "image": "/project-art/orbital-insight.jpg"
     },
     {
       "name": "Financial-Market-Volatility-Correlation-Analysis",
@@ -1479,11 +1479,11 @@
         ],
         [
           "2026-03-02",
-          0
+          1
         ],
         [
           "2026-03-03",
-          1
+          0
         ],
         [
           "2026-03-04",
@@ -2571,11 +2571,11 @@
         ],
         [
           "2026-11-12",
-          57
+          58
         ],
         [
           "2026-11-13",
-          84
+          83
         ],
         [
           "2026-11-14",
@@ -2586,7 +2586,7 @@
     "current": 5,
     "longest": 5
   },
-  "training": {
+  "practice": {
     "solved": 20,
     "url": "https://github.com/Devligan/neetcode-submissions-rkmukv8m"
   }

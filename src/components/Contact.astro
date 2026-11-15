@@ -1,0 +1,165 @@
+---
+import { data, profile, shortDate } from '../lib/view.mjs';
+
+const links = [
+  profile.email && { label: 'Email', value: profile.email, href: `mailto:${profile.email}` },
+  profile.linkedin && {
+    label: 'LinkedIn',
+    value: profile.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''),
+    href: profile.linkedin,
+  },
+  { label: 'GitHub', value: `github.com/${profile.handle}`, href: `https://github.com/${profile.handle}` },
+  profile.resume && { label: 'Résumé', value: 'PDF', href: profile.resume },
+].filter(Boolean) as { label: string; value: string; href: string }[];
+---
+
+<section class="section contact" id="contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <div class="contact-grid reveal">
+      <div>
+        <p class="section-index">05 — Contact</p>
+        <h2 id="contact-title">Let’s talk.</h2>
+        <p class="contact-note">
+          Interested in fintech and software engineering roles. Email is the fastest way to reach me.
+        </p>
+      </div>
+      <ul class="channels">
+        {
+          links.map((l) => (
+            <li>
+              <a href={l.href} target={l.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
+                <span class="label">{l.label}</span>
+                <span class="ch-value">{l.value}</span>
+                <span class="ch-arrow" aria-hidden="true">
+                  ↗
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p>© {new Date(data.generatedAt).getUTCFullYear()} {profile.name}</p>
+    <p>
+      Synced from GitHub {shortDate(data.generatedAt)} · rebuilt hourly ·
+      <a href={`https://github.com/${profile.handle}/${profile.handle}.github.io`} target="_blank" rel="noopener">source</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(32px, 6vw, 88px);
+    align-items: end;
+    padding: clamp(32px, 5vw, 56px);
+    background:
+      radial-gradient(ellipse 60% 90% at 0% 100%, rgba(242, 181, 68, 0.12), transparent 70%),
+      var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+  }
+
+  .section-index {
+    font: 500 12px/1 var(--mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  h2 {
+    margin-top: 0.9rem;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-style: italic;
+  }
+
+  .contact-note {
+    max-width: 38ch;
+    margin-top: 1rem;
+    color: var(--dim);
+  }
+
+  .channels {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--line-2);
+  }
+
+  .channels a {
+    display: grid;
+    grid-template-columns: 6rem minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 1rem 0.25rem;
+    text-decoration: none;
+    border-bottom: 1px solid var(--line-2);
+  }
+
+  .ch-value {
+    font-size: 1.05rem;
+    overflow-wrap: anywhere;
+  }
+
+  .ch-arrow {
+    color: var(--faint);
+    transition:
+      transform 0.15s,
+      color 0.15s;
+  }
+
+  .channels a:hover .ch-value {
+    color: var(--accent);
+  }
+
+  .channels a:hover .ch-arrow {
+    color: var(--accent);
+    transform: translate(2px, -2px);
+  }
+
+  .footer {
+    margin-top: clamp(64px, 8vw, 100px);
+    padding: 24px 0 36px;
+    border-top: 1px solid var(--line);
+    font-size: 0.84rem;
+    color: var(--faint);
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+  }
+
+  .footer a {
+    color: var(--dim);
+  }
+
+  @media (max-width: 800px) {
+    .contact-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 420px) {
+    .channels a {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.2rem 1rem;
+    }
+    .ch-value {
+      grid-column: 1;
+    }
+    .ch-arrow {
+      grid-row: 1 / span 2;
+      grid-column: 2;
+      align-self: center;
+    }
+  }
+</style>
