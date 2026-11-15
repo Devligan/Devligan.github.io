@@ -14,7 +14,7 @@ const greetings = ['Hola', 'Bonjour', 'नमस्ते', 'こんにちは', '
 
 <section class="section" id="projects" aria-labelledby="projects-title">
   <div class="wrap">
-    <Heading title="Projects" id="projects-title" note="Fintech first. Click any project for screenshots, the full write-up and links." />
+    <Heading title="Projects" id="projects-title" note="Most recently updated first. Click any project for screenshots, details and links." />
 
     {
       [
@@ -147,34 +147,33 @@ const greetings = ['Hola', 'Bonjour', 'नमस्ते', 'こんにちは', '
           </div>
           {p.liveNote && <p class="d-note">{p.liveNote}</p>}
 
-          {p.highlight && (
-            <div class="d-highlight">
-              <p class="d-hl-value gold-text num">{p.highlight.value}</p>
-              <p class="d-hl-label">{p.highlight.label}</p>
-            </div>
+          {p.facts?.length > 0 && (
+            <dl class="d-facts">
+              {p.facts.map((f: { value: string; label: string }) => (
+                <div>
+                  <dt class="num">{f.value}</dt>
+                  <dd>{f.label}</dd>
+                </div>
+              ))}
+            </dl>
           )}
 
-          {(p.problem || p.approach || p.result) && (
-            <dl class="d-brief">
-              {p.problem && (
-                <div>
-                  <dt>The problem</dt>
-                  <dd>{p.problem}</dd>
-                </div>
-              )}
-              {p.approach && (
-                <div>
-                  <dt>How I built it</dt>
-                  <dd>{p.approach}</dd>
-                </div>
-              )}
-              {p.result && (
-                <div>
-                  <dt>The result</dt>
-                  <dd>{p.result}</dd>
-                </div>
-              )}
-            </dl>
+          {p.does?.length > 0 && (
+            <section class="d-block">
+              <h3>What it does</h3>
+              <ul class="d-list">
+                {p.does.map((d: string) => (
+                  <li>{d}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {p.built && (
+            <section class="d-block">
+              <h3>How it’s built</h3>
+              <p>{p.built}</p>
+            </section>
           )}
 
           <div class="d-stack">
@@ -678,41 +677,82 @@ const greetings = ['Hola', 'Bonjour', 'नमस्ते', 'こんにちは', '
     color: var(--faint);
   }
 
-  .d-highlight {
-    margin-top: 2rem;
-    padding: 1.2rem 1.4rem;
-    background: rgba(243, 207, 122, 0.05);
+  /* Key facts: a row of real numbers from the README. */
+  .d-facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    margin: 2rem 0 0;
+    background: rgba(243, 207, 122, 0.04);
     border: 1px solid var(--line);
     border-radius: 12px;
   }
 
-  .d-hl-value {
-    font: 700 clamp(1.9rem, 4vw, 2.6rem) / 1.1 var(--display);
-    letter-spacing: 0.02em;
+  .d-facts div {
+    padding: 1rem 1.2rem;
   }
 
-  .d-hl-label {
-    margin-top: 0.4rem;
+  .d-facts div + div {
+    border-left: 1px solid var(--line-soft);
+  }
+
+  .d-facts dt {
+    font: 700 1.45rem / 1.15 var(--display);
+    color: var(--gold);
+  }
+
+  .d-facts dd {
+    margin: 0.3rem 0 0;
+    font-size: 0.84rem;
+    line-height: 1.45;
     color: var(--dim);
+  }
+
+  .d-block {
+    margin-top: 2rem;
+  }
+
+  .d-block h3 {
+    margin-bottom: 0.6rem;
     font-size: 0.95rem;
-  }
-
-  .d-brief {
-    display: grid;
-    gap: 1.4rem;
-    margin: 2rem 0 0;
-  }
-
-  .d-brief dt {
-    font: 600 0.95rem var(--display);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--gold);
   }
 
-  .d-brief dd {
-    margin: 0.35rem 0 0;
+  .d-block p {
     color: var(--dim);
+  }
+
+  .d-list {
+    display: grid;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .d-list li {
+    position: relative;
+    padding-left: 1.3rem;
+    color: var(--dim);
+  }
+
+  .d-list li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 0.62em;
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: 520px) {
+    .d-facts div + div {
+      border-left: 0;
+      border-top: 1px solid var(--line-soft);
+    }
   }
 
   .d-stack {

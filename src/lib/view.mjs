@@ -110,10 +110,12 @@ const configured = config.projects
 // Repos tagged `portfolio` on GitHub join the featured list automatically.
 const tagged = data.repos
   .filter((r) => r.topics.includes('portfolio') && !config.projects.some((p) => p.repo === r.name))
-  .map((r) => toProject({ repo: r.name, featured: true, category: 'Project', problem: r.summary }, r));
+  .map((r) => toProject({ repo: r.name, featured: true, category: 'Project', built: r.summary }, r));
 
-export const featured = [...configured.filter((p) => p.featured), ...tagged];
-export const more = configured.filter((p) => !p.featured);
+// Most recently pushed first, so whatever I'm working on rises to the top.
+const byRecent = (a, b) => b.pushedAt.localeCompare(a.pushedAt);
+export const featured = [...configured.filter((p) => p.featured), ...tagged].sort(byRecent);
+export const more = configured.filter((p) => !p.featured).sort(byRecent);
 export const allProjects = [...featured, ...more];
 
 // ── Every other repo ─────────────────────────────────────────────────────────
