@@ -1,235 +1,355 @@
 ---
-import { profile, shortDate, stats, weekly } from '../lib/view.mjs';
+import { ago, data, profile, stats } from '../lib/view.mjs';
 
-// Cumulative contributions over the year, drawn like an equity curve.
-const W = 560;
-const H = 220;
-const PAD = { t: 16, r: 8, b: 26, l: 8 };
-const max = Math.max(1, weekly.at(-1)?.cumulative ?? 1) * 1.08;
-const x = (i: number) => PAD.l + (i / Math.max(1, weekly.length - 1)) * (W - PAD.l - PAD.r);
-const y = (v: number) => PAD.t + (1 - v / max) * (H - PAD.t - PAD.b);
-const pts = weekly.map((w, i) => [x(i), y(w.cumulative)] as const);
-const line = pts.map(([px, py], i) => `${i ? 'L' : 'M'}${px.toFixed(1)} ${py.toFixed(1)}`).join(' ');
-const area = pts.length ? `${line} L${pts.at(-1)![0].toFixed(1)} ${H - PAD.b} L${pts[0][0].toFixed(1)} ${H - PAD.b} Z` : '';
-const last = pts.at(-1);
-const grid = [0.25, 0.5, 0.75].map((f) => PAD.t + f * (H - PAD.t - PAD.b));
-const ticks = weekly.length ? [0, Math.floor(weekly.length / 2), weekly.length - 1] : [];
+const [first, ...rest] = profile.name.split(' ');
+const last = rest.join(' ');
+const menu = [
+  { href: '#experience', label: 'Experience' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#about', label: 'About' },
+  { href: '#contact', label: 'Contact' },
+];
+// Words that circle the name.
+const ring = 'SOFTWARE ENGINEER ✦ FINTECH ✦ TRADING SYSTEMS ✦ MARKET DATA ✦ RISK ✦ HOUSTON ✦ ';
+const ticks = Array.from({ length: 72 }, (_, i) => i * 5);
 ---
 
-<section class="hero" id="top" aria-labelledby="hero-title">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <p class="kicker mono">Portfolio · {profile.name}</p>
-      <h1 id="hero-title">{profile.headline}</h1>
-      <p class="intro">{profile.intro}</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="#projects">View projects</a>
-        {profile.email && <a class="btn" href={`mailto:${profile.email}`}>Email me</a>}
-        {profile.linkedin && (
-          <a class="btn" href={profile.linkedin} target="_blank" rel="noopener">
-            LinkedIn <span class="arrow">↗</span>
-          </a>
-        )}
-      </div>
-      <ul class="tags stack" aria-label="Main stack">
-        {profile.stack.map((s: string) => <li class="tag">{s}</li>)}
-      </ul>
-    </div>
-
-    {
-      weekly.length > 0 && (
-        <figure class="chart reveal">
-          <figcaption class="chart-head">
-            <div>
-              <p class="label">GitHub contributions, 12M</p>
-              <p class="chart-value mono">{stats.contributions?.toLocaleString('en-US')}</p>
-            </div>
-            <div class="chart-side mono">
-              <p>
-                7D <strong>{stats.last7}</strong>
-              </p>
-              <p class={stats.delta > 0 ? 'up' : stats.delta < 0 ? 'down' : ''} title="Change vs. the 7 days before">
-                {stats.delta > 0 ? '▲' : stats.delta < 0 ? '▼' : '■'} {Math.abs(stats.delta)} w/w
-              </p>
-            </div>
-          </figcaption>
-          <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Weekly GitHub contributions over the last year, ${stats.contributions} in total`}>
-            <defs>
-              <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#f2b544" stop-opacity="0.32" />
-                <stop offset="1" stop-color="#f2b544" stop-opacity="0" />
-              </linearGradient>
-            </defs>
-            {grid.map((gy) => (
-              <line class="grid" x1={PAD.l} x2={W - PAD.r} y1={gy} y2={gy} />
-            ))}
-            <path class="area" d={area} fill="url(#fill)" />
-            <path class="line" d={line} pathLength="1" />
-            {last && <circle class="last" cx={last[0]} cy={last[1]} r="4" />}
-            {ticks.map((i) => (
-              <text class="tick" x={x(i)} y={H - 6} text-anchor={i === 0 ? 'start' : i === weekly.length - 1 ? 'end' : 'middle'}>
-                {shortDate(weekly[i].start, { month: 'short', year: '2-digit' })}
-              </text>
-            ))}
-          </svg>
-        </figure>
-      )
-    }
+<section class="hero" id="top" aria-labelledby="hero-name">
+  <div class="sigil" aria-hidden="true">
+    <svg viewBox="0 0 600 600">
+      <defs>
+        <path id="ring-path" d="M300,300 m-232,0 a232,232 0 1,1 464,0 a232,232 0 1,1 -464,0" />
+        <radialGradient id="sigil-glow">
+          <stop offset="0" stop-color="#f3cf7a" stop-opacity="0.16" />
+          <stop offset="1" stop-color="#f3cf7a" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="300" cy="300" r="290" fill="url(#sigil-glow)" />
+      <g class="spin-slow">
+        <circle cx="300" cy="300" r="270" class="ring" />
+        {ticks.map((deg) => <line x1="300" y1="34" x2="300" y2={deg % 30 === 0 ? 48 : 40} transform={`rotate(${deg} 300 300)`} class="tick" />)}
+        <text class="ring-text">
+          <textPath href="#ring-path" textLength="1440">{ring}{ring}</textPath>
+        </text>
+      </g>
+      <g class="spin-rev">
+        <circle cx="300" cy="300" r="205" class="ring ring-dash" />
+        <ellipse cx="300" cy="300" rx="205" ry="70" class="ring orbit" transform="rotate(-24 300 300)" />
+        <circle cx="300" cy="300" r="5" class="sat" transform="rotate(-24 300 300) translate(205 0)" />
+      </g>
+    </svg>
   </div>
+
+  <div class="wrap hero-inner">
+    <p class="eyebrow hero-eyebrow">Portfolio</p>
+    <h1 id="hero-name" class="name">
+      <span class="gold-text">{first}</span>
+      <span class="gold-text">{last}</span>
+    </h1>
+    <div class="role">
+      <span class="role-line" aria-hidden="true"></span>
+      <span>{profile.role}</span>
+      <span class="role-line" aria-hidden="true"></span>
+    </div>
+    <p class="headline">{profile.headline}</p>
+
+    <nav class="menu frame" aria-label="Sections">
+      {
+        menu.map((m) => (
+          <a href={m.href}>
+            <span class="cursor" aria-hidden="true">▸</span>
+            {m.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <p class="synced">
+      <span class="live-dot" aria-hidden="true"></span>
+      Synced from GitHub <span data-ago={data.generatedAt}>{ago(data.generatedAt)}</span>
+      <span class="sep">·</span>
+      <span class="num">{stats.commits}</span> commits
+      {
+        stats.contributions !== null && (
+          <>
+            <span class="sep">·</span>
+            <span class="num">{stats.contributions}</span> contributions this year
+          </>
+        )
+      }
+    </p>
+  </div>
+
+  <a class="scroll-cue" href="#experience" aria-label="Scroll to experience">
+    <span></span>
+  </a>
 </section>
 
 <style>
   .hero {
     position: relative;
-    padding: clamp(56px, 9vw, 112px) 0 clamp(24px, 4vw, 40px);
+    display: grid;
+    place-items: center;
+    min-height: 100svh;
+    padding: 96px 0 120px;
     overflow: hidden;
     isolation: isolate;
   }
 
-  /* Faint graph paper, fading out. */
+  /* Nebula glow behind everything. */
   .hero::before {
     content: '';
     position: absolute;
-    inset: 0;
-    z-index: -1;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 48px 48px;
-    opacity: 0.35;
-    mask-image: radial-gradient(ellipse 70% 80% at 30% 20%, #000 20%, transparent 75%);
+    inset: -20% -10% 0;
+    z-index: -2;
+    background:
+      radial-gradient(ellipse 45% 35% at 50% 46%, rgba(243, 207, 122, 0.1), transparent 70%),
+      radial-gradient(ellipse 40% 40% at 18% 70%, rgba(139, 123, 255, 0.18), transparent 70%),
+      radial-gradient(ellipse 40% 40% at 85% 25%, rgba(143, 220, 255, 0.1), transparent 70%);
   }
 
-  .hero::after {
-    content: '';
+  /* Big enough that the lettered ring frames the content instead of crossing it. */
+  .sigil {
     position: absolute;
-    right: -10%;
-    top: -20%;
+    left: 50%;
+    top: 50%;
     z-index: -1;
-    width: 60%;
+    width: max(1180px, 118vh);
     aspect-ratio: 1;
-    background: radial-gradient(circle, rgba(242, 181, 68, 0.1), transparent 65%);
+    transform: translate(-50%, -50%);
+    opacity: 0.8;
   }
 
-  .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-    gap: clamp(32px, 5vw, 72px);
-    align-items: center;
+  @media (max-width: 700px) {
+    .sigil {
+      width: 200vw;
+      opacity: 0.45;
+    }
   }
 
-  .kicker {
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-
-  h1 {
-    margin-top: 1rem;
-    font-size: clamp(2.9rem, 6.6vw, 5.3rem);
-    line-height: 0.98;
-    text-wrap: balance;
-  }
-
-  .intro {
-    max-width: 46ch;
-    margin-top: 1.4rem;
-    font-size: clamp(1.05rem, 1.6vw, 1.18rem);
-    color: var(--dim);
-  }
-
-  .cta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-top: 2rem;
-  }
-
-  .stack {
-    margin-top: 1.6rem;
-  }
-
-  /* ── Chart ── */
-
-  .chart {
-    margin: 0;
-    padding: 20px 20px 12px;
-    background: linear-gradient(180deg, var(--panel), var(--bg-2));
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.8);
-  }
-
-  .chart-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 1rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .chart-value {
-    margin-top: 0.3rem;
-    font-size: 2.4rem;
-    line-height: 1;
-    letter-spacing: -0.02em;
-  }
-
-  .chart-side {
-    white-space: nowrap;
-    text-align: right;
-    font-size: 0.78rem;
-    color: var(--faint);
-  }
-
-  .chart-side strong {
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  .chart svg {
+  .sigil svg {
     width: 100%;
-    height: auto;
+    height: 100%;
     overflow: visible;
   }
 
-  .grid {
-    stroke: var(--line);
-    stroke-dasharray: 2 4;
-  }
-
-  .line {
+  .ring {
     fill: none;
-    stroke: var(--accent);
-    stroke-width: 1.8;
-    stroke-linejoin: round;
-    stroke-dasharray: 1;
-    stroke-dashoffset: 0;
+    stroke: rgba(243, 207, 122, 0.28);
+    stroke-width: 1;
   }
 
-  :global(.js) .chart:not(.is-in) .line {
-    stroke-dashoffset: 1;
+  .ring-dash {
+    stroke-dasharray: 2 7;
+    stroke: rgba(243, 207, 122, 0.35);
   }
 
-  :global(.js) .chart .line {
-    transition: stroke-dashoffset 1.8s cubic-bezier(0.3, 0.6, 0.2, 1) 0.2s;
+  .orbit {
+    stroke: rgba(143, 220, 255, 0.28);
+  }
+
+  .sat {
+    fill: var(--cyan);
+    filter: drop-shadow(0 0 6px var(--cyan));
   }
 
   .tick {
-    font: 400 11px var(--mono);
-    fill: var(--faint);
+    stroke: rgba(243, 207, 122, 0.35);
+    stroke-width: 1;
   }
 
-  .last {
-    fill: var(--bg);
-    stroke: var(--accent);
-    stroke-width: 2;
+  .ring-text {
+    font: 600 13px var(--display);
+    letter-spacing: 0.32em;
+    fill: rgba(243, 207, 122, 0.4);
   }
 
-  @media (max-width: 900px) {
-    .hero-grid {
-      grid-template-columns: minmax(0, 1fr);
+  .spin-slow {
+    transform-origin: 300px 300px;
+    animation: spin 160s linear infinite;
+  }
+
+  .spin-rev {
+    transform-origin: 300px 300px;
+    animation: spin 90s linear infinite reverse;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.1rem;
+    font-size: clamp(2.7rem, 9.5vw, 7.4rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: 0.06em;
+    filter: drop-shadow(0 0 30px rgba(243, 207, 122, 0.3)) drop-shadow(0 4px 0 rgba(4, 5, 13, 0.8));
+  }
+
+  .name span {
+    display: block;
+  }
+
+  :global(.js) .name span {
+    animation: rise 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  :global(.js) .name span + span {
+    animation-delay: 0.15s;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+      filter: blur(8px);
+    }
+  }
+
+  .role {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.4rem;
+    font: 600 clamp(0.9rem, 2vw, 1.1rem) var(--display);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .role-line {
+    width: clamp(36px, 8vw, 90px);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+
+  .role-line:last-child {
+    background: linear-gradient(270deg, transparent, var(--gold));
+  }
+
+  .headline {
+    max-width: 52ch;
+    margin-top: 1.2rem;
+    font-size: clamp(1rem, 1.8vw, 1.12rem);
+    color: var(--dim);
+  }
+
+  .menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem;
+    margin-top: 2.6rem;
+    padding: 0.55rem 0.7rem;
+  }
+
+  .menu a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.1rem 0.6rem 0.8rem;
+    font: 600 0.95rem/1 var(--display);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    color: var(--text);
+    border-radius: 999px;
+    transition:
+      color 0.2s,
+      background 0.2s;
+  }
+
+  .cursor {
+    width: 0.8em;
+    color: var(--gold);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition:
+      opacity 0.2s,
+      transform 0.2s;
+  }
+
+  .menu a:hover,
+  .menu a:focus-visible {
+    color: var(--gold);
+    background: rgba(243, 207, 122, 0.07);
+  }
+
+  .menu a:hover .cursor,
+  .menu a:focus-visible .cursor {
+    opacity: 1;
+    transform: none;
+  }
+
+  .synced {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 2rem;
+    font-size: 0.82rem;
+    color: var(--faint);
+  }
+
+  .synced .num {
+    color: var(--dim);
+    font-weight: 600;
+  }
+
+  .sep {
+    opacity: 0.5;
+  }
+
+  .scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: 32px;
+    width: 26px;
+    height: 42px;
+    margin-left: -13px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+  }
+
+  .scroll-cue span {
+    position: absolute;
+    left: 50%;
+    top: 9px;
+    width: 3px;
+    height: 8px;
+    margin-left: -1.5px;
+    border-radius: 2px;
+    background: var(--gold);
+    animation: cue 2s ease-in-out infinite;
+  }
+
+  @keyframes cue {
+    60% {
+      transform: translateY(12px);
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .menu a {
+      padding: 0.55rem 0.8rem 0.55rem 0.6rem;
+      font-size: 0.85rem;
+    }
+    .cursor {
+      display: none;
     }
   }
 </style>

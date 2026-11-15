@@ -2,131 +2,88 @@
 import { data, profile, shortDate } from '../lib/view.mjs';
 
 const links = [
-  profile.email && { label: 'Email', value: profile.email, href: `mailto:${profile.email}` },
-  profile.linkedin && {
-    label: 'LinkedIn',
-    value: profile.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''),
-    href: profile.linkedin,
-  },
-  { label: 'GitHub', value: `github.com/${profile.handle}`, href: `https://github.com/${profile.handle}` },
+  profile.email && { label: 'Email', value: profile.email, href: `mailto:${profile.email}`, primary: true },
+  profile.linkedin && { label: 'LinkedIn', value: 'sriharsha-challangi', href: profile.linkedin },
+  { label: 'GitHub', value: profile.handle, href: `https://github.com/${profile.handle}` },
   profile.resume && { label: 'Résumé', value: 'PDF', href: profile.resume },
-].filter(Boolean) as { label: string; value: string; href: string }[];
+].filter(Boolean) as { label: string; value: string; href: string; primary?: boolean }[];
 ---
 
-<section class="section contact" id="contact" aria-labelledby="contact-title">
+<section class="section" id="contact" aria-labelledby="contact-title">
   <div class="wrap">
-    <div class="contact-grid reveal">
-      <div>
-        <p class="section-index">05 — Contact</p>
-        <h2 id="contact-title">Let’s talk.</h2>
-        <p class="contact-note">
-          Interested in fintech and software engineering roles. Email is the fastest way to reach me.
-        </p>
-      </div>
-      <ul class="channels">
+    <div class="contact frame reveal">
+      <p class="eyebrow">Contact</p>
+      <h2 id="contact-title" class="gold-text">Let’s talk</h2>
+      <p class="note">Questions about a project, an opportunity, or ERCOT price spikes. Email is the fastest way to reach me.</p>
+      <div class="links">
         {
           links.map((l) => (
-            <li>
-              <a href={l.href} target={l.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
-                <span class="label">{l.label}</span>
-                <span class="ch-value">{l.value}</span>
-                <span class="ch-arrow" aria-hidden="true">
-                  ↗
-                </span>
-              </a>
-            </li>
+            <a class={`btn ${l.primary ? 'btn-gold' : ''}`} href={l.href} target={l.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
+              {l.label}
+              <span class="arrow" aria-hidden="true">
+                →
+              </span>
+            </a>
           ))
         }
-      </ul>
+      </div>
+      {profile.email && <p class="addr">{profile.email}</p>}
     </div>
   </div>
 </section>
 
 <footer class="footer">
   <div class="wrap footer-inner">
-    <p>© {new Date(data.generatedAt).getUTCFullYear()} {profile.name}</p>
+    <p>© {new Date(data.generatedAt).getUTCFullYear()} {profile.name} · {profile.location}</p>
     <p>
-      Synced from GitHub {shortDate(data.generatedAt)} · rebuilt hourly ·
+      Synced from GitHub {shortDate(data.generatedAt)} and rebuilt every hour ·
       <a href={`https://github.com/${profile.handle}/${profile.handle}.github.io`} target="_blank" rel="noopener">source</a>
     </p>
   </div>
 </footer>
 
 <style>
-  .contact-grid {
+  .contact {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(32px, 6vw, 88px);
-    align-items: end;
-    padding: clamp(32px, 5vw, 56px);
+    justify-items: center;
+    gap: 1rem;
+    padding: clamp(40px, 7vw, 80px) clamp(20px, 5vw, 64px);
+    text-align: center;
+    overflow: hidden;
     background:
-      radial-gradient(ellipse 60% 90% at 0% 100%, rgba(242, 181, 68, 0.12), transparent 70%),
-      var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 18px;
-  }
-
-  .section-index {
-    font: 500 12px/1 var(--mono);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
+      radial-gradient(ellipse 60% 70% at 50% 0%, rgba(243, 207, 122, 0.12), transparent 70%),
+      linear-gradient(180deg, var(--panel), var(--panel-2));
   }
 
   h2 {
-    margin-top: 0.9rem;
-    font-size: clamp(3rem, 8vw, 5.5rem);
-    font-style: italic;
+    font-size: clamp(2.6rem, 7vw, 4.6rem);
+    filter: drop-shadow(0 0 26px rgba(243, 207, 122, 0.3));
   }
 
-  .contact-note {
-    max-width: 38ch;
-    margin-top: 1rem;
+  .note {
+    max-width: 46ch;
     color: var(--dim);
   }
 
-  .channels {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border-top: 1px solid var(--line-2);
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.7rem;
+    margin-top: 1rem;
   }
 
-  .channels a {
-    display: grid;
-    grid-template-columns: 6rem minmax(0, 1fr) auto;
-    align-items: baseline;
-    gap: 1rem;
-    padding: 1rem 0.25rem;
-    text-decoration: none;
-    border-bottom: 1px solid var(--line-2);
-  }
-
-  .ch-value {
-    font-size: 1.05rem;
-    overflow-wrap: anywhere;
-  }
-
-  .ch-arrow {
+  .addr {
+    margin-top: 0.4rem;
+    font-size: 0.86rem;
     color: var(--faint);
-    transition:
-      transform 0.15s,
-      color 0.15s;
-  }
-
-  .channels a:hover .ch-value {
-    color: var(--accent);
-  }
-
-  .channels a:hover .ch-arrow {
-    color: var(--accent);
-    transform: translate(2px, -2px);
+    user-select: all;
   }
 
   .footer {
-    margin-top: clamp(64px, 8vw, 100px);
-    padding: 24px 0 36px;
-    border-top: 1px solid var(--line);
+    margin-top: clamp(72px, 9vw, 110px);
+    padding: 26px 0 40px;
+    border-top: 1px solid var(--line-soft);
     font-size: 0.84rem;
     color: var(--faint);
   }
@@ -140,26 +97,5 @@ const links = [
 
   .footer a {
     color: var(--dim);
-  }
-
-  @media (max-width: 800px) {
-    .contact-grid {
-      grid-template-columns: minmax(0, 1fr);
-    }
-  }
-
-  @media (max-width: 420px) {
-    .channels a {
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 0.2rem 1rem;
-    }
-    .ch-value {
-      grid-column: 1;
-    }
-    .ch-arrow {
-      grid-row: 1 / span 2;
-      grid-column: 2;
-      align-self: center;
-    }
   }
 </style>

@@ -3,7 +3,7 @@ import '../styles/global.css';
 import { config, profile } from '../lib/view.mjs';
 
 const title = `${profile.name} · Portfolio`;
-const description = `${profile.headline} ${profile.intro}`;
+const description = `${profile.role}. ${profile.headline}`;
 const og = new URL('/og.png', config.site).href;
 ---
 
@@ -14,7 +14,7 @@ const og = new URL('/og.png', config.site).href;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0b0c0f" />
+    <meta name="theme-color" content="#070a1c" />
     <link rel="canonical" href={config.site} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
@@ -28,7 +28,7 @@ const og = new URL('/og.png', config.site).href;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <script is:inline>
@@ -36,7 +36,19 @@ const og = new URL('/og.png', config.site).href;
     </script>
   </head>
   <body>
-    <a class="skip" href="#projects">Skip to projects</a>
+    <a class="skip" href="#experience">Skip to content</a>
+    <canvas class="stars" aria-hidden="true"></canvas>
     <slot />
   </body>
 </html>
+
+<style>
+  .stars {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+</style>

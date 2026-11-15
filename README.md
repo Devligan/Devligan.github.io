@@ -1,10 +1,10 @@
 # devligan.github.io
 
-My portfolio. It rebuilds itself from my GitHub every hour, so new repos, commits and stats show up without me touching it.
+My portfolio. It rebuilds itself from my GitHub every hour, so new repos, commits, stats and project screenshots show up without me touching it.
 
 **Live:** https://devligan.github.io
 
-![Portfolio home page](public/og.png)
+![Portfolio title screen](public/og.png)
 
 ## How it stays current
 
@@ -13,23 +13,22 @@ GitHub API ──► scripts/fetch-github.mjs ──► src/data/github.json ─
                  (hourly, on push, or on demand via the Actions tab)
 ```
 
-- **Ticker and hero chart**: commits, contributions (cumulative over 12 months, plus the week-over-week change), streak, and when each project was last pushed.
-- **Repositories**: every public, non-fork repo, newest first, filterable by language.
-- **Activity**: the 12-month contribution calendar and real commit messages from the most active repos.
-- **Project images**: the first screenshot in each featured repo's README, downloaded at build time.
+- **Projects**: each featured project's gallery comes from its README screenshots, or from chart outputs in its notebook. Images are resized to WebP and cached by git blob SHA, so they're only reprocessed when they change.
+- **About**: commits, contributions, NeetCode count, the 12-month contribution calendar and recent commit messages.
+- **Everything else on GitHub**: every other public repo, newest first.
 
 If GitHub is unreachable, the last snapshot is kept and the site still builds.
 
-## Curating it from GitHub
+## Editing it
+
+Everything hand-written lives in [`portfolio.config.mjs`](portfolio.config.mjs): headline, bio, experience, education, skills and the project write-ups.
 
 | Want to… | Do this |
 | --- | --- |
 | Feature a repo in Projects | Add the topic `portfolio` to the repo |
 | Hide a repo | Add the topic `portfolio-hide` |
-| Change a blurb | Edit the repo's description |
-| Write a proper case study | Add an entry to `projects` in `portfolio.config.mjs` |
-
-Everything hand-written (headline, bio, skills, case studies, contact links) lives in [`portfolio.config.mjs`](portfolio.config.mjs).
+| Change a project's images | Add screenshots to its README, or set `media` in the config |
+| Add a job | Add an entry to `experience` in the config |
 
 ## Running it
 
@@ -40,4 +39,4 @@ npm run dev     # http://localhost:4321
 npm run build
 ```
 
-Built with Astro and no client framework. One small script handles relative times, the repository filter and scroll effects. The page works without JavaScript and respects `prefers-reduced-motion`.
+Built with Astro and no client framework. One small script handles the starfield, project drawers, relative times and scroll effects. The page works without JavaScript (project cards link straight to GitHub) and respects `prefers-reduced-motion`.

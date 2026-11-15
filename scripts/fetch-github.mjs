@@ -5,9 +5,10 @@
 // If GitHub is unreachable the previous snapshot is kept and the build goes on.
 
 import { execSync } from 'node:child_process';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, readFile, unlink, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import sharp from 'sharp';
 import config from '../portfolio.config.mjs';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
@@ -136,28 +137,90 @@ function readmeSummary(md) {
   return first.length > 280 ? first.slice(0, 277).replace(/\s+\S*$/, '') + '…' : first;
 }
 
-function readmeImage(md, repo, branch) {
-  if (!md) return null;
-  const candidates = [
-    ...[...md.matchAll(/!\[[^\]]*\]\(([^)\s]+)/g)].map((m) => m[1]),
-    ...[...md.matchAll(/<img[^>]+src=["']([^"']+)["']/g)].map((m) => m[1]),
-  ];
-  const src = candidates.find(
-    (u) => /\.(png|jpe?g|gif|webp)(\?.*)?$/i.test(u) && !/shields\.io|badge/i.test(u),
+/** Every real screenshot in a README (no badges), in order, with its alt text. */
+function readmeImages(md) {
+  if (!md) return [];
+  const found = [
+    ...[...md.matchAll(/!\[([^\]]*)\]\(([^)\s]+)/g)].map((m) => ({ src: m[2], alt: m[1], at: m.index })),
+    ...[...md.matchAll(/<img[^>]*src=["']([^"']+)["'][^>]*>/g)].map((m) => ({
+      src: m[1],
+      alt: m[0].match(/alt=["']([^"']*)["']/)?.[1] ?? '',
+      at: m.index,
+    })),
+  ].sort((a, b) => a.at - b.at);
+  const seen = new Set();
+  return found.filter(
+    (i) => /\.(png|jpe?g|gif|webp)(\?.*)?$/i.test(i.src) && !/shields\.io|badge/i.test(i.src) && !seen.has(i.src) && seen.add(i.src),
   );
-  if (!src) return null;
-  if (/^https?:\/\//.test(src)) return src;
-  return `https://raw.githubusercontent.com/${LOGIN}/${repo}/${branch}/${src.replace(/^\.?\//, '')}`;
 }
 
-async function downloadArt(repo, url) {
-  const ext = (url.match(/\.(png|jpe?g|gif|webp)/i)?.[1] ?? 'png').toLowerCase();
-  const file = `${repo}.${ext}`;
+// ── Project galleries ────────────────────────────────────────────────────────
+// Images are resized to WebP and cached by their git blob SHA, so the hourly
+// build only re-processes an image when it actually changes.
+
+const raw = (repo, branch, p) => `https://raw.githubusercontent.com/${LOGIN}/${repo}/${branch}/${p.replace(/^\.?\//, '')}`;
+
+async function saveWebp(buffer, name) {
+  await mkdir(ART_DIR, { recursive: true });
+  const info = await sharp(buffer).resize({ width: 1600, withoutEnlargement: true }).webp({ quality: 80 }).toFile(path.join(ART_DIR, `${name}.webp`));
+  return { src: `/project-art/${name}.webp`, w: info.width, h: info.height };
+}
+
+async function fetchBuffer(url) {
   const res = await fetch(url, { headers: { 'User-Agent': headers['User-Agent'] } });
   if (!res.ok) throw new Error(`${url} → ${res.status}`);
-  await mkdir(ART_DIR, { recursive: true });
-  await writeFile(path.join(ART_DIR, file), Buffer.from(await res.arrayBuffer()));
-  return `/project-art/${file}`;
+  return Buffer.from(await res.arrayBuffer());
+}
+
+async function buildGallery(repo, media, readme, prevGallery) {
+  const cached = new Map((prevGallery ?? []).map((g) => [g.key, g]));
+  const reuse = (key) => {
+    const g = cached.get(key);
+    return g && existsSync(path.join(ROOT, 'public', g.src)) ? g : null;
+  };
+  const tree = await rest(`/repos/${LOGIN}/${repo.name}/git/trees/${repo.branch}?recursive=1`);
+  const shaOf = new Map(tree.tree.map((t) => [t.path, t.sha]));
+  const gallery = [];
+
+  for (const file of media.files ?? []) {
+    const p = path.join(ROOT, 'public', file.src);
+    if (!existsSync(p)) continue;
+    const meta = await sharp(p).metadata();
+    gallery.push({ key: file.src, src: file.src, alt: file.alt ?? '', w: meta.width, h: meta.height });
+  }
+
+  if (media.notebook) {
+    const sha = shaOf.get(media.notebook);
+    const picks = media.pick ?? [0, 1, 2];
+    const keys = picks.map((i) => `${media.notebook}@${sha}#${i}`);
+    if (keys.every((k) => reuse(k))) {
+      gallery.push(...keys.map(reuse));
+    } else {
+      const nb = JSON.parse((await fetchBuffer(raw(repo.name, repo.branch, media.notebook))).toString('utf8'));
+      const pngs = nb.cells.flatMap((c) => (c.outputs ?? []).map((o) => o.data?.['image/png']).filter(Boolean));
+      for (const [n, i] of picks.entries()) {
+        if (!pngs[i]) continue;
+        const b64 = Array.isArray(pngs[i]) ? pngs[i].join('') : pngs[i];
+        const saved = await saveWebp(Buffer.from(b64, 'base64'), `${repo.name}-nb${i}`);
+        gallery.push({ key: keys[n], alt: media.alts?.[n] ?? '', ...saved });
+      }
+    }
+  }
+
+  if (media.readme !== false) {
+    for (const [i, img] of readmeImages(readme).slice(0, 6).entries()) {
+      const url = /^https?:\/\//.test(img.src) ? img.src : raw(repo.name, repo.branch, img.src);
+      const key = /^https?:\/\//.test(img.src) ? url : `${img.src}@${shaOf.get(img.src.replace(/^\.?\//, ''))}`;
+      const hit = reuse(key);
+      if (hit) {
+        gallery.push({ ...hit, alt: img.alt });
+        continue;
+      }
+      const saved = await saveWebp(await fetchBuffer(url), `${repo.name}-${i}`);
+      gallery.push({ key, alt: img.alt, ...saved });
+    }
+  }
+  return gallery;
 }
 
 // ── Derived numbers ──────────────────────────────────────────────────────────
@@ -236,25 +299,32 @@ async function main() {
         topics,
         commits: r.defaultBranchRef?.target?.history?.totalCount ?? 0,
         branch: r.defaultBranchRef?.name ?? 'main',
-        imageUrl: readmeImage(r.readme?.text, r.name, r.defaultBranchRef?.name ?? 'main'),
+        readme: r.readme?.text ?? '',
       };
     })
     .filter((r) => !hidden.has(r.name.toLowerCase()) && !r.topics.includes('portfolio-hide'));
 
-  // Card art for projects: the first real screenshot in each README, saved locally
-  // so the site never hotlinks.
-  const projectRepos = new Set([
-    ...config.projects.map((p) => p.repo),
-    ...repos.filter((r) => r.topics.includes('portfolio')).map((r) => r.name),
+  // Galleries for projects, saved locally so the site never hotlinks.
+  const mediaFor = new Map([
+    ...repos.filter((r) => r.topics.includes('portfolio')).map((r) => [r.name, {}]),
+    ...config.projects.map((p) => [p.repo, p.media ?? {}]),
   ]);
   for (const r of repos) {
-    if (!projectRepos.has(r.name) || !r.imageUrl) continue;
+    if (!mediaFor.has(r.name)) continue;
+    const prevGallery = prev.repos?.find((p) => p.name === r.name)?.gallery;
     try {
-      r.image = await downloadArt(r.name, r.imageUrl);
+      r.gallery = await buildGallery(r, mediaFor.get(r.name), r.readme, prevGallery);
     } catch (e) {
-      console.warn(`  art for ${r.name} skipped: ${e.message}`);
-      r.image = prev.repos?.find((p) => p.name === r.name)?.image;
+      console.warn(`  gallery for ${r.name} skipped, keeping last snapshot: ${e.message}`);
+      r.gallery = prevGallery ?? [];
     }
+  }
+  for (const r of repos) delete r.readme;
+
+  // Drop images nothing references any more.
+  const used = new Set(repos.flatMap((r) => (r.gallery ?? []).map((g) => path.basename(g.src))));
+  if (existsSync(ART_DIR)) {
+    for (const f of await readdir(ART_DIR)) if (!used.has(f)) await unlink(path.join(ART_DIR, f));
   }
 
   // Calendar. Can fail with some token types, so it's optional.

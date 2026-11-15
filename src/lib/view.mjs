@@ -27,23 +27,32 @@ export function shortDate(iso, opts = { month: 'short', day: 'numeric', year: 'n
 
 const notebook = (name) => name === 'Jupyter Notebook';
 export const langName = (l) => (l ? (notebook(l.name) ? 'Python' : l.name) : null);
-export const langColor = (l) => (l ? (notebook(l.name) ? '#3572A5' : l.color ?? '#8a8f98') : '#8a8f98');
+export const langColor = (l) => (l ? (notebook(l.name) ? '#3572A5' : l.color ?? '#8a8fb0') : '#8a8fb0');
 
-// ── Activity as a market series ──────────────────────────────────────────────
+// ── Experience ───────────────────────────────────────────────────────────────
 
-const weeks = data.calendar?.weeks ?? [];
-// Running total by week: reads like an equity curve.
-let running = 0;
-export const weekly = weeks.map((w) => {
-  const total = w.reduce((s, [, n]) => s + n, 0);
-  running += total;
-  return { start: w[0][0], total, cumulative: running };
-});
-// The last calendar week is usually partial, so compare the last 7 days instead.
-const days = weeks.flat();
+const monthName = (ym) => shortDate(`${ym}-01`, { month: 'short', year: 'numeric' });
+function span(start, end) {
+  const [sy, sm] = start.split('-').map(Number);
+  const [ey, em] = (end ?? `${now.getUTCFullYear()}-${now.getUTCMonth() + 1}`).split('-').map(Number);
+  const months = (ey - sy) * 12 + (em - sm) + 1; // LinkedIn counts both ends
+  const y = Math.floor(months / 12);
+  const m = months % 12;
+  return [y && `${y} yr${y > 1 ? 's' : ''}`, m && `${m} mo${m > 1 ? 's' : ''}`].filter(Boolean).join(' ');
+}
+
+export const experience = config.experience.map((e) => ({
+  ...e,
+  current: !e.end,
+  dates: `${monthName(e.start)} – ${e.end ? monthName(e.end) : 'Present'}`,
+  duration: span(e.start, e.end),
+}));
+export const education = config.education;
+
+// ── Stats ────────────────────────────────────────────────────────────────────
+
+const days = (data.calendar?.weeks ?? []).flat();
 const sum = (arr) => arr.reduce((s, [, n]) => s + n, 0);
-const last7 = sum(days.slice(-7));
-const prev7 = sum(days.slice(-14, -7));
 
 export const stats = {
   commits: data.stats.totalCommits,
@@ -51,9 +60,7 @@ export const stats = {
   repos: data.stats.repos,
   streak: data.calendar?.current ?? null,
   longest: data.calendar?.longest ?? null,
-  last7,
-  prev7,
-  delta: last7 - prev7,
+  last7: sum(days.slice(-7)),
   practice: data.practice?.solved ?? null,
   practiceUrl: data.practice?.url,
   since: new Date(data.user.createdAt).getUTCFullYear(),
@@ -62,6 +69,7 @@ export const stats = {
 // ── Projects ─────────────────────────────────────────────────────────────────
 
 const repoByName = new Map(data.repos.map((r) => [r.name, r]));
+const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 /** A repo's human name: its project title, "NeetCode" for the practice repo, else the repo name. */
 export function displayName(repo) {
@@ -71,19 +79,22 @@ export function displayName(repo) {
 
 function status(repo) {
   const idle = (now - new Date(repo.pushedAt)) / DAY;
-  if (repo.archived) return { label: 'Archived', tone: 'muted' };
-  if (idle < 14) return { label: 'Active', tone: 'up' };
-  return { label: `Updated ${shortDate(repo.pushedAt, { month: 'short', year: 'numeric' })}`, tone: 'muted' };
+  if (repo.archived) return { label: 'Archived', live: false };
+  if (idle < 14) return { label: 'In active development', live: true };
+  return { label: `Updated ${shortDate(repo.pushedAt, { month: 'short', year: 'numeric' })}`, live: false };
 }
 
 function toProject(entry, repo) {
+  const title = entry.title ?? repo.name.replace(/[-_]/g, ' ');
   return {
     ...entry,
-    title: entry.title ?? repo.name.replace(/[-_]/g, ' '),
+    id: slug(title),
+    title,
     summary: entry.summary ?? repo.description ?? repo.summary,
     live: entry.live ?? repo.homepage ?? '',
     source: repo.url,
-    image: entry.image ?? repo.image ?? null,
+    gallery: repo.gallery ?? [],
+    cover: repo.gallery?.[0] ?? null,
     language: langName(repo.language),
     commits: repo.commits,
     createdAt: repo.createdAt,
@@ -103,29 +114,23 @@ const tagged = data.repos
 
 export const featured = [...configured.filter((p) => p.featured), ...tagged];
 export const more = configured.filter((p) => !p.featured);
+export const allProjects = [...featured, ...more];
 
-// ── Every repo ───────────────────────────────────────────────────────────────
+// ── Every other repo ─────────────────────────────────────────────────────────
 
-const NEW_WINDOW = 45 * DAY;
-export const repos = data.repos
-  .map((r) => {
-    const entry = config.projects.find((p) => p.repo === r.name);
-    return {
-      name: r.name,
-      blurb: entry?.summary || r.description || r.summary,
-      url: r.url,
-      homepage: entry?.live ?? r.homepage,
-      language: langName(r.language),
-      color: langColor(r.language),
-      commits: r.commits,
-      pushedAt: r.pushedAt,
-      isNew: now - new Date(r.createdAt) < NEW_WINDOW,
-      featured: !!entry?.featured || r.topics.includes('portfolio'),
-    };
-  })
+const shown = new Set(allProjects.map((p) => p.repo));
+export const otherRepos = data.repos
+  .filter((r) => !shown.has(r.name))
+  .map((r) => ({
+    name: r.name,
+    blurb: r.description || r.summary,
+    url: r.url,
+    homepage: r.homepage,
+    language: langName(r.language),
+    color: langColor(r.language),
+    pushedAt: r.pushedAt,
+  }))
   .sort((a, b) => b.pushedAt.localeCompare(a.pushedAt));
-
-export const languages = [...new Set(repos.map((r) => r.language).filter(Boolean))];
 
 // ── Recent commits (no single repo may take over) ────────────────────────────
 
@@ -134,37 +139,10 @@ export const recentCommits = (() => {
   return data.log.filter((e) => {
     const n = (perRepo.get(e.repo) ?? 0) + 1;
     perRepo.set(e.repo, n);
-    return n <= 3;
+    return n <= 2;
   });
 })()
-  .slice(0, 8)
+  .slice(0, 6)
   .map((e) => ({ ...e, title: displayName(e.repo) }));
-
-// ── Ticker tape ──────────────────────────────────────────────────────────────
-
-// Only projects go on the tape, not coursework or practice repos.
-const recentlyPushed = [...data.repos]
-  .filter((r) => config.projects.some((p) => p.repo === r.name) || r.topics.includes('portfolio'))
-  .sort((a, b) => b.pushedAt.localeCompare(a.pushedAt))
-  .slice(0, 4);
-export const ticker = [
-  { sym: 'COMMITS', value: stats.commits.toLocaleString('en-US') },
-  stats.contributions !== null && {
-    sym: '7D',
-    value: String(stats.last7),
-    delta: stats.delta,
-    title: 'Contributions in the last 7 days vs. the 7 before',
-  },
-  stats.contributions !== null && { sym: '12M', value: stats.contributions.toLocaleString('en-US'), title: 'Contributions, last 12 months' },
-  { sym: 'REPOS', value: String(stats.repos) },
-  stats.streak !== null && { sym: 'STREAK', value: `${stats.streak}D` },
-  stats.practice !== null && { sym: 'NEETCODE', value: String(stats.practice) },
-  ...recentlyPushed.map((r) => ({
-    sym: displayName(r.name).toUpperCase(),
-    value: ago(r.pushedAt),
-    ago: r.pushedAt,
-    title: `Last push to ${r.name}`,
-  })),
-].filter(Boolean);
 
 export { config, data };

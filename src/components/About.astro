@@ -1,36 +1,44 @@
 ---
-import SectionHead from './SectionHead.astro';
-import { config, profile, stats } from '../lib/view.mjs';
+import Heading from './Heading.astro';
+import { ago, config, data, profile, recentCommits, shortDate, stats } from '../lib/view.mjs';
 
 const figures = [
-  { value: stats.commits.toLocaleString('en-US'), label: 'Commits', note: 'lifetime, public repos' },
+  { value: stats.commits.toLocaleString('en-US'), label: 'Commits', note: 'public repos, lifetime' },
   stats.contributions !== null && { value: stats.contributions.toLocaleString('en-US'), label: 'Contributions', note: 'last 12 months' },
-  { value: stats.repos, label: 'Public repos', note: 'all listed below' },
-  stats.streak !== null && { value: `${stats.streak}d`, label: 'Current streak', note: `longest ${stats.longest} days` },
+  { value: stats.repos, label: 'Public repos', note: `on GitHub since ${stats.since}` },
   stats.practice !== null && { value: stats.practice, label: config.practice.label, note: 'solved', href: stats.practiceUrl },
-  { value: stats.since, label: 'On GitHub since', note: `@${profile.handle}` },
 ].filter(Boolean) as { value: string | number; label: string; note: string; href?: string }[];
+
+// Contribution calendar for the year, as a gold heatmap.
+type Day = [string, number];
+const weeks = (data.calendar?.weeks ?? []) as Day[][];
+const counts = weeks.flat().map(([, n]) => n).filter((n) => n > 0).sort((a, b) => a - b);
+const q = (p: number) => counts[Math.min(counts.length - 1, Math.floor(counts.length * p))] ?? 1;
+const levels = [q(0.25), q(0.5), q(0.8)];
+const tone = (n: number) => (n === 0 ? 0 : n <= levels[0] ? 1 : n <= levels[1] ? 2 : n <= levels[2] ? 3 : 4);
+const CELL = 12;
+const STEP = 15;
 ---
 
 <section class="section" id="about" aria-labelledby="about-title">
   <div class="wrap">
-    <SectionHead index="02 — Profile" title="About" note="Numbers on this page update hourly from GitHub." id="about-title" />
+    <Heading title="About" id="about-title" />
 
     <div class="about">
       <div class="bio reveal">
         {profile.bio.map((p: string, i: number) => <p class={i === 0 ? 'lead' : ''}>{p}</p>)}
       </div>
 
-      <div class="side">
-        <dl class="figures reveal">
+      <div class="side reveal" style="--d:.1s">
+        <dl class="figures frame">
           {
             figures.map((f) => (
-              <div class="figure">
+              <div>
                 <dt>
                   {f.label}
                   <small>{f.note}</small>
                 </dt>
-                <dd class="mono">
+                <dd class="gold-text num">
                   {f.href ? (
                     <a href={f.href} target="_blank" rel="noopener">
                       {f.value}
@@ -44,11 +52,11 @@ const figures = [
           }
         </dl>
 
-        <div class="skills reveal">
+        <div class="skills">
           {
             Object.entries(config.skills).map(([group, items]) => (
               <div class="skill-row">
-                <p class="label">{group}</p>
+                <p class="eyebrow">{group}</p>
                 <ul class="tags">
                   {(items as string[]).map((s) => (
                     <li class="tag">{s}</li>
@@ -60,74 +68,113 @@ const figures = [
         </div>
       </div>
     </div>
+
+    {
+      weeks.length > 0 && (
+        <div class="lately frame reveal">
+          <div class="lately-map">
+            <p class="eyebrow">On GitHub lately</p>
+            <div class="map-scroll" data-scroll-end>
+            <svg viewBox={`0 0 ${weeks.length * STEP} ${7 * STEP}`} role="img" aria-label="Contribution calendar for the last 12 months">
+              {weeks.map((week, wi) =>
+                week.map(([date, n]) => (
+                  <rect x={wi * STEP} y={new Date(date).getUTCDay() * STEP} width={CELL} height={CELL} rx="3" class={`t${tone(n)}`}>
+                    <title>{`${shortDate(date)}: ${n} contribution${n === 1 ? '' : 's'}`}</title>
+                  </rect>
+                )),
+              )}
+            </svg>
+            </div>
+            <p class="map-note">
+              {stats.contributions} contributions in the last 12 months · {stats.last7} in the past week · longest streak {stats.longest} days
+            </p>
+          </div>
+          <ol class="commits">
+            {recentCommits.map((c) => (
+              <li>
+                <a href={c.url} target="_blank" rel="noopener">
+                  <span class="c-top">
+                    <span class="c-repo">{c.title}</span>
+                    <span class="c-when" data-ago={c.date}>
+                      {ago(c.date)}
+                    </span>
+                  </span>
+                  <span class="c-msg">{c.message}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )
+    }
   </div>
 </section>
 
 <style>
   .about {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-    gap: clamp(32px, 6vw, 88px);
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(36px, 6vw, 88px);
     align-items: start;
   }
 
   .bio {
     display: grid;
     gap: 1.2rem;
-    color: var(--dim);
     font-size: 1.05rem;
-    line-height: 1.7;
+    line-height: 1.75;
+    color: var(--dim);
   }
 
   .bio .lead {
-    font: 400 clamp(1.6rem, 2.6vw, 2rem) / 1.3 var(--serif);
+    font: 600 clamp(1.35rem, 2.4vw, 1.75rem) / 1.45 var(--body);
+    letter-spacing: -0.01em;
     color: var(--text);
   }
 
   .figures {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     margin: 0;
-    border-top: 1px solid var(--line);
-    border-left: 1px solid var(--line);
+    padding: 0.4rem;
   }
 
-  .figure {
+  .figures > div {
     display: flex;
     flex-direction: column-reverse;
     justify-content: flex-end;
-    gap: 0.35rem;
-    padding: 1rem 1.1rem 1.1rem;
-    border-right: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+    gap: 0.25rem;
+    padding: 1.1rem 1.2rem;
   }
 
-  .figure dt {
+  .figures > div:nth-child(odd) {
+    border-right: 1px solid var(--line-soft);
+  }
+
+  .figures > div:nth-child(n + 3) {
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .figures dt {
     display: grid;
-    font-size: 0.84rem;
-    color: var(--dim);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text);
   }
 
-  .figure dt small {
-    font-size: 0.75rem;
+  .figures small {
+    font-size: 0.76rem;
+    font-weight: 500;
     color: var(--faint);
   }
 
-  .figure dd {
+  .figures dd {
     margin: 0;
-    font-size: 1.8rem;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font: 700 clamp(1.9rem, 3.4vw, 2.5rem) / 1.1 var(--display);
   }
 
-  .figure dd a {
-    text-decoration: underline;
-    text-decoration-color: var(--line-2);
-    text-underline-offset: 5px;
-  }
-
-  .figure dd a:hover {
-    text-decoration-color: var(--accent);
+  .figures dd a {
+    text-decoration: none;
   }
 
   .skills {
@@ -138,24 +185,107 @@ const figures = [
 
   .skill-row {
     display: grid;
-    grid-template-columns: 8.5rem minmax(0, 1fr);
-    align-items: baseline;
+    gap: 0.55rem;
+  }
+
+  /* ── Lately ── */
+
+  .lately {
+    display: grid;
+    gap: 1.6rem;
+    margin-top: clamp(48px, 6vw, 72px);
+    padding: clamp(20px, 3vw, 32px);
+  }
+
+  .lately-map {
+    display: grid;
     gap: 1rem;
   }
 
-  @media (max-width: 900px) {
-    .about {
-      grid-template-columns: minmax(0, 1fr);
-    }
+  .map-scroll {
+    overflow-x: auto;
   }
 
-  @media (max-width: 520px) {
-    .figures {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    .skill-row {
+  .lately-map svg {
+    width: 100%;
+    min-width: 640px;
+    height: auto;
+  }
+
+  .t0 {
+    fill: rgba(182, 187, 221, 0.08);
+  }
+  .t1 {
+    fill: #5a4520;
+  }
+  .t2 {
+    fill: #8f6a25;
+  }
+  .t3 {
+    fill: #d9a441;
+  }
+  .t4 {
+    fill: #ffe39a;
+    filter: drop-shadow(0 0 4px rgba(243, 207, 122, 0.8));
+  }
+
+  .map-note {
+    font-size: 0.82rem;
+    color: var(--faint);
+  }
+
+  .commits {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(24px, 4vw, 48px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .commits li {
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .commits a {
+    display: grid;
+    gap: 0.15rem;
+    padding: 0.7rem 0;
+    text-decoration: none;
+  }
+
+  .c-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.78rem;
+  }
+
+  .c-repo {
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .c-when {
+    color: var(--faint);
+  }
+
+  .c-msg {
+    font-size: 0.92rem;
+    color: var(--dim);
+    overflow-wrap: anywhere;
+  }
+
+  .commits a:hover .c-msg {
+    color: var(--text);
+  }
+
+  @media (max-width: 900px) {
+    .about,
+    .commits {
       grid-template-columns: minmax(0, 1fr);
-      gap: 0.5rem;
     }
   }
 </style>

@@ -1,381 +1,785 @@
 ---
-import SectionHead from './SectionHead.astro';
-import { ago, featured, more, shortDate } from '../lib/view.mjs';
+import Heading from './Heading.astro';
+import { allProjects, ago, featured, more, otherRepos, shortDate } from '../lib/view.mjs';
 
-const pad = (n: number) => String(n).padStart(2, '0');
+// Cover for a project with no screenshots (the translator): greetings scattered across the card.
+const greetings = ['Hola', 'Bonjour', 'नमस्ते', 'こんにちは', 'Olá', 'Ciao', '안녕하세요', 'Hallo', 'Merhaba', '你好'].map((text, i) => ({
+  text,
+  x: 6 + ((i * 37) % 70),
+  y: 10 + ((i * 23) % 72),
+  size: 0.9 + ((i * 7) % 5) * 0.28,
+  alpha: 0.3 + ((i * 13) % 6) * 0.11,
+}));
 ---
 
 <section class="section" id="projects" aria-labelledby="projects-title">
   <div class="wrap">
-    <SectionHead index="01 — Work" title="Projects" note="Selected work, fintech first. Each one is live or open source." id="projects-title" />
-
-    <ol class="projects">
-      {
-        featured.map((p, i) => (
-          <li class="project reveal">
-            <div class="p-meta mono">
-              <span class="p-no">{pad(i + 1)}</span>
-              <span class="p-cat">{p.category}</span>
-              <span class={`p-status ${p.status.tone}`}>
-                {p.status.tone === 'up' && <span class="live-dot" aria-hidden="true" />}
-                {p.status.label}
-              </span>
-            </div>
-
-            <div class="p-main">
-              <a class="p-media" href={p.live || p.source} target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                {p.image ? (
-                  <img src={p.image} alt="" loading="lazy" decoding="async" />
-                ) : (
-                  <div class="p-cover">
-                    <span class="p-cover-title">{p.title}</span>
-                    <span class="p-cover-sub mono">{p.repo}</span>
-                  </div>
-                )}
-              </a>
-
-              <div class="p-body">
-                <h3>{p.title}</h3>
-                <p class="p-summary">{p.summary}</p>
-
-                {p.highlight && (
-                  <div class="p-highlight">
-                    <p class="p-hl-value mono">{p.highlight.value}</p>
-                    <p class="p-hl-label">{p.highlight.label}</p>
-                  </div>
-                )}
-
-                <div class="p-links">
-                  {p.live && (
-                    <a class="btn btn-primary" href={p.live} target="_blank" rel="noopener">
-                      Live demo <span class="arrow">↗</span>
-                    </a>
-                  )}
-                  <a class="btn" href={p.source} target="_blank" rel="noopener">
-                    Source <span class="arrow">↗</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {(p.problem || p.approach || p.result) && (
-              <dl class="p-brief">
-                {p.problem && (
-                  <div>
-                    <dt class="label">Problem</dt>
-                    <dd>{p.problem}</dd>
-                  </div>
-                )}
-                {p.approach && (
-                  <div>
-                    <dt class="label">Approach</dt>
-                    <dd>{p.approach}</dd>
-                  </div>
-                )}
-                {p.result && (
-                  <div>
-                    <dt class="label">Result</dt>
-                    <dd>{p.result}</dd>
-                  </div>
-                )}
-              </dl>
-            )}
-
-            <div class="p-foot">
-              <ul class="tags" aria-label="Built with">
-                {p.stack.map((s: string) => (
-                  <li class="tag">{s}</li>
-                ))}
-              </ul>
-              <p class="p-stats mono">
-                <span>{p.commits} commits</span>
-                <span>since {shortDate(p.createdAt, { month: 'short', year: 'numeric' })}</span>
-                <span>
-                  pushed <span data-ago={p.pushedAt}>{ago(p.pushedAt)}</span>
-                </span>
-              </p>
-            </div>
-          </li>
-        ))
-      }
-    </ol>
+    <Heading title="Projects" id="projects-title" note="Fintech first. Click any project for screenshots, the full write-up and links." />
 
     {
-      more.length > 0 && (
-        <div class="more">
-          <h3 class="more-title reveal">More projects</h3>
-          <ul class="more-grid">
-            {more.map((p) => (
-              <li class="card reveal">
-                <p class="label">{p.category}</p>
-                <h4>{p.title}</h4>
-                <p class="card-summary">{p.summary}</p>
-                <ul class="tags">
-                  {p.stack.map((s: string) => (
-                    <li class="tag">{s}</li>
-                  ))}
-                </ul>
-                <div class="card-links">
-                  {p.live && (
-                    <a href={p.live} target="_blank" rel="noopener">
-                      Try it ↗
-                    </a>
-                  )}
-                  <a href={p.source} target="_blank" rel="noopener">
-                    Source ↗
-                  </a>
-                </div>
-                {p.liveNote && <p class="card-note">{p.liveNote}</p>}
+      [
+        { list: featured, size: 'lg' },
+        { list: more, size: 'sm', title: 'Machine learning' },
+      ].map((group) => (
+        <>
+          {group.title && <h3 class="group-title reveal">{group.title}</h3>}
+          <ul class={`grid grid-${group.size}`}>
+            {group.list.map((p, i) => (
+              <li class="reveal" style={`--d:${(i % 3) * 0.08}s`}>
+                <a class={`pcard pcard-${group.size}`} href={p.source} data-open={p.id} aria-haspopup="dialog">
+                  <div class="pcard-media">
+                    {p.cover ? (
+                      <img src={p.cover.src} alt={p.cover.alt} width={p.cover.w} height={p.cover.h} loading="lazy" decoding="async" />
+                    ) : (
+                      <div class="type-cover" aria-hidden="true">
+                        {greetings.map((g) => (
+                          <span style={`left:${g.x}%;top:${g.y}%;font-size:${g.size}rem;opacity:${g.alpha}`}>{g.text}</span>
+                        ))}
+                      </div>
+                    )}
+                    <span class="pcard-cat">{p.category}</span>
+                    {p.status.live && (
+                      <span class="pcard-live">
+                        <span class="live-dot" aria-hidden="true" /> Active
+                      </span>
+                    )}
+                  </div>
+                  <div class="pcard-body">
+                    <h3>{p.title}</h3>
+                    <p>{p.summary}</p>
+                    <div class="pcard-foot">
+                      <ul class="tags">
+                        {p.stack.slice(0, group.size === 'lg' ? 4 : 3).map((s: string) => (
+                          <li class="tag">{s}</li>
+                        ))}
+                      </ul>
+                      <span class="pcard-more">
+                        Details <span aria-hidden="true">→</span>
+                      </span>
+                    </div>
+                  </div>
+                </a>
               </li>
             ))}
           </ul>
-        </div>
+        </>
+      ))
+    }
+
+    {
+      otherRepos.length > 0 && (
+        <details class="others frame reveal">
+          <summary>
+            <span>Everything else on GitHub</span>
+            <span class="others-count">{otherRepos.length} repositories · synced hourly</span>
+          </summary>
+          <ul>
+            {otherRepos.map((r) => (
+              <li>
+                <a href={r.url} target="_blank" rel="noopener">
+                  <span class="o-name">{r.name}</span>
+                  {r.blurb && <span class="o-blurb">{r.blurb}</span>}
+                  <span class="o-meta">
+                    {r.language && (
+                      <span class="o-lang">
+                        <span class="o-dot" style={`background:${r.color}`} />
+                        {r.language}
+                      </span>
+                    )}
+                    <span data-ago={r.pushedAt}>{ago(r.pushedAt)}</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
       )
     }
   </div>
 </section>
 
+{/* One drawer per project. Opened by the cards above; closed by ✕, Esc or clicking outside. */}
+{
+  allProjects.map((p, i) => {
+    const prev = allProjects[(i - 1 + allProjects.length) % allProjects.length];
+    const next = allProjects[(i + 1) % allProjects.length];
+    return (
+      <dialog class="drawer" id={`p-${p.id}`} aria-labelledby={`p-${p.id}-title`} data-drawer={p.id}>
+        <div class="drawer-panel">
+          <header class="drawer-top">
+            <p class="eyebrow">{p.category}</p>
+            <button type="button" class="close" data-close aria-label="Close">
+              ✕
+            </button>
+          </header>
+
+          <h2 id={`p-${p.id}-title`} class="gold-text">
+            {p.title}
+          </h2>
+          <p class="d-summary">{p.summary}</p>
+
+          {p.gallery.length > 0 && (
+            <div class="gallery" data-gallery>
+              <figure class="g-main">
+                <img src={p.gallery[0].src} alt={p.gallery[0].alt} width={p.gallery[0].w} height={p.gallery[0].h} loading="lazy" data-g-main />
+              </figure>
+              {p.gallery.length > 1 && (
+                <div class="g-thumbs">
+                  {p.gallery.map((g: any, j: number) => (
+                    <button type="button" class={j === 0 ? 'is-on' : ''} data-g-src={g.src} data-g-alt={g.alt} aria-label={`Show image ${j + 1}${g.alt ? `: ${g.alt}` : ''}`}>
+                      <img src={g.src} alt="" loading="lazy" />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          <div class="d-actions">
+            {p.live && (
+              <a class="btn btn-gold" href={p.live} target="_blank" rel="noopener">
+                Live demo <span class="arrow">↗</span>
+              </a>
+            )}
+            <a class="btn" href={p.source} target="_blank" rel="noopener">
+              Source code <span class="arrow">↗</span>
+            </a>
+          </div>
+          {p.liveNote && <p class="d-note">{p.liveNote}</p>}
+
+          {p.highlight && (
+            <div class="d-highlight">
+              <p class="d-hl-value gold-text num">{p.highlight.value}</p>
+              <p class="d-hl-label">{p.highlight.label}</p>
+            </div>
+          )}
+
+          {(p.problem || p.approach || p.result) && (
+            <dl class="d-brief">
+              {p.problem && (
+                <div>
+                  <dt>The problem</dt>
+                  <dd>{p.problem}</dd>
+                </div>
+              )}
+              {p.approach && (
+                <div>
+                  <dt>How I built it</dt>
+                  <dd>{p.approach}</dd>
+                </div>
+              )}
+              {p.result && (
+                <div>
+                  <dt>The result</dt>
+                  <dd>{p.result}</dd>
+                </div>
+              )}
+            </dl>
+          )}
+
+          <div class="d-stack">
+            <p class="eyebrow">Built with</p>
+            <ul class="tags">
+              {p.stack.map((s: string) => (
+                <li class="tag">{s}</li>
+              ))}
+            </ul>
+          </div>
+
+          <dl class="d-stats">
+            <div>
+              <dt>Commits</dt>
+              <dd class="num">{p.commits}</dd>
+            </div>
+            <div>
+              <dt>Started</dt>
+              <dd>{shortDate(p.createdAt, { month: 'short', year: 'numeric' })}</dd>
+            </div>
+            <div>
+              <dt>Last push</dt>
+              <dd data-ago={p.pushedAt}>{ago(p.pushedAt)}</dd>
+            </div>
+          </dl>
+
+          <nav class="d-nav" aria-label="Other projects">
+            <a href={prev.source} data-open={prev.id}>
+              <span aria-hidden="true">←</span> {prev.title}
+            </a>
+            <a href={next.source} data-open={next.id}>
+              {next.title} <span aria-hidden="true">→</span>
+            </a>
+          </nav>
+        </div>
+      </dialog>
+    );
+  })
+}
+
 <style>
-  .projects {
+  .group-title {
+    margin: clamp(56px, 7vw, 80px) 0 1.5rem;
+    font-size: 1.15rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .group-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--line), transparent);
+  }
+
+  .grid {
+    display: grid;
+    gap: clamp(20px, 2.6vw, 32px);
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  .project {
-    padding: clamp(28px, 4vw, 44px) 0;
-    border-bottom: 1px solid var(--line);
+  .grid-lg {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .project:first-child {
-    padding-top: 0;
+  .grid-sm {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .p-meta {
+  .grid > li {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem 1.4rem;
-    margin-bottom: 1.25rem;
-    font-size: 0.78rem;
-    color: var(--faint);
   }
 
-  .p-no {
-    color: var(--accent);
-  }
+  /* ── Card ── */
 
-  .p-cat {
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--dim);
-  }
-
-  .p-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .p-status.up {
-    color: var(--up);
-  }
-
-  .p-main {
-    display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-    gap: clamp(24px, 4vw, 48px);
-    align-items: start;
-  }
-
-  .p-media {
-    display: block;
-    text-decoration: none;
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    background: var(--panel);
-  }
-
-  .p-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top left;
-    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
-  }
-
-  .p-media:hover img {
-    transform: scale(1.025);
-  }
-
-  .p-cover {
+  .pcard {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    gap: 0.4rem;
+    width: 100%;
+    overflow: hidden;
+    text-decoration: none;
+    background: linear-gradient(180deg, var(--panel), var(--panel-2));
+    border: 1px solid var(--line-soft);
+    border-radius: 16px;
+    transition:
+      transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+      border-color 0.35s,
+      box-shadow 0.35s;
+  }
+
+  .pcard:hover,
+  .pcard:focus-visible {
+    transform: translateY(-4px);
+    border-color: var(--line);
+    box-shadow:
+      0 0 0 1px rgba(243, 207, 122, 0.25),
+      0 24px 60px -24px rgba(243, 207, 122, 0.35),
+      0 30px 70px -30px rgba(0, 0, 0, 0.9);
+  }
+
+  .pcard-media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #0a0e26;
+  }
+
+  .pcard-sm .pcard-media {
+    aspect-ratio: 16 / 11;
+  }
+
+  .pcard-media img {
+    width: 100%;
     height: 100%;
-    padding: clamp(20px, 3vw, 32px);
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .pcard:hover .pcard-media img {
+    transform: scale(1.04);
+  }
+
+  /* Fade the image into the card so bright charts sit inside the night palette. */
+  .pcard-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
     background:
-      radial-gradient(ellipse 60% 70% at 85% 10%, rgba(242, 181, 68, 0.16), transparent 70%),
-      linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% 40px,
-      var(--panel);
+      linear-gradient(180deg, rgba(7, 10, 28, 0.35), transparent 30%, transparent 60%, rgba(12, 17, 44, 0.95)),
+      linear-gradient(0deg, rgba(60, 50, 160, 0.12), rgba(60, 50, 160, 0.12));
+    pointer-events: none;
   }
 
-  .p-cover-title {
-    font: italic 400 clamp(2.6rem, 5vw, 4rem) / 1 var(--serif);
+  .pcard-cat,
+  .pcard-live {
+    position: absolute;
+    top: 14px;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.3em 0.8em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
   }
 
-  .p-cover-sub {
-    font-size: 0.78rem;
+  .pcard-cat {
+    left: 14px;
+    color: var(--gold);
+    background: rgba(7, 10, 28, 0.75);
+    border: 1px solid var(--line);
+  }
+
+  .pcard-live {
+    right: 14px;
+    color: #8af5c0;
+    background: rgba(7, 10, 28, 0.75);
+    border: 1px solid rgba(110, 242, 176, 0.3);
+  }
+
+  .type-cover {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(ellipse 60% 60% at 50% 50%, rgba(139, 123, 255, 0.25), transparent 70%),
+      #0b1030;
+  }
+
+  .type-cover span {
+    position: absolute;
+    font-family: var(--display);
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  .type-cover span:nth-child(3n) {
+    color: var(--gold);
+  }
+
+  .pcard-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.5rem;
+    margin-top: -2.4rem;
+    padding: 0 clamp(18px, 2.4vw, 26px) clamp(18px, 2.4vw, 24px);
+    position: relative;
+  }
+
+  .pcard h3 {
+    font-size: clamp(1.45rem, 2.6vw, 1.9rem);
+    text-shadow: 0 2px 18px rgba(4, 5, 13, 0.9);
+  }
+
+  .pcard-sm h3 {
+    font-size: 1.25rem;
+  }
+
+  .pcard-body > p {
+    color: var(--dim);
+    font-size: 0.95rem;
+  }
+
+  .pcard-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 0.9rem;
+  }
+
+  .pcard-more {
+    flex: none;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .pcard-more span {
+    display: inline-block;
+    transition: transform 0.2s;
+  }
+
+  .pcard:hover .pcard-more span {
+    transform: translateX(4px);
+  }
+
+  /* ── Other repos ── */
+
+  .others {
+    margin-top: clamp(48px, 6vw, 72px);
+    padding: 0;
+  }
+
+  .others summary {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+    padding: 1.2rem 1.6rem;
+    font: 600 1.05rem var(--display);
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .others summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .others summary::after {
+    content: '▾';
+    color: var(--gold);
+    transition: transform 0.2s;
+  }
+
+  .others[open] summary::after {
+    transform: rotate(180deg);
+  }
+
+  .others-count {
+    flex: 1;
+    font: 500 0.82rem var(--body);
+    letter-spacing: 0;
     color: var(--faint);
   }
 
-  .p-body h3 {
-    font-size: clamp(2.2rem, 4vw, 3rem);
+  .others ul {
+    margin: 0;
+    padding: 0 1.6rem 1rem;
+    list-style: none;
   }
 
-  .p-summary {
-    margin-top: 0.6rem;
-    font-size: 1.08rem;
-    color: var(--dim);
+  .others li a {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.15rem 1.5rem;
+    padding: 0.85rem 0;
+    text-decoration: none;
+    border-top: 1px solid var(--line-soft);
   }
 
-  .p-highlight {
-    margin-top: 1.6rem;
-    padding: 1rem 0 1rem 1.1rem;
-    border-left: 2px solid var(--accent);
+  .o-name {
+    font-weight: 600;
+    overflow-wrap: anywhere;
   }
 
-  .p-hl-value {
-    font-size: clamp(1.7rem, 3vw, 2.2rem);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    color: var(--accent);
+  .others li a:hover .o-name {
+    color: var(--gold);
   }
 
-  .p-hl-label {
-    margin-top: 0.4rem;
+  .o-blurb {
+    grid-column: 1;
     font-size: 0.88rem;
     color: var(--dim);
   }
 
-  .p-links {
+  .o-meta {
+    grid-column: 2;
+    grid-row: 1 / span 2;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-top: 1.6rem;
+    gap: 1rem;
+    font-size: 0.82rem;
+    color: var(--faint);
+    white-space: nowrap;
   }
 
-  .p-brief {
+  .o-lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .o-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  /* ── Drawer ── */
+
+  .drawer {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(780px, 100vw);
+    height: 100dvh;
+    max-width: 100vw;
+    max-height: 100dvh;
+    margin: 0;
+    padding: 0;
+    color: var(--text);
+    background: transparent;
+    border: 0;
+    overflow: visible;
+  }
+
+  .drawer::backdrop {
+    background: rgba(4, 5, 13, 0.72);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+
+  .drawer[open] {
+    animation: slide-in 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .drawer[open]::backdrop {
+    animation: fade-in 0.35s ease;
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateX(40px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  .drawer-panel {
+    height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: clamp(20px, 4vw, 44px);
+    background:
+      radial-gradient(ellipse 80% 40% at 100% 0%, rgba(139, 123, 255, 0.14), transparent 70%),
+      linear-gradient(180deg, #10163c, #080b20);
+    border-left: 1px solid var(--line);
+    box-shadow:
+      inset 4px 0 0 rgba(4, 5, 13, 0.6),
+      inset 5px 0 0 rgba(243, 207, 122, 0.14),
+      -40px 0 80px -20px rgba(0, 0, 0, 0.8);
+  }
+
+  .drawer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .close {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(20px, 3vw, 40px);
-    margin: clamp(24px, 3vw, 36px) 0 0;
-    padding-top: 1.4rem;
-    border-top: 1px dashed var(--line);
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+    color: var(--dim);
+    background: rgba(12, 17, 44, 0.7);
+    border: 1px solid var(--line-soft);
+    border-radius: 50%;
+    cursor: pointer;
+    transition:
+      color 0.2s,
+      border-color 0.2s;
   }
 
-  .p-brief dd {
-    margin: 0.45rem 0 0;
-    font-size: 0.94rem;
-    line-height: 1.6;
+  .close:hover {
+    color: var(--gold);
+    border-color: var(--line);
+  }
+
+  .drawer h2 {
+    margin-top: 0.8rem;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+  }
+
+  .d-summary {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
     color: var(--dim);
   }
 
-  .p-foot {
+  .gallery {
+    margin-top: 1.6rem;
+  }
+
+  .g-main {
+    margin: 0;
+    overflow: hidden;
+    background: #0a0e26;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+
+  .g-main img {
+    width: 100%;
+    height: auto;
+    max-height: 62vh;
+    object-fit: contain;
+  }
+
+  .g-thumbs {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.7rem;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .g-thumbs button {
+    flex: none;
+    width: 96px;
+    aspect-ratio: 16 / 10;
+    padding: 0;
+    overflow: hidden;
+    background: #0a0e26;
+    border: 1px solid var(--line-soft);
+    border-radius: 8px;
+    opacity: 0.6;
+    cursor: pointer;
+    transition:
+      opacity 0.2s,
+      border-color 0.2s;
+  }
+
+  .g-thumbs button:hover,
+  .g-thumbs button.is-on {
+    opacity: 1;
+    border-color: var(--gold);
+  }
+
+  .g-thumbs img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .d-actions {
     display: flex;
     flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.5rem;
+  }
+
+  .d-note {
+    margin-top: 0.6rem;
+    font-size: 0.82rem;
+    color: var(--faint);
+  }
+
+  .d-highlight {
+    margin-top: 2rem;
+    padding: 1.2rem 1.4rem;
+    background: rgba(243, 207, 122, 0.05);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+
+  .d-hl-value {
+    font: 700 clamp(1.9rem, 4vw, 2.6rem) / 1.1 var(--display);
+    letter-spacing: 0.02em;
+  }
+
+  .d-hl-label {
+    margin-top: 0.4rem;
+    color: var(--dim);
+    font-size: 0.95rem;
+  }
+
+  .d-brief {
+    display: grid;
+    gap: 1.4rem;
+    margin: 2rem 0 0;
+  }
+
+  .d-brief dt {
+    font: 600 0.95rem var(--display);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .d-brief dd {
+    margin: 0.35rem 0 0;
+    color: var(--dim);
+  }
+
+  .d-stack {
+    display: grid;
+    gap: 0.7rem;
+    margin-top: 2rem;
+  }
+
+  .d-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 2rem 0 0;
+    border-top: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .d-stats div {
+    padding: 1rem 0;
+  }
+
+  .d-stats dt {
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  .d-stats dd {
+    margin: 0.2rem 0 0;
+    font: 600 1.15rem var(--display);
+  }
+
+  .d-nav {
+    display: flex;
     justify-content: space-between;
-    align-items: center;
     gap: 1rem;
     margin-top: 1.6rem;
   }
 
-  .p-stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem 1.2rem;
-    font-size: 0.76rem;
-    color: var(--faint);
-  }
-
-  /* ── More projects ── */
-
-  .more {
-    margin-top: clamp(48px, 6vw, 72px);
-  }
-
-  .more-title {
-    margin-bottom: 1.25rem;
-    font-size: 1.9rem;
-  }
-
-  .more-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
-    gap: 16px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-    padding: 22px;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    transition: border-color 0.2s;
-  }
-
-  .card:hover {
-    border-color: var(--line-2);
-  }
-
-  .card h4 {
-    font: 400 1.6rem/1.1 var(--serif);
-  }
-
-  .card-summary {
-    flex: 1;
-    font-size: 0.93rem;
+  .d-nav a {
+    font-weight: 600;
     color: var(--dim);
-  }
-
-  .card-links {
-    display: flex;
-    gap: 1.2rem;
-    font-size: 0.88rem;
-    font-weight: 500;
-  }
-
-  .card-links a {
     text-decoration: none;
   }
 
-  .card-links a:first-child {
-    color: var(--accent);
+  .d-nav a:hover {
+    color: var(--gold);
   }
 
-  .card-links a:hover {
-    text-decoration: underline;
-    text-underline-offset: 3px;
+  @media (max-width: 900px) {
+    .grid-sm {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
-  .card-note {
-    font-size: 0.78rem;
-    color: var(--faint);
-  }
-
-  @media (max-width: 860px) {
-    .p-main,
-    .p-brief {
+  @media (max-width: 700px) {
+    .grid-lg,
+    .grid-sm {
       grid-template-columns: minmax(0, 1fr);
+    }
+    .others li a {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .o-meta {
+      grid-column: 1;
+      grid-row: auto;
     }
   }
 </style>

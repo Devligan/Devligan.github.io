@@ -1,0 +1,305 @@
+---
+import Heading from './Heading.astro';
+import { education, experience } from '../lib/view.mjs';
+---
+
+<section class="section" id="experience" aria-labelledby="experience-title">
+  <div class="wrap">
+    <Heading title="Experience" id="experience-title" note="Where I’ve worked, newest first." />
+
+    <ol class="timeline">
+      {
+        experience.map((e, i) => (
+          <li class={`entry reveal ${e.highlight ? 'is-highlight' : ''}`} style={`--d:${i * 0.08}s`}>
+            <div class="when">
+              <p class="dates">{e.dates}</p>
+              <p class="duration">{e.duration}</p>
+            </div>
+            <span class="node" aria-hidden="true" />
+            <article class="card frame">
+              <header class="card-head">
+                <div>
+                  <h3>{e.role}</h3>
+                  <p class="company">{e.company}</p>
+                </div>
+                <div class="badges">
+                  {e.current && (
+                    <span class="badge badge-now">
+                      <span class="live-dot" aria-hidden="true" />
+                      Current
+                    </span>
+                  )}
+                  <span class="badge">{e.type}</span>
+                </div>
+              </header>
+              <p class="meta">
+                <span class="meta-dates">
+                  {e.dates} · {e.duration} ·{' '}
+                </span>
+                {e.location}
+              </p>
+              <ul class="bullets">
+                {e.bullets.map((b: string) => (
+                  <li>{b}</li>
+                ))}
+              </ul>
+              <ul class="tags">
+                {e.tags.map((t: string) => (
+                  <li class="tag">{t}</li>
+                ))}
+              </ul>
+            </article>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="education reveal">
+      <p class="eyebrow">Education</p>
+      {
+        education.map((ed) => (
+          <div class="edu frame">
+            <svg class="edu-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3Zm-6.8 9.2V16c0 1.9 3 3.5 6.8 3.5s6.8-1.6 6.8-3.5v-3.8L12 16l-6.8-3.8Z" />
+            </svg>
+            <div>
+              <h3>{ed.school}</h3>
+              <p>{ed.field}</p>
+            </div>
+            <p class="edu-where">{ed.location}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    position: relative;
+    display: grid;
+    gap: clamp(28px, 4vw, 40px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* The gold rail. */
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    left: calc(180px + 28px);
+    width: 1px;
+    background: linear-gradient(180deg, transparent, var(--gold) 6%, var(--gold) 80%, transparent);
+    opacity: 0.45;
+  }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 180px 56px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .when {
+    padding-top: 1.55rem;
+    text-align: right;
+  }
+
+  .dates {
+    font: 600 0.92rem var(--display);
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+
+  .duration {
+    font-size: 0.82rem;
+    color: var(--faint);
+  }
+
+  .node {
+    justify-self: center;
+    width: 13px;
+    height: 13px;
+    margin-top: 1.85rem;
+    background: var(--night-1);
+    border: 1px solid var(--gold);
+    transform: rotate(45deg);
+    box-shadow: 0 0 0 4px var(--night-1);
+  }
+
+  .is-highlight .node {
+    background: var(--gold);
+    box-shadow:
+      0 0 0 4px var(--night-1),
+      0 0 18px 2px rgba(243, 207, 122, 0.7);
+  }
+
+  .card {
+    padding: clamp(20px, 3vw, 30px);
+  }
+
+  .is-highlight .card {
+    border-color: rgba(243, 207, 122, 0.55);
+    box-shadow:
+      inset 0 0 0 4px rgba(4, 5, 13, 0.55),
+      inset 0 0 0 5px rgba(243, 207, 122, 0.2),
+      0 0 60px -20px rgba(243, 207, 122, 0.35),
+      0 30px 70px -35px rgba(0, 0, 0, 0.9);
+  }
+
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .card h3 {
+    font: 700 clamp(1.1rem, 2.2vw, 1.3rem) / 1.3 var(--body);
+    letter-spacing: 0;
+  }
+
+  .company {
+    margin-top: 0.2rem;
+    font: 600 0.98rem var(--display);
+    letter-spacing: 0.03em;
+    color: var(--gold);
+  }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.4rem;
+    flex: none;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.2em 0.7em;
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--dim);
+    border: 1px solid var(--line-soft);
+    border-radius: 999px;
+  }
+
+  .badge-now {
+    color: #8af5c0;
+    border-color: rgba(110, 242, 176, 0.35);
+  }
+
+  .meta {
+    margin-top: 0.5rem;
+    font-size: 0.86rem;
+    color: var(--faint);
+  }
+
+  .meta-dates {
+    display: none;
+  }
+
+  .bullets {
+    display: grid;
+    gap: 0.55rem;
+    margin: 1.1rem 0 1.3rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .bullets li {
+    position: relative;
+    padding-left: 1.4rem;
+    color: var(--dim);
+  }
+
+  .bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 10px;
+    height: 10px;
+    background: var(--spark) center / contain no-repeat;
+    opacity: 0.85;
+  }
+
+  /* ── Education ── */
+
+  .education {
+    display: grid;
+    gap: 1rem;
+    margin-top: clamp(48px, 6vw, 72px);
+    padding-left: calc(180px + 56px);
+  }
+
+  .edu {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.3rem 1.6rem;
+  }
+
+  .edu-icon {
+    width: 34px;
+    height: 34px;
+    fill: var(--gold);
+    filter: drop-shadow(0 0 10px rgba(243, 207, 122, 0.4));
+  }
+
+  .edu h3 {
+    font-size: 1.25rem;
+  }
+
+  .edu p {
+    color: var(--dim);
+  }
+
+  .edu-where {
+    font-size: 0.86rem;
+    color: var(--faint) !important;
+  }
+
+  @media (max-width: 860px) {
+    .timeline::before {
+      left: 6px;
+    }
+    .entry {
+      grid-template-columns: 26px minmax(0, 1fr);
+    }
+    .when {
+      display: none;
+    }
+    .node {
+      justify-self: start;
+      margin-top: 1.7rem;
+    }
+    .meta-dates {
+      display: inline;
+      color: var(--dim);
+    }
+    .education {
+      padding-left: 26px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .card-head {
+      flex-direction: column;
+    }
+    .badges {
+      justify-content: flex-start;
+    }
+    .edu {
+      grid-template-columns: auto 1fr;
+    }
+    .edu-where {
+      grid-column: 2;
+    }
+  }
+</style>

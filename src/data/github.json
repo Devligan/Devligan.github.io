@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T00:06:22.219Z",
+  "generatedAt": "2026-11-15T00:25:33.683Z",
   "user": {
     "login": "Devligan",
     "name": "Sriharsha Challangi",
@@ -17,49 +17,49 @@
     {
       "name": "Python",
       "color": "#3572A5",
-      "score": 7.35057382936251,
+      "score": 7.350485857618614,
       "repos": 12,
       "pct": 100
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "score": 1.6795414478856658,
+      "score": 1.6795107746111435,
       "repos": 2,
       "pct": 23
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "score": 1.672082173506849,
+      "score": 1.6720640623495755,
       "repos": 5,
       "pct": 23
     },
     {
       "name": "HTML",
       "color": "#e34c26",
-      "score": 0.975612978528116,
+      "score": 0.9756002766772627,
       "repos": 5,
       "pct": 13
     },
     {
       "name": "C#",
       "color": "#7355dd",
-      "score": 0.9238416405264507,
+      "score": 0.9238291555735583,
       "repos": 2,
       "pct": 13
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "score": 0.47174366793281725,
+      "score": 0.47173747455969156,
       "repos": 4,
       "pct": 6
     },
     {
       "name": "PLpgSQL",
       "color": "#336790",
-      "score": 0.27252484263090265,
+      "score": 0.2725198619860721,
       "repos": 1,
       "pct": 4
     }
@@ -112,8 +112,29 @@
       ],
       "commits": 178,
       "branch": "master",
-      "imageUrl": "https://raw.githubusercontent.com/Devligan/powerflow/master/public/showcase/markets.png",
-      "image": "/project-art/powerflow.png"
+      "gallery": [
+        {
+          "key": "public/showcase/markets.png@d41a22aea3652c06a3b1d13e8d87db2a739ea821",
+          "alt": "The HB_NORTH market: the day-ahead curve against real time, and the day-ahead bid ticket",
+          "src": "/project-art/powerflow-0.webp",
+          "w": 1130,
+          "h": 420
+        },
+        {
+          "key": "public/showcase/positions.png@490531e877aef9f3e860827269c6e5d2d886bf83",
+          "alt": "Positions: a risk ladder of net MWh by delivery hour, and each position marked to real time with its settlement deadline",
+          "src": "/project-art/powerflow-1.webp",
+          "w": 1130,
+          "h": 612
+        },
+        {
+          "key": "public/showcase/analytics.png@92043495fa3848132149d1ab272b7280be83adb9",
+          "alt": "Analytics after settlement: equity, return, realized P&L, win rate, best and worst trade, drawdown",
+          "src": "/project-art/powerflow-2.webp",
+          "w": 1130,
+          "h": 302
+        }
+      ]
     },
     {
       "name": "orbital-insight",
@@ -161,8 +182,36 @@
       ],
       "commits": 91,
       "branch": "main",
-      "imageUrl": "https://raw.githubusercontent.com/Devligan/orbital-insight/main/docs/images/home.jpg",
-      "image": "/project-art/orbital-insight.jpg"
+      "gallery": [
+        {
+          "key": "docs/images/home.jpg@fd295f616a93a42f71d7c200ebd4f0d4c18459bb",
+          "alt": "Every active satellite on the globe, with the ISS followed in real time",
+          "src": "/project-art/orbital-insight-0.webp",
+          "w": 1498,
+          "h": 812
+        },
+        {
+          "key": "docs/images/sky-chart.png@8532c1dc2207260204688475edef62ee6900ca8c",
+          "alt": "An ISS pass over New York: when, how bright, where to look, and the cloud forecast",
+          "src": "/project-art/orbital-insight-1.webp",
+          "w": 832,
+          "h": 185
+        },
+        {
+          "key": "docs/images/atlas.png@263a10c6ab855f3c84863cea0e4e3e2b01e63d1e",
+          "alt": "Active satellites by inclination and altitude",
+          "src": "/project-art/orbital-insight-2.webp",
+          "w": 1072,
+          "h": 740
+        },
+        {
+          "key": "docs/images/conjunctions.png@edfd5117a6921861f9b899d949512a80684f0950",
+          "alt": "The ISS screened against the catalog, with miss distances split into radial, in-track and cross-track",
+          "src": "/project-art/orbital-insight-3.webp",
+          "w": 1120,
+          "h": 835
+        }
+      ]
     },
     {
       "name": "Financial-Market-Volatility-Correlation-Analysis",
@@ -199,7 +248,29 @@
       "topics": [],
       "commits": 12,
       "branch": "main",
-      "imageUrl": null
+      "gallery": [
+        {
+          "key": "analysis_walkthrough.ipynb@b889462b6636dab3c98fa179e2d89dc40ce72976#0",
+          "alt": "Daily return correlation matrix across 113 assets",
+          "src": "/project-art/Financial-Market-Volatility-Correlation-Analysis-nb0.webp",
+          "w": 1031,
+          "h": 884
+        },
+        {
+          "key": "analysis_walkthrough.ipynb@b889462b6636dab3c98fa179e2d89dc40ce72976#3",
+          "alt": "Monte Carlo portfolios and the efficient frontier",
+          "src": "/project-art/Financial-Market-Volatility-Correlation-Analysis-nb3.webp",
+          "w": 1022,
+          "h": 584
+        },
+        {
+          "key": "analysis_walkthrough.ipynb@b889462b6636dab3c98fa179e2d89dc40ce72976#2",
+          "alt": "Drawdowns of max-Sharpe vs. equal-weight vs. SPY",
+          "src": "/project-art/Financial-Market-Volatility-Correlation-Analysis-nb2.webp",
+          "w": 1184,
+          "h": 384
+        }
+      ]
     },
     {
       "name": "neetcode-submissions-rkmukv8m",
@@ -225,8 +296,7 @@
       ],
       "topics": [],
       "commits": 21,
-      "branch": "main",
-      "imageUrl": null
+      "branch": "main"
     },
     {
       "name": "MATH-4322-Group-4-Project",
@@ -243,8 +313,7 @@
       "languages": [],
       "topics": [],
       "commits": 2,
-      "branch": "main",
-      "imageUrl": null
+      "branch": "main"
     },
     {
       "name": "Spotify-Wrapped",
@@ -290,8 +359,7 @@
       ],
       "topics": [],
       "commits": 21,
-      "branch": "main",
-      "imageUrl": null
+      "branch": "main"
     },
     {
       "name": "Crypto-Server",
@@ -328,7 +396,15 @@
       "topics": [],
       "commits": 14,
       "branch": "main",
-      "imageUrl": null
+      "gallery": [
+        {
+          "key": "/project-art/crypto-terminal-docs.webp",
+          "src": "/project-art/crypto-terminal-docs.webp",
+          "alt": "Crypto Terminal REST API documentation page",
+          "w": 1440,
+          "h": 900
+        }
+      ]
     },
     {
       "name": "ATS-Resume-Maxer",
@@ -369,8 +445,7 @@
       ],
       "topics": [],
       "commits": 1,
-      "branch": "main",
-      "imageUrl": null
+      "branch": "main"
     },
     {
       "name": "Inventory-Tracker",
@@ -396,8 +471,7 @@
       ],
       "topics": [],
       "commits": 8,
-      "branch": "main",
-      "imageUrl": null
+      "branch": "main"
     },
     {
       "name": "Fake_News_Detector",
@@ -429,7 +503,22 @@
       "topics": [],
       "commits": 2,
       "branch": "main",
-      "imageUrl": null
+      "gallery": [
+        {
+          "key": "main.ipynb@a866a5a5c1d305c8ae88d6956be5472d1db2b5bf#1",
+          "alt": "News subjects by label",
+          "src": "/project-art/Fake_News_Detector-nb1.webp",
+          "w": 630,
+          "h": 470
+        },
+        {
+          "key": "main.ipynb@a866a5a5c1d305c8ae88d6956be5472d1db2b5bf#4",
+          "alt": "SHAP summary of the most influential words",
+          "src": "/project-art/Fake_News_Detector-nb4.webp",
+          "w": 869,
+          "h": 1728
+        }
+      ]
     },
     {
       "name": "A-B-Testing",
@@ -455,8 +544,7 @@
       ],
       "topics": [],
       "commits": 7,
-      "branch": "main",
-      "imageUrl": null
+      "branch": "main"
     },
     {
       "name": "Mobile_EDA_Price_Predictor",
@@ -482,8 +570,7 @@
       ],
       "topics": [],
       "commits": 6,
-      "branch": "main",
-      "imageUrl": null
+      "branch": "main"
     },
     {
       "name": "Casting-product-image-data-for-quality-inspection",
@@ -510,7 +597,22 @@
       "topics": [],
       "commits": 5,
       "branch": "main",
-      "imageUrl": null
+      "gallery": [
+        {
+          "key": "main.ipynb@00bd1281b997362bbe4684a1358929f273e4f07f#3",
+          "alt": "SHAP explanations for defective and normal castings",
+          "src": "/project-art/Casting-product-image-data-for-quality-inspection-nb3.webp",
+          "w": 1600,
+          "h": 910
+        },
+        {
+          "key": "main.ipynb@00bd1281b997362bbe4684a1358929f273e4f07f#10",
+          "alt": "SHAP summary of model behaviour",
+          "src": "/project-art/Casting-product-image-data-for-quality-inspection-nb10.webp",
+          "w": 1589,
+          "h": 1181
+        }
+      ]
     },
     {
       "name": "PlantIdentifier",
@@ -541,8 +643,7 @@
       ],
       "topics": [],
       "commits": 3,
-      "branch": "main",
-      "imageUrl": null
+      "branch": "main"
     },
     {
       "name": "Multilingual_AI_Translator",
@@ -569,7 +670,7 @@
       "topics": [],
       "commits": 5,
       "branch": "main",
-      "imageUrl": null
+      "gallery": []
     },
     {
       "name": "connect_4_python",
@@ -595,8 +696,7 @@
       ],
       "topics": [],
       "commits": 2,
-      "branch": "main",
-      "imageUrl": null
+      "branch": "main"
     },
     {
       "name": "electron_Wikipedia-Getting-to-Philosophy",
@@ -632,8 +732,7 @@
       ],
       "topics": [],
       "commits": 4,
-      "branch": "main",
-      "imageUrl": null
+      "branch": "main"
     },
     {
       "name": "sales_search_sqlite",
@@ -659,8 +758,7 @@
       ],
       "topics": [],
       "commits": 1,
-      "branch": "main",
-      "imageUrl": null
+      "branch": "main"
     },
     {
       "name": "math_api",
@@ -686,8 +784,7 @@
       ],
       "topics": [],
       "commits": 6,
-      "branch": "main",
-      "imageUrl": null
+      "branch": "main"
     },
     {
       "name": "word_guesser",
@@ -718,8 +815,7 @@
       ],
       "topics": [],
       "commits": 2,
-      "branch": "main",
-      "imageUrl": null
+      "branch": "main"
     },
     {
       "name": "electron_to_do_list",
@@ -755,8 +851,7 @@
       ],
       "topics": [],
       "commits": 5,
-      "branch": "main",
-      "imageUrl": null
+      "branch": "main"
     }
   ],
   "log": [
@@ -992,6 +1087,36 @@
   "calendar": {
     "total": 422,
     "weeks": [
+      [
+        [
+          "2025-11-09",
+          0
+        ],
+        [
+          "2025-11-10",
+          0
+        ],
+        [
+          "2025-11-11",
+          0
+        ],
+        [
+          "2025-11-12",
+          0
+        ],
+        [
+          "2025-11-13",
+          0
+        ],
+        [
+          "2025-11-14",
+          0
+        ],
+        [
+          "2025-11-15",
+          0
+        ]
+      ],
       [
         [
           "2025-11-16",
@@ -1449,11 +1574,11 @@
         ],
         [
           "2026-03-02",
-          0
+          1
         ],
         [
           "2026-03-03",
-          1
+          0
         ],
         [
           "2026-03-04",
@@ -2541,21 +2666,15 @@
         ],
         [
           "2026-11-12",
-          57
+          58
         ],
         [
           "2026-11-13",
-          84
+          83
         ],
         [
           "2026-11-14",
           26
-        ]
-      ],
-      [
-        [
-          "2026-11-15",
-          0
         ]
       ]
     ],
