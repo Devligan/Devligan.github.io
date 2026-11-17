@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T02:25:41.389Z",
+  "generatedAt": "2026-11-17T03:24:02.140Z",
   "user": {
     "login": "Devligan",
     "name": "Sriharsha Challangi",
@@ -17,49 +17,49 @@
     {
       "name": "Python",
       "color": "#3572A5",
-      "score": 6.510255867650983,
+      "score": 6.510027424860393,
       "repos": 11,
       "pct": 100
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "score": 1.678087387972251,
+      "score": 1.6779942981619456,
       "repos": 2,
       "pct": 26
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "score": 1.669306611368722,
+      "score": 1.669251738854815,
       "repos": 5,
       "pct": 26
     },
     {
       "name": "HTML",
       "color": "#e34c26",
-      "score": 0.9736189309129701,
+      "score": 0.973580483107915,
       "repos": 5,
       "pct": 15
     },
     {
       "name": "C#",
       "color": "#7355dd",
-      "score": 0.9218815345834106,
+      "score": 0.9218437390739722,
       "repos": 2,
       "pct": 14
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "score": 0.4708067226470829,
+      "score": 0.4707879692626858,
       "repos": 4,
       "pct": 7
     },
     {
       "name": "PLpgSQL",
       "color": "#336790",
-      "score": 0.271743474416755,
+      "score": 0.2717284192488172,
       "repos": 1,
       "pct": 4
     }
