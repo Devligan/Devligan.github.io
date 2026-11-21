@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T20:21:47.084Z",
+  "generatedAt": "2026-11-21T21:22:01.302Z",
   "user": {
     "login": "Devligan",
     "name": "Sriharsha Challangi",
@@ -9,57 +9,57 @@
   },
   "stats": {
     "repos": 20,
-    "totalCommits": 379,
+    "totalCommits": 383,
     "stars": 0,
-    "lastPush": "2026-11-21T20:21:38Z"
+    "lastPush": "2026-11-21T20:40:10Z"
   },
   "languages": [
     {
       "name": "Python",
       "color": "#3572A5",
-      "score": 6.483603780035886,
+      "score": 6.4833699447597,
       "repos": 11,
       "pct": 100
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "score": 1.6802215560830163,
+      "score": 1.6761603930063522,
       "repos": 2,
       "pct": 26
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "score": 1.6630843632737258,
+      "score": 1.662924957218216,
       "repos": 5,
       "pct": 26
     },
     {
       "name": "HTML",
       "color": "#e34c26",
-      "score": 0.969136092207154,
+      "score": 0.9690967865463832,
       "repos": 5,
       "pct": 15
     },
     {
       "name": "C#",
       "color": "#7355dd",
-      "score": 0.9174742120561923,
+      "score": 0.917435563768533,
       "repos": 2,
       "pct": 14
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "score": 0.46878942172052607,
+      "score": 0.4685648188620813,
       "repos": 4,
       "pct": 7
     },
     {
       "name": "PLpgSQL",
       "color": "#336790",
-      "score": 0.2725393346088309,
+      "score": 0.27681475663324406,
       "repos": 1,
       "pct": 4
     }
@@ -81,7 +81,7 @@
       "forks": 0,
       "archived": false,
       "createdAt": "2026-10-27T21:21:42Z",
-      "pushedAt": "2026-11-21T20:21:38Z",
+      "pushedAt": "2026-11-21T20:40:10Z",
       "language": {
         "name": "TypeScript",
         "color": "#3178c6"
@@ -90,12 +90,12 @@
         {
           "name": "TypeScript",
           "color": "#3178c6",
-          "size": 1241700
+          "size": 1258264
         },
         {
           "name": "PLpgSQL",
           "color": "#336790",
-          "size": 476014
+          "size": 492707
         },
         {
           "name": "CSS",
@@ -116,7 +116,7 @@
         "power-trading",
         "trading-simulator"
       ],
-      "commits": 182,
+      "commits": 186,
       "branch": "master",
       "gallery": [
         {
@@ -926,6 +926,18 @@
   "log": [
     {
       "repo": "powerflow",
+      "message": "The ticket says why bids were refused, once.",
+      "date": "2026-11-21T20:31:30Z",
+      "url": "https://github.com/Devligan/powerflow/commit/dd5eee8b412af076c4bf0c342c571fe71df4b9ac"
+    },
+    {
+      "repo": "powerflow",
+      "message": "The Desk shows the credit open bids hold.",
+      "date": "2026-11-21T20:26:09Z",
+      "url": "https://github.com/Devligan/powerflow/commit/14c3754392247785da50489503523de1503e4327"
+    },
+    {
+      "repo": "powerflow",
       "message": "Placing an order is idempotent.",
       "date": "2026-11-21T20:17:32Z",
       "url": "https://github.com/Devligan/powerflow/commit/22cc7b485be1f5ddfdecbacc7194bd55da658739"
@@ -941,18 +953,6 @@
       "message": "A fresh book reads cleanly: no per-trade figures before a trade closes.",
       "date": "2026-11-14T23:07:56Z",
       "url": "https://github.com/Devligan/powerflow/commit/ae8cead5febef8e84faba93b4dcacebfa47c8731"
-    },
-    {
-      "repo": "powerflow",
-      "message": "Launch: every live book starts from real bids; docs describe the desk as it is.",
-      "date": "2026-11-14T22:55:10Z",
-      "url": "https://github.com/Devligan/powerflow/commit/49a05497ab9dcdf341452d8680407215326a1e5b"
-    },
-    {
-      "repo": "powerflow",
-      "message": "Desk review: one DART convention, a history worth reading, honest analytics.",
-      "date": "2026-11-14T20:37:57Z",
-      "url": "https://github.com/Devligan/powerflow/commit/fa969588e6385efabe6b57f6445fede7439f4f2c"
     },
     {
       "repo": "orbital-insight",
@@ -1124,7 +1124,7 @@
     }
   ],
   "calendar": {
-    "total": 442,
+    "total": 448,
     "weeks": [
       [
         [
@@ -2713,7 +2713,7 @@
         ],
         [
           "2026-11-21",
-          10
+          16
         ]
       ]
     ],
