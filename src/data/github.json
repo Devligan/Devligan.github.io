@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T23:21:40.278Z",
+  "generatedAt": "2026-11-22T00:43:44.022Z",
   "user": {
     "login": "Devligan",
     "name": "Sriharsha Challangi",
@@ -9,139 +9,62 @@
   },
   "stats": {
     "repos": 20,
-    "totalCommits": 383,
+    "totalCommits": 397,
     "stars": 0,
-    "lastPush": "2026-11-21T20:40:10Z"
+    "lastPush": "2026-11-22T00:36:14Z"
   },
   "languages": [
     {
       "name": "Python",
       "color": "#3572A5",
-      "score": 6.4829055264829885,
+      "score": 6.482587042445084,
       "repos": 11,
       "pct": 100
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "score": 1.675969491902284,
+      "score": 1.6748921273138675,
       "repos": 2,
       "pct": 26
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "score": 1.662813316751215,
+      "score": 1.6626964444479235,
       "repos": 5,
       "pct": 26
     },
     {
       "name": "HTML",
       "color": "#e34c26",
-      "score": 0.9690187231948701,
+      "score": 0.9689651906969767,
       "repos": 5,
       "pct": 15
     },
     {
       "name": "C#",
       "color": "#7355dd",
-      "score": 0.9173588057561517,
+      "score": 0.9173061682174711,
       "repos": 2,
       "pct": 14
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "score": 0.46852671634198007,
+      "score": 0.468394814789651,
       "repos": 4,
       "pct": 7
     },
     {
       "name": "PLpgSQL",
       "color": "#336790",
-      "score": 0.27678321789358773,
+      "score": 0.27889851958254663,
       "repos": 1,
       "pct": 4
     }
   ],
   "repos": [
-    {
-      "name": "powerflow",
-      "description": "Paper-trade the Texas power grid on real ERCOT prices: bid tomorrow's auction, watch real time, settle on ERCOT's calendar.",
-      "summary": "ERCOT prices every hour of Texas electricity twice. The day-ahead market clears an auction for tomorrow, today. The real-time market prices the same hour again as it is delivered. A cold snap, a plant trip or a windy night pulls the two apart.",
-      "features": [
-        "You bid blind, as ERCOT requires. Bids close at 10:00 Central the day before and fill at the clearing price ERCOT publishes that afternoon.",
-        "You settle on ERCOT's calendar. Positions are marked to real time as each hour runs and settle when ERCOT calls the prices final, two business days later.",
-        "The prices are real. They come from ERCOT's public market reports every 15 minutes. Only the money is simulated."
-      ],
-      "built": "",
-      "url": "https://github.com/Devligan/powerflow",
-      "homepage": "https://powerflow-two.vercel.app",
-      "stars": 0,
-      "forks": 0,
-      "archived": false,
-      "createdAt": "2026-10-27T21:21:42Z",
-      "pushedAt": "2026-11-21T20:40:10Z",
-      "language": {
-        "name": "TypeScript",
-        "color": "#3178c6"
-      },
-      "languages": [
-        {
-          "name": "TypeScript",
-          "color": "#3178c6",
-          "size": 1258264
-        },
-        {
-          "name": "PLpgSQL",
-          "color": "#336790",
-          "size": 492707
-        },
-        {
-          "name": "CSS",
-          "color": "#663399",
-          "size": 19219
-        },
-        {
-          "name": "JavaScript",
-          "color": "#f1e05a",
-          "size": 9655
-        }
-      ],
-      "topics": [
-        "electricity-markets",
-        "energy-trading",
-        "ercot",
-        "paper-trading",
-        "power-trading",
-        "trading-simulator"
-      ],
-      "commits": 186,
-      "branch": "master",
-      "gallery": [
-        {
-          "key": "public/showcase/markets.png@d41a22aea3652c06a3b1d13e8d87db2a739ea821",
-          "alt": "The HB_NORTH market: the day-ahead curve against real time, and the day-ahead bid ticket",
-          "src": "/project-art/powerflow-0.webp",
-          "w": 1130,
-          "h": 420
-        },
-        {
-          "key": "public/showcase/positions.png@490531e877aef9f3e860827269c6e5d2d886bf83",
-          "alt": "Positions: a risk ladder of net MWh by delivery hour, and each position marked to real time with its settlement deadline",
-          "src": "/project-art/powerflow-1.webp",
-          "w": 1130,
-          "h": 612
-        },
-        {
-          "key": "public/showcase/analytics.png@92043495fa3848132149d1ab272b7280be83adb9",
-          "alt": "Analytics after settlement: equity, return, realized P&L, win rate, best and worst trade, drawdown",
-          "src": "/project-art/powerflow-2.webp",
-          "w": 1130,
-          "h": 302
-        }
-      ]
-    },
     {
       "name": "orbital-insight",
       "description": "See which satellites cross your sky tonight, find out what that moving light was, and explore every active satellite on a live globe. Real orbits, computed in your browser.",
@@ -160,7 +83,7 @@
       "forks": 0,
       "archived": false,
       "createdAt": "2026-11-13T04:07:14Z",
-      "pushedAt": "2026-11-21T09:21:27Z",
+      "pushedAt": "2026-11-22T00:36:14Z",
       "language": {
         "name": "TypeScript",
         "color": "#3178c6"
@@ -194,7 +117,7 @@
         "stargazing",
         "starlink"
       ],
-      "commits": 91,
+      "commits": 100,
       "branch": "main",
       "gallery": [
         {
@@ -224,6 +147,83 @@
           "src": "/project-art/orbital-insight-3.webp",
           "w": 1120,
           "h": 835
+        }
+      ]
+    },
+    {
+      "name": "powerflow",
+      "description": "Paper-trade the Texas power grid on real ERCOT prices: bid tomorrow's auction, watch real time, settle on ERCOT's calendar.",
+      "summary": "ERCOT prices every hour of Texas electricity twice. The day-ahead market clears an auction for tomorrow, today. The real-time market prices the same hour again as it is delivered. A cold snap, a plant trip or a windy night pulls the two apart.",
+      "features": [
+        "You bid blind, as ERCOT requires. Bids close at 10:00 Central the day before and fill at the clearing price ERCOT publishes that afternoon.",
+        "You settle on ERCOT's calendar. Positions are marked to real time as each hour runs and settle when ERCOT calls the prices final, two business days later.",
+        "The prices are real. They come from ERCOT's public market reports every 15 minutes. Only the money is simulated."
+      ],
+      "built": "",
+      "url": "https://github.com/Devligan/powerflow",
+      "homepage": "https://powerflow-two.vercel.app",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2026-10-27T21:21:42Z",
+      "pushedAt": "2026-11-21T23:42:51Z",
+      "language": {
+        "name": "TypeScript",
+        "color": "#3178c6"
+      },
+      "languages": [
+        {
+          "name": "TypeScript",
+          "color": "#3178c6",
+          "size": 1268551
+        },
+        {
+          "name": "PLpgSQL",
+          "color": "#336790",
+          "size": 501842
+        },
+        {
+          "name": "CSS",
+          "color": "#663399",
+          "size": 19219
+        },
+        {
+          "name": "JavaScript",
+          "color": "#f1e05a",
+          "size": 9655
+        }
+      ],
+      "topics": [
+        "electricity-markets",
+        "energy-trading",
+        "ercot",
+        "paper-trading",
+        "power-trading",
+        "trading-simulator"
+      ],
+      "commits": 191,
+      "branch": "master",
+      "gallery": [
+        {
+          "key": "public/showcase/markets.png@d41a22aea3652c06a3b1d13e8d87db2a739ea821",
+          "alt": "The HB_NORTH market: the day-ahead curve against real time, and the day-ahead bid ticket",
+          "src": "/project-art/powerflow-0.webp",
+          "w": 1130,
+          "h": 420
+        },
+        {
+          "key": "public/showcase/positions.png@490531e877aef9f3e860827269c6e5d2d886bf83",
+          "alt": "Positions: a risk ladder of net MWh by delivery hour, and each position marked to real time with its settlement deadline",
+          "src": "/project-art/powerflow-1.webp",
+          "w": 1130,
+          "h": 612
+        },
+        {
+          "key": "public/showcase/analytics.png@92043495fa3848132149d1ab272b7280be83adb9",
+          "alt": "Analytics after settlement: equity, return, realized P&L, win rate, best and worst trade, drawdown",
+          "src": "/project-art/powerflow-2.webp",
+          "w": 1130,
+          "h": 302
         }
       ]
     },
@@ -925,6 +925,54 @@
   ],
   "log": [
     {
+      "repo": "orbital-insight",
+      "message": "Bound how far back Identify searches, so 1960 is refused instead of hanging",
+      "date": "2026-11-22T00:29:13Z",
+      "url": "https://github.com/Devligan/orbital-insight/commit/7bfe0f002bb2ba55b17b2bef5148077442625122"
+    },
+    {
+      "repo": "orbital-insight",
+      "message": "Merge remote-tracking branch 'origin/main' into test/hostile-input-hardening",
+      "date": "2026-11-21T23:59:17Z",
+      "url": "https://github.com/Devligan/orbital-insight/commit/591cd522c60bfc5318dbaa99cb4c193e7f193200"
+    },
+    {
+      "repo": "orbital-insight",
+      "message": "Treat localStorage as hostile input, and test what a visitor can tamper with",
+      "date": "2026-11-21T23:58:49Z",
+      "url": "https://github.com/Devligan/orbital-insight/commit/38f7b14222bf9ff427f4e92fb77cda5da9ef010c"
+    },
+    {
+      "repo": "orbital-insight",
+      "message": "Say why the place box refuses coordinates that can't be on Earth",
+      "date": "2026-11-21T23:50:35Z",
+      "url": "https://github.com/Devligan/orbital-insight/commit/9238361a092c072fbd99d96c69c514001410263c"
+    },
+    {
+      "repo": "orbital-insight",
+      "message": "Name the bad field on /passes instead of failing the whole request",
+      "date": "2026-11-21T23:43:15Z",
+      "url": "https://github.com/Devligan/orbital-insight/commit/438c5bd733cc0ca757f5c30150bfca68584cc788"
+    },
+    {
+      "repo": "powerflow",
+      "message": "0059 states account_credit's grants, as the repository guard requires.",
+      "date": "2026-11-21T23:40:29Z",
+      "url": "https://github.com/Devligan/powerflow/commit/9ae57e9b31cabcb033c40da1312fd3b4e708c87e"
+    },
+    {
+      "repo": "powerflow",
+      "message": "Money is stated in cents, so the Desk's figures add up.",
+      "date": "2026-11-21T23:37:47Z",
+      "url": "https://github.com/Devligan/powerflow/commit/6f7c6b8cc2f629141efaefffbdbb8e06829679d8"
+    },
+    {
+      "repo": "powerflow",
+      "message": "The orders API refuses a product the instrument does not trade.",
+      "date": "2026-11-21T23:24:38Z",
+      "url": "https://github.com/Devligan/powerflow/commit/735cccd11269749a6f25948d7e61f7a6bc8d2882"
+    },
+    {
       "repo": "powerflow",
       "message": "The ticket says why bids were refused, once.",
       "date": "2026-11-21T20:31:30Z",
@@ -935,30 +983,6 @@
       "message": "The Desk shows the credit open bids hold.",
       "date": "2026-11-21T20:26:09Z",
       "url": "https://github.com/Devligan/powerflow/commit/14c3754392247785da50489503523de1503e4327"
-    },
-    {
-      "repo": "powerflow",
-      "message": "Placing an order is idempotent.",
-      "date": "2026-11-21T20:17:32Z",
-      "url": "https://github.com/Devligan/powerflow/commit/22cc7b485be1f5ddfdecbacc7194bd55da658739"
-    },
-    {
-      "repo": "powerflow",
-      "message": "A malformed number is a 422, not a 500.",
-      "date": "2026-11-21T20:10:41Z",
-      "url": "https://github.com/Devligan/powerflow/commit/acd143a15bb8f578ca3a1863682203c2d9003317"
-    },
-    {
-      "repo": "powerflow",
-      "message": "A fresh book reads cleanly: no per-trade figures before a trade closes.",
-      "date": "2026-11-14T23:07:56Z",
-      "url": "https://github.com/Devligan/powerflow/commit/ae8cead5febef8e84faba93b4dcacebfa47c8731"
-    },
-    {
-      "repo": "orbital-insight",
-      "message": "Fit the close-approach and atlas tables on phones",
-      "date": "2026-11-14T01:23:52Z",
-      "url": "https://github.com/Devligan/orbital-insight/commit/06a330633361f02c1d5741eb97bae1cc037fc0b5"
     },
     {
       "repo": "Financial-Market-Volatility-Correlation-Analysis",
@@ -1124,38 +1148,8 @@
     }
   ],
   "calendar": {
-    "total": 448,
+    "total": 472,
     "weeks": [
-      [
-        [
-          "2025-11-16",
-          0
-        ],
-        [
-          "2025-11-17",
-          0
-        ],
-        [
-          "2025-11-18",
-          0
-        ],
-        [
-          "2025-11-19",
-          0
-        ],
-        [
-          "2025-11-20",
-          0
-        ],
-        [
-          "2025-11-21",
-          0
-        ],
-        [
-          "2025-11-22",
-          0
-        ]
-      ],
       [
         [
           "2025-11-23",
@@ -2713,7 +2707,13 @@
         ],
         [
           "2026-11-21",
-          16
+          40
+        ]
+      ],
+      [
+        [
+          "2026-11-22",
+          0
         ]
       ]
     ],
