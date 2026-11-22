@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-22T04:23:33.326Z",
+  "generatedAt": "2026-11-22T05:21:47.002Z",
   "user": {
     "login": "Devligan",
     "name": "Sriharsha Challangi",
@@ -9,57 +9,57 @@
   },
   "stats": {
     "repos": 20,
-    "totalCommits": 411,
+    "totalCommits": 415,
     "stars": 0,
-    "lastPush": "2026-11-22T01:41:20Z"
+    "lastPush": "2026-11-22T05:18:43Z"
   },
   "languages": [
     {
       "name": "Python",
       "color": "#3572A5",
-      "score": 6.481734075810223,
+      "score": 6.4815081752145165,
       "repos": 11,
       "pct": 100
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "score": 1.6775437426554736,
+      "score": 1.6778131427894198,
       "repos": 2,
       "pct": 26
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "score": 1.6612947243202205,
+      "score": 1.6612457534908183,
       "repos": 5,
       "pct": 26
     },
     {
       "name": "HTML",
       "color": "#e34c26",
-      "score": 0.9688218234873207,
+      "score": 0.9687838549322761,
       "repos": 5,
       "pct": 15
     },
     {
       "name": "C#",
       "color": "#7355dd",
-      "score": 0.9171651970822956,
+      "score": 0.9171278629080357,
       "repos": 2,
       "pct": 14
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "score": 0.46783033070265445,
+      "score": 0.46781620847428834,
       "repos": 4,
       "pct": 7
     },
     {
       "name": "PLpgSQL",
       "color": "#336790",
-      "score": 0.27768821933524535,
+      "score": 0.27773031024052475,
       "repos": 1,
       "pct": 4
     }
@@ -81,7 +81,7 @@
       "forks": 0,
       "archived": false,
       "createdAt": "2026-10-27T21:21:42Z",
-      "pushedAt": "2026-11-22T01:41:20Z",
+      "pushedAt": "2026-11-22T05:18:43Z",
       "language": {
         "name": "TypeScript",
         "color": "#3178c6"
@@ -116,7 +116,7 @@
         "power-trading",
         "trading-simulator"
       ],
-      "commits": 200,
+      "commits": 202,
       "branch": "master",
       "gallery": [
         {
@@ -160,7 +160,7 @@
       "forks": 0,
       "archived": false,
       "createdAt": "2026-11-13T04:07:14Z",
-      "pushedAt": "2026-11-22T01:24:49Z",
+      "pushedAt": "2026-11-22T05:18:33Z",
       "language": {
         "name": "TypeScript",
         "color": "#3178c6"
@@ -194,7 +194,7 @@
         "stargazing",
         "starlink"
       ],
-      "commits": 105,
+      "commits": 107,
       "branch": "main",
       "gallery": [
         {
@@ -926,6 +926,24 @@
   "log": [
     {
       "repo": "powerflow",
+      "message": "Redeploy: Vercel did not build the merge of #78.",
+      "date": "2026-11-22T05:18:41Z",
+      "url": "https://github.com/Devligan/powerflow/commit/4a5c39a8f55c661be70c211ceafd4a9dcb43006a"
+    },
+    {
+      "repo": "powerflow",
+      "message": "Bid prices in whole cents, and a request limit on every account and order write.",
+      "date": "2026-11-22T05:03:01Z",
+      "url": "https://github.com/Devligan/powerflow/commit/523d62d8b4f17c80c4d75da3bbdd4da5396c6bfe"
+    },
+    {
+      "repo": "orbital-insight",
+      "message": "Exports: defuse spreadsheet formulas in CSV, escape a lone CR in ICS",
+      "date": "2026-11-22T05:00:08Z",
+      "url": "https://github.com/Devligan/orbital-insight/commit/0e0bfbb6eb0d34f3ee13ecfe739e71b81c345ee6"
+    },
+    {
+      "repo": "powerflow",
       "message": "The Content-Security-Policy runs only scripts that carry the response's nonce.",
       "date": "2026-11-22T01:38:45Z",
       "url": "https://github.com/Devligan/powerflow/commit/3c49e89fa1f7ef5933ac02da3ffb7d4796cee824"
@@ -935,24 +953,6 @@
       "message": "The blotter download stays a plain link.",
       "date": "2026-11-22T01:33:29Z",
       "url": "https://github.com/Devligan/powerflow/commit/e1cfa6e7394f1658fc6dadd2f1394b74cbb3bbcb"
-    },
-    {
-      "repo": "powerflow",
-      "message": "An order's expiry cannot be later than its delivery start.",
-      "date": "2026-11-22T01:32:06Z",
-      "url": "https://github.com/Devligan/powerflow/commit/a57f4c66e4a9e79b444903d4d93e8b5ae5476269"
-    },
-    {
-      "repo": "powerflow",
-      "message": "API responses are not cacheable, unknown paths are a JSON 404, and writes must be JSON.",
-      "date": "2026-11-22T01:27:50Z",
-      "url": "https://github.com/Devligan/powerflow/commit/300d694b8a17622b5fdd11a7cf30f6ca52b91f8e"
-    },
-    {
-      "repo": "powerflow",
-      "message": "Leaving the standings takes effect on the next page load.",
-      "date": "2026-11-22T01:24:44Z",
-      "url": "https://github.com/Devligan/powerflow/commit/fae39890c8a60bcf374fffef88f2a03f7dcca9a1"
     },
     {
       "repo": "orbital-insight",
@@ -977,12 +977,6 @@
       "message": "Bound how far back Identify searches, so 1960 is refused instead of hanging",
       "date": "2026-11-22T00:29:13Z",
       "url": "https://github.com/Devligan/orbital-insight/commit/7bfe0f002bb2ba55b17b2bef5148077442625122"
-    },
-    {
-      "repo": "orbital-insight",
-      "message": "Merge remote-tracking branch 'origin/main' into test/hostile-input-hardening",
-      "date": "2026-11-21T23:59:17Z",
-      "url": "https://github.com/Devligan/orbital-insight/commit/591cd522c60bfc5318dbaa99cb4c193e7f193200"
     },
     {
       "repo": "Financial-Market-Volatility-Correlation-Analysis",
@@ -1148,7 +1142,7 @@
     }
   ],
   "calendar": {
-    "total": 496,
+    "total": 507,
     "weeks": [
       [
         [
@@ -2707,7 +2701,7 @@
         ],
         [
           "2026-11-21",
-          64
+          75
         ]
       ],
       [
