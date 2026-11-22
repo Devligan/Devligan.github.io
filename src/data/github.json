@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-22T01:21:12.457Z",
+  "generatedAt": "2026-11-22T02:26:21.974Z",
   "user": {
     "login": "Devligan",
     "name": "Sriharsha Challangi",
@@ -9,147 +9,62 @@
   },
   "stats": {
     "repos": 20,
-    "totalCommits": 399,
+    "totalCommits": 411,
     "stars": 0,
-    "lastPush": "2026-11-22T01:18:13Z"
+    "lastPush": "2026-11-22T01:41:20Z"
   },
   "languages": [
     {
       "name": "Python",
       "color": "#3572A5",
-      "score": 6.482441617129357,
+      "score": 6.48218877186604,
       "repos": 11,
       "pct": 100
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "score": 1.6759772707391432,
+      "score": 1.6764215438884569,
       "repos": 2,
       "pct": 26
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "score": 1.6618094682167484,
+      "score": 1.6614459926324774,
       "repos": 5,
       "pct": 26
     },
     {
       "name": "HTML",
       "color": "#e34c26",
-      "score": 0.9689407471018495,
+      "score": 0.9688982483874953,
       "repos": 5,
       "pct": 15
     },
     {
       "name": "C#",
       "color": "#7355dd",
-      "score": 0.917282133221291,
+      "score": 0.9172403448399011,
       "repos": 2,
       "pct": 14
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "score": 0.4681299721392991,
+      "score": 0.46795136835629436,
       "repos": 4,
       "pct": 7
     },
     {
       "name": "PLpgSQL",
       "color": "#336790",
-      "score": 0.2788885667816444,
+      "score": 0.2789027296584614,
       "repos": 1,
       "pct": 4
     }
   ],
   "repos": [
-    {
-      "name": "orbital-insight",
-      "description": "See which satellites cross your sky tonight, find out what that moving light was, and explore every active satellite on a live globe. Real orbits, computed in your browser.",
-      "summary": "Open the site · How the numbers are made · Notes from building it",
-      "features": [
-        "See what's up tonight. Type a town (or share your location) and get the passes you can actually see: only ones where the satellite is sunlit against a dark sky. Each comes with a little chart of your sky, the direction…",
-        "Identify a sighting. Saw a steady light glide past? Say when and which way you were looking, and the whole catalog is checked against your sky for that moment.",
-        "Explore the globe. About 16,000 objects, propagated live. Follow the ISS, scrub time forward, click any dot.",
-        "See who's in orbit. Every satellite by orbit height and tilt, where Starlink's shells, the sun-synchronous band and the geostationary ring jump out.",
-        "Screen for close approaches. Pick a satellite and check it against everything else for the next few days."
-      ],
-      "built": "Every satellite in orbit has a published set of numbers describing its orbit, refreshed every day or so by the people who track them. Feed those numbers into SGP4, the standard model the tracking community uses, and you get where the satellite is at any moment. This site does that in your browser for about 16,000 satellites at once, which is what puts the whole sky on the globe and lets it check a sighting against…",
-      "url": "https://github.com/Devligan/orbital-insight",
-      "homepage": "https://orbital-insight-drab.vercel.app",
-      "stars": 0,
-      "forks": 0,
-      "archived": false,
-      "createdAt": "2026-11-13T04:07:14Z",
-      "pushedAt": "2026-11-22T01:18:13Z",
-      "language": {
-        "name": "TypeScript",
-        "color": "#3178c6"
-      },
-      "languages": [
-        {
-          "name": "TypeScript",
-          "color": "#3178c6",
-          "size": 842343
-        },
-        {
-          "name": "JavaScript",
-          "color": "#f1e05a",
-          "size": 16498
-        },
-        {
-          "name": "CSS",
-          "color": "#663399",
-          "size": 8652
-        }
-      ],
-      "topics": [
-        "astrodynamics",
-        "conjunction-analysis",
-        "orbital-mechanics",
-        "satellite-tracking",
-        "sgp4",
-        "space-situational-awareness",
-        "iss",
-        "satellites",
-        "stargazing",
-        "starlink"
-      ],
-      "commits": 102,
-      "branch": "main",
-      "gallery": [
-        {
-          "key": "docs/images/home.jpg@fd295f616a93a42f71d7c200ebd4f0d4c18459bb",
-          "alt": "Every active satellite on the globe, with the ISS followed in real time",
-          "src": "/project-art/orbital-insight-0.webp",
-          "w": 1498,
-          "h": 812
-        },
-        {
-          "key": "docs/images/sky-chart.png@8532c1dc2207260204688475edef62ee6900ca8c",
-          "alt": "An ISS pass over New York: when, how bright, where to look, and the cloud forecast",
-          "src": "/project-art/orbital-insight-1.webp",
-          "w": 832,
-          "h": 185
-        },
-        {
-          "key": "docs/images/atlas.png@263a10c6ab855f3c84863cea0e4e3e2b01e63d1e",
-          "alt": "Active satellites by inclination and altitude",
-          "src": "/project-art/orbital-insight-2.webp",
-          "w": 1072,
-          "h": 740
-        },
-        {
-          "key": "docs/images/conjunctions.png@edfd5117a6921861f9b899d949512a80684f0950",
-          "alt": "The ISS screened against the catalog, with miss distances split into radial, in-track and cross-track",
-          "src": "/project-art/orbital-insight-3.webp",
-          "w": 1120,
-          "h": 835
-        }
-      ]
-    },
     {
       "name": "powerflow",
       "description": "Paper-trade the Texas power grid on real ERCOT prices: bid tomorrow's auction, watch real time, settle on ERCOT's calendar.",
@@ -166,7 +81,7 @@
       "forks": 0,
       "archived": false,
       "createdAt": "2026-10-27T21:21:42Z",
-      "pushedAt": "2026-11-21T23:42:51Z",
+      "pushedAt": "2026-11-22T01:41:20Z",
       "language": {
         "name": "TypeScript",
         "color": "#3178c6"
@@ -201,7 +116,7 @@
         "power-trading",
         "trading-simulator"
       ],
-      "commits": 191,
+      "commits": 200,
       "branch": "master",
       "gallery": [
         {
@@ -224,6 +139,91 @@
           "src": "/project-art/powerflow-2.webp",
           "w": 1130,
           "h": 302
+        }
+      ]
+    },
+    {
+      "name": "orbital-insight",
+      "description": "See which satellites cross your sky tonight, find out what that moving light was, and explore every active satellite on a live globe. Real orbits, computed in your browser.",
+      "summary": "Open the site · How the numbers are made · Notes from building it",
+      "features": [
+        "See what's up tonight. Type a town (or share your location) and get the passes you can actually see: only ones where the satellite is sunlit against a dark sky. Each comes with a little chart of your sky, the direction…",
+        "Identify a sighting. Saw a steady light glide past? Say when and which way you were looking, and the whole catalog is checked against your sky for that moment.",
+        "Explore the globe. About 16,000 objects, propagated live. Follow the ISS, scrub time forward, click any dot.",
+        "See who's in orbit. Every satellite by orbit height and tilt, where Starlink's shells, the sun-synchronous band and the geostationary ring jump out.",
+        "Screen for close approaches. Pick a satellite and check it against everything else for the next few days."
+      ],
+      "built": "Every satellite in orbit has a published set of numbers describing its orbit, refreshed every day or so by the people who track them. Feed those numbers into SGP4, the standard model the tracking community uses, and you get where the satellite is at any moment. This site does that in your browser for about 16,000 satellites at once, which is what puts the whole sky on the globe and lets it check a sighting against…",
+      "url": "https://github.com/Devligan/orbital-insight",
+      "homepage": "https://orbital-insight-drab.vercel.app",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2026-11-13T04:07:14Z",
+      "pushedAt": "2026-11-22T01:24:49Z",
+      "language": {
+        "name": "TypeScript",
+        "color": "#3178c6"
+      },
+      "languages": [
+        {
+          "name": "TypeScript",
+          "color": "#3178c6",
+          "size": 856411
+        },
+        {
+          "name": "JavaScript",
+          "color": "#f1e05a",
+          "size": 16498
+        },
+        {
+          "name": "CSS",
+          "color": "#663399",
+          "size": 8652
+        }
+      ],
+      "topics": [
+        "astrodynamics",
+        "conjunction-analysis",
+        "orbital-mechanics",
+        "satellite-tracking",
+        "sgp4",
+        "space-situational-awareness",
+        "iss",
+        "satellites",
+        "stargazing",
+        "starlink"
+      ],
+      "commits": 105,
+      "branch": "main",
+      "gallery": [
+        {
+          "key": "docs/images/home.jpg@fd295f616a93a42f71d7c200ebd4f0d4c18459bb",
+          "alt": "Every active satellite on the globe, with the ISS followed in real time",
+          "src": "/project-art/orbital-insight-0.webp",
+          "w": 1498,
+          "h": 812
+        },
+        {
+          "key": "docs/images/sky-chart.png@8532c1dc2207260204688475edef62ee6900ca8c",
+          "alt": "An ISS pass over New York: when, how bright, where to look, and the cloud forecast",
+          "src": "/project-art/orbital-insight-1.webp",
+          "w": 832,
+          "h": 185
+        },
+        {
+          "key": "docs/images/atlas.png@263a10c6ab855f3c84863cea0e4e3e2b01e63d1e",
+          "alt": "Active satellites by inclination and altitude",
+          "src": "/project-art/orbital-insight-2.webp",
+          "w": 1072,
+          "h": 740
+        },
+        {
+          "key": "docs/images/conjunctions.png@edfd5117a6921861f9b899d949512a80684f0950",
+          "alt": "The ISS screened against the catalog, with miss distances split into radial, in-track and cross-track",
+          "src": "/project-art/orbital-insight-3.webp",
+          "w": 1120,
+          "h": 835
         }
       ]
     },
@@ -925,6 +925,48 @@
   ],
   "log": [
     {
+      "repo": "powerflow",
+      "message": "The Content-Security-Policy runs only scripts that carry the response's nonce.",
+      "date": "2026-11-22T01:38:45Z",
+      "url": "https://github.com/Devligan/powerflow/commit/3c49e89fa1f7ef5933ac02da3ffb7d4796cee824"
+    },
+    {
+      "repo": "powerflow",
+      "message": "The blotter download stays a plain link.",
+      "date": "2026-11-22T01:33:29Z",
+      "url": "https://github.com/Devligan/powerflow/commit/e1cfa6e7394f1658fc6dadd2f1394b74cbb3bbcb"
+    },
+    {
+      "repo": "powerflow",
+      "message": "An order's expiry cannot be later than its delivery start.",
+      "date": "2026-11-22T01:32:06Z",
+      "url": "https://github.com/Devligan/powerflow/commit/a57f4c66e4a9e79b444903d4d93e8b5ae5476269"
+    },
+    {
+      "repo": "powerflow",
+      "message": "API responses are not cacheable, unknown paths are a JSON 404, and writes must be JSON.",
+      "date": "2026-11-22T01:27:50Z",
+      "url": "https://github.com/Devligan/powerflow/commit/300d694b8a17622b5fdd11a7cf30f6ca52b91f8e"
+    },
+    {
+      "repo": "powerflow",
+      "message": "Leaving the standings takes effect on the next page load.",
+      "date": "2026-11-22T01:24:44Z",
+      "url": "https://github.com/Devligan/powerflow/commit/fae39890c8a60bcf374fffef88f2a03f7dcca9a1"
+    },
+    {
+      "repo": "orbital-insight",
+      "message": "Merge remote-tracking branch 'origin/main' into fix/compare-feedback",
+      "date": "2026-11-22T01:17:57Z",
+      "url": "https://github.com/Devligan/orbital-insight/commit/dca98a765f08cb77e394634b73cad9d8c8df070f"
+    },
+    {
+      "repo": "orbital-insight",
+      "message": "Compare: name the bad side, drop stale results, save only what loaded",
+      "date": "2026-11-22T01:17:52Z",
+      "url": "https://github.com/Devligan/orbital-insight/commit/5a5d069de9bbbe58f4db3d835fc5af6e391523c4"
+    },
+    {
       "repo": "orbital-insight",
       "message": "Spell catalog numbers one way, so 5, 00005 and 00025544 all resolve",
       "date": "2026-11-22T01:09:16Z",
@@ -941,48 +983,6 @@
       "message": "Merge remote-tracking branch 'origin/main' into test/hostile-input-hardening",
       "date": "2026-11-21T23:59:17Z",
       "url": "https://github.com/Devligan/orbital-insight/commit/591cd522c60bfc5318dbaa99cb4c193e7f193200"
-    },
-    {
-      "repo": "orbital-insight",
-      "message": "Treat localStorage as hostile input, and test what a visitor can tamper with",
-      "date": "2026-11-21T23:58:49Z",
-      "url": "https://github.com/Devligan/orbital-insight/commit/38f7b14222bf9ff427f4e92fb77cda5da9ef010c"
-    },
-    {
-      "repo": "orbital-insight",
-      "message": "Say why the place box refuses coordinates that can't be on Earth",
-      "date": "2026-11-21T23:50:35Z",
-      "url": "https://github.com/Devligan/orbital-insight/commit/9238361a092c072fbd99d96c69c514001410263c"
-    },
-    {
-      "repo": "powerflow",
-      "message": "0059 states account_credit's grants, as the repository guard requires.",
-      "date": "2026-11-21T23:40:29Z",
-      "url": "https://github.com/Devligan/powerflow/commit/9ae57e9b31cabcb033c40da1312fd3b4e708c87e"
-    },
-    {
-      "repo": "powerflow",
-      "message": "Money is stated in cents, so the Desk's figures add up.",
-      "date": "2026-11-21T23:37:47Z",
-      "url": "https://github.com/Devligan/powerflow/commit/6f7c6b8cc2f629141efaefffbdbb8e06829679d8"
-    },
-    {
-      "repo": "powerflow",
-      "message": "The orders API refuses a product the instrument does not trade.",
-      "date": "2026-11-21T23:24:38Z",
-      "url": "https://github.com/Devligan/powerflow/commit/735cccd11269749a6f25948d7e61f7a6bc8d2882"
-    },
-    {
-      "repo": "powerflow",
-      "message": "The ticket says why bids were refused, once.",
-      "date": "2026-11-21T20:31:30Z",
-      "url": "https://github.com/Devligan/powerflow/commit/dd5eee8b412af076c4bf0c342c571fe71df4b9ac"
-    },
-    {
-      "repo": "powerflow",
-      "message": "The Desk shows the credit open bids hold.",
-      "date": "2026-11-21T20:26:09Z",
-      "url": "https://github.com/Devligan/powerflow/commit/14c3754392247785da50489503523de1503e4327"
     },
     {
       "repo": "Financial-Market-Volatility-Correlation-Analysis",
@@ -1148,7 +1148,7 @@
     }
   ],
   "calendar": {
-    "total": 476,
+    "total": 496,
     "weeks": [
       [
         [
@@ -2707,7 +2707,7 @@
         ],
         [
           "2026-11-21",
-          44
+          64
         ]
       ],
       [
