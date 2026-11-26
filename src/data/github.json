@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T03:25:13.882Z",
+  "generatedAt": "2026-11-26T04:24:38.967Z",
   "user": {
     "login": "Devligan",
     "name": "Sriharsha Challangi",
@@ -11,60 +11,137 @@
     "repos": 20,
     "totalCommits": 421,
     "stars": 0,
-    "lastPush": "2026-11-25T09:22:57Z"
+    "lastPush": "2026-11-26T03:36:14Z"
   },
   "languages": [
     {
       "name": "Python",
       "color": "#3572A5",
-      "score": 6.459691604142198,
+      "score": 6.459462719542485,
       "repos": 11,
       "pct": 100
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "score": 1.6729135267221595,
+      "score": 1.6765999499969584,
       "repos": 2,
       "pct": 26
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "score": 1.6558810408504196,
+      "score": 1.6558545302108076,
       "repos": 5,
       "pct": 26
     },
     {
       "name": "HTML",
       "color": "#e34c26",
-      "score": 0.9651189166410195,
+      "score": 0.9650804866474234,
       "repos": 5,
       "pct": 15
     },
     {
       "name": "C#",
       "color": "#7355dd",
-      "score": 0.9135238032584267,
+      "score": 0.9134860079355445,
       "repos": 2,
       "pct": 14
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "score": 0.46595077803086066,
+      "score": 0.46598871117767143,
       "repos": 4,
       "pct": 7
     },
     {
       "name": "PLpgSQL",
       "color": "#336790",
-      "score": 0.27670279378232593,
+      "score": 0.2781771779859688,
       "repos": 1,
       "pct": 4
     }
   ],
   "repos": [
+    {
+      "name": "powerflow",
+      "description": "Paper-trade the Texas power grid on real ERCOT prices: bid tomorrow's auction, watch real time, settle on ERCOT's calendar.",
+      "summary": "ERCOT prices every hour of Texas electricity twice. The day-ahead market clears an auction for tomorrow, today. The real-time market prices the same hour again as it is delivered. A cold snap, a plant trip or a windy night pulls the two apart.",
+      "features": [
+        "You bid blind, as ERCOT requires. Bids close at 10:00 Central the day before and fill at the clearing price ERCOT publishes that afternoon.",
+        "You settle on ERCOT's calendar. Positions are marked to real time as each hour runs and settle when ERCOT calls the prices final, two business days later.",
+        "The prices are real. They come from ERCOT's public market reports every 15 minutes. Only the money is simulated."
+      ],
+      "built": "",
+      "url": "https://github.com/Devligan/powerflow",
+      "homepage": "https://powerflow-two.vercel.app",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2026-10-27T21:21:42Z",
+      "pushedAt": "2026-11-26T03:36:14Z",
+      "language": {
+        "name": "TypeScript",
+        "color": "#3178c6"
+      },
+      "languages": [
+        {
+          "name": "TypeScript",
+          "color": "#3178c6",
+          "size": 1282431
+        },
+        {
+          "name": "PLpgSQL",
+          "color": "#336790",
+          "size": 505385
+        },
+        {
+          "name": "CSS",
+          "color": "#663399",
+          "size": 19219
+        },
+        {
+          "name": "JavaScript",
+          "color": "#f1e05a",
+          "size": 9655
+        }
+      ],
+      "topics": [
+        "electricity-markets",
+        "energy-trading",
+        "ercot",
+        "paper-trading",
+        "power-trading",
+        "trading-simulator"
+      ],
+      "commits": 204,
+      "branch": "master",
+      "gallery": [
+        {
+          "key": "public/showcase/markets.png@d41a22aea3652c06a3b1d13e8d87db2a739ea821",
+          "alt": "The HB_NORTH market: the day-ahead curve against real time, and the day-ahead bid ticket",
+          "src": "/project-art/powerflow-0.webp",
+          "w": 1130,
+          "h": 420
+        },
+        {
+          "key": "public/showcase/positions.png@490531e877aef9f3e860827269c6e5d2d886bf83",
+          "alt": "Positions: a risk ladder of net MWh by delivery hour, and each position marked to real time with its settlement deadline",
+          "src": "/project-art/powerflow-1.webp",
+          "w": 1130,
+          "h": 612
+        },
+        {
+          "key": "public/showcase/analytics.png@92043495fa3848132149d1ab272b7280be83adb9",
+          "alt": "Analytics after settlement: equity, return, realized P&L, win rate, best and worst trade, drawdown",
+          "src": "/project-art/powerflow-2.webp",
+          "w": 1130,
+          "h": 302
+        }
+      ]
+    },
     {
       "name": "orbital-insight",
       "description": "See which satellites cross your sky tonight, find out what that moving light was, and explore every active satellite on a live globe. Real orbits, computed in your browser.",
@@ -147,83 +224,6 @@
           "src": "/project-art/orbital-insight-3.webp",
           "w": 1120,
           "h": 835
-        }
-      ]
-    },
-    {
-      "name": "powerflow",
-      "description": "Paper-trade the Texas power grid on real ERCOT prices: bid tomorrow's auction, watch real time, settle on ERCOT's calendar.",
-      "summary": "ERCOT prices every hour of Texas electricity twice. The day-ahead market clears an auction for tomorrow, today. The real-time market prices the same hour again as it is delivered. A cold snap, a plant trip or a windy night pulls the two apart.",
-      "features": [
-        "You bid blind, as ERCOT requires. Bids close at 10:00 Central the day before and fill at the clearing price ERCOT publishes that afternoon.",
-        "You settle on ERCOT's calendar. Positions are marked to real time as each hour runs and settle when ERCOT calls the prices final, two business days later.",
-        "The prices are real. They come from ERCOT's public market reports every 15 minutes. Only the money is simulated."
-      ],
-      "built": "",
-      "url": "https://github.com/Devligan/powerflow",
-      "homepage": "https://powerflow-two.vercel.app",
-      "stars": 0,
-      "forks": 0,
-      "archived": false,
-      "createdAt": "2026-10-27T21:21:42Z",
-      "pushedAt": "2026-11-22T05:21:44Z",
-      "language": {
-        "name": "TypeScript",
-        "color": "#3178c6"
-      },
-      "languages": [
-        {
-          "name": "TypeScript",
-          "color": "#3178c6",
-          "size": 1282431
-        },
-        {
-          "name": "PLpgSQL",
-          "color": "#336790",
-          "size": 505385
-        },
-        {
-          "name": "CSS",
-          "color": "#663399",
-          "size": 19219
-        },
-        {
-          "name": "JavaScript",
-          "color": "#f1e05a",
-          "size": 9655
-        }
-      ],
-      "topics": [
-        "electricity-markets",
-        "energy-trading",
-        "ercot",
-        "paper-trading",
-        "power-trading",
-        "trading-simulator"
-      ],
-      "commits": 204,
-      "branch": "master",
-      "gallery": [
-        {
-          "key": "public/showcase/markets.png@d41a22aea3652c06a3b1d13e8d87db2a739ea821",
-          "alt": "The HB_NORTH market: the day-ahead curve against real time, and the day-ahead bid ticket",
-          "src": "/project-art/powerflow-0.webp",
-          "w": 1130,
-          "h": 420
-        },
-        {
-          "key": "public/showcase/positions.png@490531e877aef9f3e860827269c6e5d2d886bf83",
-          "alt": "Positions: a risk ladder of net MWh by delivery hour, and each position marked to real time with its settlement deadline",
-          "src": "/project-art/powerflow-1.webp",
-          "w": 1130,
-          "h": 612
-        },
-        {
-          "key": "public/showcase/analytics.png@92043495fa3848132149d1ab272b7280be83adb9",
-          "alt": "Analytics after settlement: equity, return, realized P&L, win rate, best and worst trade, drawdown",
-          "src": "/project-art/powerflow-2.webp",
-          "w": 1130,
-          "h": 302
         }
       ]
     },
