@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-27T08:26:23.309Z",
+  "generatedAt": "2026-11-27T09:23:52.360Z",
   "user": {
     "login": "Devligan",
     "name": "Sriharsha Challangi",
@@ -11,60 +11,145 @@
     "repos": 20,
     "totalCommits": 421,
     "stars": 0,
-    "lastPush": "2026-11-26T03:36:14Z"
+    "lastPush": "2026-11-27T09:22:06Z"
   },
   "languages": [
     {
       "name": "Python",
       "color": "#3572A5",
-      "score": 6.452991497452654,
+      "score": 6.452770541148208,
       "repos": 11,
       "pct": 100
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "score": 1.6739206426313538,
+      "score": 1.6764865603343615,
       "repos": 2,
       "pct": 26
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "score": 1.6543000363282587,
+      "score": 1.654297591929854,
       "repos": 5,
       "pct": 26
     },
     {
       "name": "HTML",
       "color": "#e34c26",
-      "score": 0.963994132831345,
+      "score": 0.9639570457437987,
       "repos": 5,
       "pct": 15
     },
     {
       "name": "C#",
       "color": "#7355dd",
-      "score": 0.9124175638868888,
+      "score": 0.9123810871558908,
       "repos": 2,
       "pct": 14
     },
     {
       "name": "CSS",
       "color": "#663399",
-      "score": 0.4654591127693195,
+      "score": 0.46546758720679676,
       "repos": 4,
       "pct": 7
     },
     {
       "name": "PLpgSQL",
       "color": "#336790",
-      "score": 0.2777323667232026,
+      "score": 0.27771718759607733,
       "repos": 1,
       "pct": 4
     }
   ],
   "repos": [
+    {
+      "name": "orbital-insight",
+      "description": "See which satellites cross your sky tonight, find out what that moving light was, and explore every active satellite on a live globe. Real orbits, computed in your browser.",
+      "summary": "Open the site · How the numbers are made · Notes from building it",
+      "features": [
+        "See what's up tonight. Type a town (or share your location) and get the passes you can actually see: only ones where the satellite is sunlit against a dark sky. Each comes with a little chart of your sky, the direction…",
+        "Identify a sighting. Saw a steady light glide past? Say when and which way you were looking, and the whole catalog is checked against your sky for that moment.",
+        "Explore the globe. About 16,000 objects, propagated live. Follow the ISS, scrub time forward, click any dot.",
+        "See who's in orbit. Every satellite by orbit height and tilt, where Starlink's shells, the sun-synchronous band and the geostationary ring jump out.",
+        "Screen for close approaches. Pick a satellite and check it against everything else for the next few days."
+      ],
+      "built": "Every satellite in orbit has a published set of numbers describing its orbit, refreshed every day or so by the people who track them. Feed those numbers into SGP4, the standard model the tracking community uses, and you get where the satellite is at any moment. This site does that in your browser for about 16,000 satellites at once, which is what puts the whole sky on the globe and lets it check a sighting against…",
+      "url": "https://github.com/Devligan/orbital-insight",
+      "homepage": "https://orbital-insight-drab.vercel.app",
+      "stars": 0,
+      "forks": 0,
+      "archived": false,
+      "createdAt": "2026-11-13T04:07:14Z",
+      "pushedAt": "2026-11-27T09:22:06Z",
+      "language": {
+        "name": "TypeScript",
+        "color": "#3178c6"
+      },
+      "languages": [
+        {
+          "name": "TypeScript",
+          "color": "#3178c6",
+          "size": 865801
+        },
+        {
+          "name": "JavaScript",
+          "color": "#f1e05a",
+          "size": 16498
+        },
+        {
+          "name": "CSS",
+          "color": "#663399",
+          "size": 8652
+        }
+      ],
+      "topics": [
+        "astrodynamics",
+        "conjunction-analysis",
+        "orbital-mechanics",
+        "satellite-tracking",
+        "sgp4",
+        "space-situational-awareness",
+        "iss",
+        "satellites",
+        "stargazing",
+        "starlink"
+      ],
+      "commits": 111,
+      "branch": "main",
+      "gallery": [
+        {
+          "key": "docs/images/home.jpg@fd295f616a93a42f71d7c200ebd4f0d4c18459bb",
+          "alt": "Every active satellite on the globe, with the ISS followed in real time",
+          "src": "/project-art/orbital-insight-0.webp",
+          "w": 1498,
+          "h": 812
+        },
+        {
+          "key": "docs/images/sky-chart.png@8532c1dc2207260204688475edef62ee6900ca8c",
+          "alt": "An ISS pass over New York: when, how bright, where to look, and the cloud forecast",
+          "src": "/project-art/orbital-insight-1.webp",
+          "w": 832,
+          "h": 185
+        },
+        {
+          "key": "docs/images/atlas.png@263a10c6ab855f3c84863cea0e4e3e2b01e63d1e",
+          "alt": "Active satellites by inclination and altitude",
+          "src": "/project-art/orbital-insight-2.webp",
+          "w": 1072,
+          "h": 740
+        },
+        {
+          "key": "docs/images/conjunctions.png@edfd5117a6921861f9b899d949512a80684f0950",
+          "alt": "The ISS screened against the catalog, with miss distances split into radial, in-track and cross-track",
+          "src": "/project-art/orbital-insight-3.webp",
+          "w": 1120,
+          "h": 835
+        }
+      ]
+    },
     {
       "name": "powerflow",
       "description": "Paper-trade the Texas power grid on real ERCOT prices: bid tomorrow's auction, watch real time, settle on ERCOT's calendar.",
@@ -139,91 +224,6 @@
           "src": "/project-art/powerflow-2.webp",
           "w": 1130,
           "h": 302
-        }
-      ]
-    },
-    {
-      "name": "orbital-insight",
-      "description": "See which satellites cross your sky tonight, find out what that moving light was, and explore every active satellite on a live globe. Real orbits, computed in your browser.",
-      "summary": "Open the site · How the numbers are made · Notes from building it",
-      "features": [
-        "See what's up tonight. Type a town (or share your location) and get the passes you can actually see: only ones where the satellite is sunlit against a dark sky. Each comes with a little chart of your sky, the direction…",
-        "Identify a sighting. Saw a steady light glide past? Say when and which way you were looking, and the whole catalog is checked against your sky for that moment.",
-        "Explore the globe. About 16,000 objects, propagated live. Follow the ISS, scrub time forward, click any dot.",
-        "See who's in orbit. Every satellite by orbit height and tilt, where Starlink's shells, the sun-synchronous band and the geostationary ring jump out.",
-        "Screen for close approaches. Pick a satellite and check it against everything else for the next few days."
-      ],
-      "built": "Every satellite in orbit has a published set of numbers describing its orbit, refreshed every day or so by the people who track them. Feed those numbers into SGP4, the standard model the tracking community uses, and you get where the satellite is at any moment. This site does that in your browser for about 16,000 satellites at once, which is what puts the whole sky on the globe and lets it check a sighting against…",
-      "url": "https://github.com/Devligan/orbital-insight",
-      "homepage": "https://orbital-insight-drab.vercel.app",
-      "stars": 0,
-      "forks": 0,
-      "archived": false,
-      "createdAt": "2026-11-13T04:07:14Z",
-      "pushedAt": "2026-11-25T09:22:57Z",
-      "language": {
-        "name": "TypeScript",
-        "color": "#3178c6"
-      },
-      "languages": [
-        {
-          "name": "TypeScript",
-          "color": "#3178c6",
-          "size": 865801
-        },
-        {
-          "name": "JavaScript",
-          "color": "#f1e05a",
-          "size": 16498
-        },
-        {
-          "name": "CSS",
-          "color": "#663399",
-          "size": 8652
-        }
-      ],
-      "topics": [
-        "astrodynamics",
-        "conjunction-analysis",
-        "orbital-mechanics",
-        "satellite-tracking",
-        "sgp4",
-        "space-situational-awareness",
-        "iss",
-        "satellites",
-        "stargazing",
-        "starlink"
-      ],
-      "commits": 111,
-      "branch": "main",
-      "gallery": [
-        {
-          "key": "docs/images/home.jpg@fd295f616a93a42f71d7c200ebd4f0d4c18459bb",
-          "alt": "Every active satellite on the globe, with the ISS followed in real time",
-          "src": "/project-art/orbital-insight-0.webp",
-          "w": 1498,
-          "h": 812
-        },
-        {
-          "key": "docs/images/sky-chart.png@8532c1dc2207260204688475edef62ee6900ca8c",
-          "alt": "An ISS pass over New York: when, how bright, where to look, and the cloud forecast",
-          "src": "/project-art/orbital-insight-1.webp",
-          "w": 832,
-          "h": 185
-        },
-        {
-          "key": "docs/images/atlas.png@263a10c6ab855f3c84863cea0e4e3e2b01e63d1e",
-          "alt": "Active satellites by inclination and altitude",
-          "src": "/project-art/orbital-insight-2.webp",
-          "w": 1072,
-          "h": 740
-        },
-        {
-          "key": "docs/images/conjunctions.png@edfd5117a6921861f9b899d949512a80684f0950",
-          "alt": "The ISS screened against the catalog, with miss distances split into radial, in-track and cross-track",
-          "src": "/project-art/orbital-insight-3.webp",
-          "w": 1120,
-          "h": 835
         }
       ]
     },
